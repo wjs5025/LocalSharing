@@ -5,7 +5,7 @@ const YourApp = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>
-        Fucking React-
+        Fucking React
       </Text>
     </View>
   );
