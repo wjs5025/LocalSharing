@@ -57,7 +57,6 @@ function FirstSlide() {
             <View style={[styles.slideContainer,styles.slide4]}>
               <View style={[styles.slideText]}>
                 <Text style={[styles.slideTextTitle]}>지금 바로{"\n"} 시작해보세요 !</Text>
-                <button></button>
               </View>
             </View>
           </Swiper>
