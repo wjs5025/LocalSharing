@@ -1,14 +1,15 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { Platform, StyleSheet, View, Text, Button } from 'react-native';
+import Swiper from "react-native-web-swiper";
+// 컴포넌트 임포트
+import FirstSlide from "./components/FirstSlide";
+import Main from "./components/Main";
 
-const YourApp = () => {
+
+function App() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>
-        Fucking React real injeong;;zz
-      </Text>
-    </View>
+    <FirstSlide/>
   );
 }
 
-export default YourApp;
+export default App;
