@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#903372",
   },
   slideTextTitle:{
-    color : "pink",
-    fontSize : 40,
+    color : "blue",
+    fontSize : 30,
   },
   slideTextSub :{
     color : "red",
@@ -45,7 +45,7 @@ function FirstSlide() {
             <View style={[styles.slideContainer,styles.slide2]}>
               <Text>지금부터 푸드쉐어링에 대해 간단히 설명해 드릴게요!</Text>
               <Text>푸드쉐어링이란?</Text>
-              <Text>{"\n"}"먹을 수 있지만 먹지 않는 음식을 나누어서{"\n"} 음식물쓰레기를 줄이기위한 취지의 환경운동"{"\n"}</Text>
+              <Text style = {[styles.slideTextTitle]}>{"\n"}"먹을 수 있지만 먹지 않는 음식을 나누어서{"\n"} 음식물쓰레기를 줄이기위한 취지의 환경운동"{"\n"}</Text>
               <Text>을 뜻합니다.</Text>
             </View>
             <View style={[styles.slideContainer,styles.slide3]}>
@@ -57,6 +57,7 @@ function FirstSlide() {
             <View style={[styles.slideContainer,styles.slide4]}>
               <View style={[styles.slideText]}>
                 <Text style={[styles.slideTextTitle]}>지금 바로{"\n"} 시작해보세요 !</Text>
+                <Button title="Hello"></Button>
               </View>
             </View>
           </Swiper>
