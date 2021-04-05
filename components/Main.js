@@ -8,3 +8,4 @@ function Main(){
         </View>
     );
 }
+export default Main;
