@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   }
 });
 
-function FirstSlide() {
+class FirstSlide extends Component {
+  render(){
     return (
       <View style={styles.container}>
         <View style={{ flex: 1 }}>
@@ -65,5 +66,5 @@ function FirstSlide() {
       </View>
     );
   }
-  
+}
   export default FirstSlide;

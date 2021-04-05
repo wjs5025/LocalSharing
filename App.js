@@ -6,10 +6,11 @@ import FirstSlide from "./components/FirstSlide";
 import Main from "./components/Main";
 
 
-function App() {
-  return (
-    <FirstSlide/>
-  );
+class App extends Component {
+  render() {
+    return (
+      <FirstSlide/>
+    );
+  }
 }
-
 export default App;
