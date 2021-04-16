@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 
+
 class FlatListDemo extends Component{
     constructor(){  // 객체 상태 초기화
         super();
 
         this.state={
             datas3: [
-                {name:"sam", message:"Hello world",img: require('./baseline_face_black_18x.png')},
-                {name:"robin", message:"Hello rn",img: require('./baseline_face_black_18x.png')},
-                {name:"kim", message:"Hello react",img: require('./baseline_face_black_18x.png')},
-                {name:"hong", message:"Hello hybrid",img: require('./baseline_face_black_18x.png')},
-                {name:"rosa", message:"Hello ios",img: require('./baseline_face_black_18x.png')},
-                {name:"lee", message:"Hello rom",img: require('./baseline_face_black_18x.png')},
-                {name:"jack", message:"Hello tom",img: require('./baseline_face_black_18x.png')},
-                {name:"moana", message:"Hello native",img: require('./baseline_face_black_18x.png')},
+                {name:"sam", message:"Hello world",img: require('../image/baseline_face_black_18x.png')},
+                {name:"robin", message:"Hello rn",img: require('../image/baseline_face_black_18x.png')},
+                {name:"kim", message:"Hello react",img: require('../image/baseline_face_black_18x.png')},
+                {name:"hong", message:"Hello hybrid",img: require('../image/baseline_face_black_18x.png')},
+                {name:"rosa", message:"Hello ios",img: require('../image/baseline_face_black_18x.png')},
+                {name:"lee", message:"Hello rom",img: require('../image/baseline_face_black_18x.png')},
+                {name:"jack", message:"Hello tom",img: require('../image/baseline_face_black_18x.png')},
+                {name:"moana", message:"Hello native",img: require('../image/baseline_face_black_18x.png')},
 
             ],
         };
@@ -27,7 +28,7 @@ class FlatListDemo extends Component{
                 <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
                     data={this.state.datas3}
                     renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
-                    keyExtractor={ item=> item.name }>  // item 각각을 구분해주는 역할
+                    keyExtractor={ item=> item.name }> 
                 </FlatList>
             </View>
         );
