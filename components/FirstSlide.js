@@ -40,14 +40,16 @@ class FirstSlide extends Component {
               <Text style = {[styles.slideTextTitle]}>처음오셨군요?</Text>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-            <Text style={[styles.slideTextSub]}>지금부터 푸드쉐어링에 대해 간단히 설명해 드릴게요!</Text>
-              <Text style={[styles.slideTextSub]}>푸드쉐어링이란?</Text>
-              <Text style = {[styles.slideTextTitle]}>{"\n"}푸드쉐어링이란, {"\n"}먹을 수 있지만 먹지 않는 음식이나 식재료를 주변과 나누는 환경운동"{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}>을 뜻합니다.</Text>
+            <Text style={[styles.slideTextSub]}>지금부터 푸드쉐어링에 대해 {"\n"}간단히 설명해 드릴게요.</Text>
+              <View style={[styles.slideContents]}>
+                <Text style = {[styles.slideTextTitle]}>{"\n"}"    푸드쉐어링은, 먹지 않는 식재료나 남은 음식을 주변과 {"\n"}        공유하는 환경운동      "{"\n"}</Text>
+                <Text style={[styles.slideTextSub]}>                            이에요 !</Text>
+              </View>
+              
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-              <Text style = {[styles.slideTextTitle]}>{"\n"}"당신 손안의 푸드쉐어링, LOCAL SHARING"{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}>이러한 푸드쉐어링을 지역내에서 손쉽게 진행할 수 있도록 도와드릴게요 !</Text>
+              <Text style = {[styles.slideTextTitle]}>{"\n"}" 당신 손안의 푸드쉐어링,{"\n"}      LOCAL SHARING "{"\n"}{"\n"}</Text>
+              <Text style={[styles.slideTextSub]}>이러한 푸드쉐어링을 {"\n"}지역내에서 손쉽게 진행할 수 있도록{"\n"}도와드릴게요 !</Text>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
               <View style={[styles.slideText]}>
@@ -77,10 +79,15 @@ const styles = StyleSheet.create({
   slideTextTitle:{
     color : "white",
     fontWeight : "bold",
-    fontSize : 35,
+    fontSize : 30,
   },
   slideTextSub :{
     color : "white",
+    fontSize : 20,
+  },
+  slideContents : {
+    marginLeft : 15,
+    marginRight : 15
   }
 });
 export default Screen;
