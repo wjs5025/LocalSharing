@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">localsharing</string>
+    <string name="kakao_app_key">135cebfe98b0279c2cb7d08854bca732</string>
 </resources>

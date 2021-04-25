@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
+import Kakao from "./Kakao";
 
 const Stack = createStackNavigator();
 
@@ -19,12 +20,12 @@ class Screen extends Component {
         </Stack.Navigator>
        </NavigationContainer>
      );
-   }G
+   }
  }
 
 function SecondScreen() {
     return (
-      <BottomTabs/>
+      <Kakao/>
     );
 }
 
