@@ -42,10 +42,10 @@ class App extends Component {
     render(){
         return(
             <Tab.Navigator>
-              <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="Review" component={ReviewScreen} />
-              <Tab.Screen name="Event" component={EventScreen} />
-              <Tab.Screen name="Settings" component={MyinfoScreen} />
+              <Tab.Screen name="홈" component={HomeScreen} />
+              <Tab.Screen name="리뷰" component={ReviewScreen} />
+              <Tab.Screen name="이벤트" component={EventScreen} />
+              <Tab.Screen name="내 정보" component={MyinfoScreen} />
             </Tab.Navigator>
         );
     }
