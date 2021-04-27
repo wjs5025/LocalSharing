@@ -8,14 +8,14 @@ class FlatListDemo extends Component{
 
         this.state={
             datas3: [
-                {name:"식당1", message:"오늘 남은 치킨 드려요",img: require('../image/baseline_face_black_18x.png')},
-                {name:"식당2", message:"오늘 남은 반찬드립니다~",img: require('../image/baseline_face_black_18x.png')},
-                {name:"식당3", message:"오늘 남은 김치 드립니다!!",img: require('../image/baseline_face_black_18x.png')},
-                {name:"식당4", message:"무말랭이 남아서 드려요",img: require('../image/baseline_face_black_18x.png')},
-                {name:"자취1", message:"안쓰는 당근 드립니다.",img: require('../image/baseline_face_black_18x.png')},
-                {name:"자취2", message:"유기농 무 드려요",img: require('../image/baseline_face_black_18x.png')},
-                {name:"자취3", message:"라면 가져가세요",img: require('../image/baseline_face_black_18x.png')},
-                {name:"자취4", message:"메론 반쪽 나눠드려요",img: require('../image/baseline_face_black_18x.png')},
+                {name:"치킨 가져가세요 !", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
+                {name:"우도기식당 입니다.", message:"오늘 남은 반찬드릴게요🎁",img: require('../image/반찬.jpg')},
+                {name:"인혁반점 입니다.", message:"김장했는데 많이 남아서 나눠드리려고해요",img: require('../image/김치.jpg')},
+                {name:"혁주네 반찬", message:"무말랭이 남아서 드려요",img: require('../image/무말랭이.jpg')},
+                {name:"진주 유기농 당근", message:"안쓰는 당근 드립니다.",img: require('../image/당근.jpg')},
+                {name:"농사왕 조재현", message:"유기농 무 드려요",img: require('../image/무.jpg')},
+                {name:"열라면 나눠요", message:"라면 가져가세요",img: require('../image/라면.jpg')},
+                {name:"메론 너무 많다", message:"메론 반쪽 나눠드려요",img: require('../image/메론.jpg')},
 
             ],
         };
@@ -52,7 +52,7 @@ class FlatListDemo extends Component{
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.name}</Text>
                     <Text style={style.itemMsg}>{item.message}</Text>
-                    <Text>현 위치로부터 200m 이내</Text>
+                    <Text style={{fontStyle:'italic', fontSize:14}}>· 현 위치로부터 200m 이내</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -64,7 +64,7 @@ const style= StyleSheet.create({
         flexDirection : "row",
     },
     locationIcon:{
-        marginTop:2
+        marginTop:2,
     },
     locationText:{
         fontWeight:'bold',
@@ -79,7 +79,7 @@ const style= StyleSheet.create({
         flexDirection:'row',
         borderWidth:1,
         borderColor:'gray',
-        padding:10,
+        padding:7,
         borderRadius:10,
         marginBottom:7,
     },
@@ -91,12 +91,12 @@ const style= StyleSheet.create({
         marginRight:8,
     },
     itemName:{
-        fontSize:24,
+        fontSize:22,
         fontWeight:'bold',
     },
     itemMsg:{
         fontSize:16,
-        fontStyle:'italic',
+        
     },
 });
 
