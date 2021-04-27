@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { Platform, StyleSheet, View, Text, Button } from 'react-native';
 import Swiper from "react-native-web-swiper";
 import { NavigationContainer } from '@react-navigation/native';
@@ -68,12 +68,18 @@ const withScreen = (Component) => {
 
 
 function Intro(){
-   // const [result, setResult] = useState<string>('');
+    const [result, setResult] = useState('');
   
     const signInWithKakao = async () => {
+      console.log('asd');
       const token = await login();
-  
+      console.log('qwe');
       setResult(JSON.stringify(token));
+      console.log('zxxc');
+      console.log(result);
+      
+      
+    
     };
 
     const signOutWithKakao = async ()=> {
