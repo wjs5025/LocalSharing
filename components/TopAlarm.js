@@ -6,16 +6,16 @@ class TopAlarm extends Component {
         return(
             <View style={{flexDirection : "row",}}>
                 <View style={styles.barleft}>
-                    <TouchableHighlight onPress={()=>{alert("리프래쉬");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("리프래쉬");}}>
                         <View>
                             <Image source={require('../image/homelogo.png')}/>
                         </View>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.barright} style={{width : 45}}>
-                    <TouchableHighlight onPress={()=>{alert("알림창");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("알림창");}}>
                         <View style={styles.alalrmBtn}>
-                            <Image source={require('../image/bell.png')}/>
+                            <Image source={require('../image/bell.png')} style={{width:28, height:28}}/>
                         </View>
                     </TouchableHighlight>
                     </View>

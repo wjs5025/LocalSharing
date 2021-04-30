@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -42,10 +42,11 @@ class App extends Component {
     render(){
         return(
             <Tab.Navigator>
-              <Tab.Screen name="홈" component={HomeScreen} />
-              <Tab.Screen name="리뷰" component={ReviewScreen} />
-              <Tab.Screen name="이벤트" component={EventScreen} />
-              <Tab.Screen name="내 정보" component={MyinfoScreen} />
+              <Tab.Screen name="홈" component={HomeScreen} 
+                options={{tabBarLabel : '홈', tabBarIcon:()=><Image source={require('../image/home.png')} style = {{width:23, height:23}}/>}}/>
+              <Tab.Screen name="리뷰" component={ReviewScreen} options={{tabBarLabel : '리뷰', tabBarIcon:()=><Image source={require('../image/edit.png')} style = {{width:23, height:23}}/>}}/>
+              <Tab.Screen name="이벤트" component={EventScreen} options={{tabBarLabel : '이벤트', tabBarIcon:()=><Image source={require('../image/star.png')} style = {{width:23, height:23}}/>}}/>
+              <Tab.Screen name="내 정보" component={MyinfoScreen} options={{tabBarLabel : '내 정보', tabBarIcon:()=><Image source={require('../image/user.png')} style = {{width:23, height:23}}/>}}/>
             </Tab.Navigator>
         );
     }

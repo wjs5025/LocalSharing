@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
-
 import TopAlarm from "./TopAlarm";
+
 class FlatListDemo extends Component{
+   
     constructor(){  // 객체 상태 초기화
         super();
 
         this.state={
             datas3: [
-                {name:"치킨 가져가세요 !", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
+                {name:"봄이네 치킨입니다!", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
                 {name:"우도기식당 입니다.", message:"오늘 남은 반찬드릴게요🎁",img: require('../image/반찬.jpg')},
                 {name:"인혁반점 입니다.", message:"김장했는데 많이 남아서 나눠드리려고해요",img: require('../image/김치.jpg')},
                 {name:"혁주네 반찬", message:"무말랭이 남아서 드려요",img: require('../image/무말랭이.jpg')},
-                {name:"진주 유기농 당근", message:"안쓰는 당근 드립니다.",img: require('../image/당근.jpg')},
+                {name:"정훈이네 레스토랑", message:"무지성 제육 볶아드립니다",img: require('../image/당근.jpg')},
                 {name:"농사왕 조재현", message:"유기농 무 드려요",img: require('../image/무.jpg')},
                 {name:"열라면 나눠요", message:"라면 가져가세요",img: require('../image/라면.jpg')},
                 {name:"메론 너무 많다", message:"메론 반쪽 나눠드려요",img: require('../image/메론.jpg')},
@@ -26,7 +27,7 @@ class FlatListDemo extends Component{
             <View style={style.root}>
                 <TopAlarm/>
                 <View style={style.location}>
-                    <TouchableHighlight onPress={()=>{alert("위치설정");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
                         <View style={{flexDirection : "row"}}>
                             <Image style={style.locationIcon} source={require('../image/location.png')}/>
                             <Text style={style.locationText} > 진주시 가좌동</Text>
@@ -52,7 +53,7 @@ class FlatListDemo extends Component{
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.name}</Text>
                     <Text style={style.itemMsg}>{item.message}</Text>
-                    <Text style={{fontStyle:'italic', fontSize:14}}>· 현 위치로부터 200m 이내</Text>
+                    <Text style={style.itemhowfar}>· 현 위치로부터 200m 이내</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -64,39 +65,50 @@ const style= StyleSheet.create({
         flexDirection : "row",
     },
     locationIcon:{
-        marginTop:2,
+    
     },
     locationText:{
-        fontWeight:'bold',
+        fontFamily: 'NanumSquare_acEB',
         fontSize:18,
         paddingBottom:10,
     },
     titleText:{
-        fontSize:18,
-        paddingBottom:10,
+        fontFamily: 'NanumSquare_acB',
+        fontSize:17,
+        marginTop:1
+
     },
     itemView:{
         flexDirection:'row',
-        borderWidth:1,
-        borderColor:'gray',
+        borderWidth:1.3,
+        borderColor:'#353535',
         padding:7,
         borderRadius:10,
         marginBottom:7,
     },
     // 
     itemImg:{
+        borderWidth:1,
+        borderColor:'#353535',
         width:120,
         height:100,
         resizeMode:'cover',
-        marginRight:8,
+        marginRight:15,
+        borderRadius: 10,
     },
     itemName:{
+        marginTop :13,
+        fontFamily: 'NanumSquare_acEB',
         fontSize:22,
-        fontWeight:'bold',
     },
     itemMsg:{
+        marginTop:10,
+        fontFamily: 'NanumSquare_acR',
         fontSize:16,
-        
+    },
+    itemhowfar:{
+        fontFamily: 'NanumSquare_acL',
+        fontSize:16,
     },
 });
 
