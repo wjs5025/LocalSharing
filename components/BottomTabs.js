@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
+
 
 function HomeScreen() {
   return (

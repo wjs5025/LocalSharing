@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import FirstSlide from "./components/FirstSlide";
 import BottomTabs from "./components/BottomTabs";
 
+
 const Stack = createStackNavigator();
 class App extends Component {
   render() {
