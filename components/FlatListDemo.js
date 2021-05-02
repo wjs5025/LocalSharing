@@ -14,12 +14,12 @@ const Stack = createStackNavigator();
 class Screen extends Component {
   render() {
      return (
-       <NavigationContainer>
+    
         <Stack.Navigator>
           <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}} />
           <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
         </Stack.Navigator>
-       </NavigationContainer>
+//       </NavigationContainer>
      );
    }
  }
@@ -83,7 +83,7 @@ class FlatListDemo extends Component{
     //멤버 메소드 - FlatList의 renderItem용
     renderItem=({item, state})=>{
         return(
-            <TouchableOpacity style={style.itemView} onPress={()=>{alert("게시글 입니다.");}}>
+            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("Second")}}>
                 <Image source={item.img} style={style.itemImg}/>
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.name}</Text>
@@ -149,4 +149,4 @@ const style= StyleSheet.create({
     },
 });
 
-export default FlatListDemo;
+export default Screen;
