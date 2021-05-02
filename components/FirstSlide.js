@@ -16,18 +16,12 @@ class Screen extends Component {
        <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Fisrt" component={FirstSlide} options={{headerShown: false}} />
-          <Stack.Screen name="Second" component={SecondScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
         </Stack.Navigator>
        </NavigationContainer>
      );
    }
  }
-
-function SecondScreen() {
-    return (
-      <BottomTabs/>
-    );
-}
 
 class FirstSlide extends Component {
   render(){

@@ -1,9 +1,28 @@
 import React, {Component} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
-import TopAlarm from "./TopAlarm";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+
 import firestore from '@react-native-firebase/firestore';
+import SharingPost from "./SharingPost";
+import TopAlarm from "./TopAlarm";
+import { TextInput } from 'react-native';
 
-
+const Stack = createStackNavigator();
+class Screen extends Component {
+  render() {
+     return (
+       <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}} />
+          <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
+        </Stack.Navigator>
+       </NavigationContainer>
+     );
+   }
+ }
 
 class FlatListDemo extends Component{
     state = {
@@ -64,7 +83,7 @@ class FlatListDemo extends Component{
     //멤버 메소드 - FlatList의 renderItem용
     renderItem=({item, state})=>{
         return(
-            <TouchableOpacity style={style.itemView} onPress={()=>{alert(item.name);}}>
+            <TouchableOpacity style={style.itemView} onPress={()=>{alert("게시글 입니다.");}}>
                 <Image source={item.img} style={style.itemImg}/>
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.name}</Text>
@@ -110,7 +129,7 @@ const style= StyleSheet.create({
         width:120,
         height:100,
         resizeMode:'cover',
-        marginRight:15,
+        marginRight:10,
         borderRadius: 10,
     },
     itemName:{
@@ -122,6 +141,7 @@ const style= StyleSheet.create({
         marginTop:10,
         fontFamily: 'NanumSquare_acR',
         fontSize:16,
+        flexShrink:1,
     },
     itemhowfar:{
         fontFamily: 'NanumSquare_acL',
