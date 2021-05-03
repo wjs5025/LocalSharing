@@ -7,7 +7,15 @@ import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
 import Kakao from "./Kakao";
-import Kakao_Maps from "./Kakao_Maps";
+
+import {
+  KakaoOAuthToken,
+  KakaoProfile,
+  getProfile as getKakaoProfile,
+  login,
+  logout,
+  unlink,
+} from '@react-native-seoul/kakao-login';
 
 
 const Stack = createStackNavigator();
@@ -18,19 +26,22 @@ class Screen extends Component {
        <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Fisrt" component={FirstSlide} options={{headerShown: false}} />
-          <Stack.Screen name="Second" component={SecondScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
         </Stack.Navigator>
        </NavigationContainer>
      );
    }
  }
 
-function SecondScreen() {
-    return (
-      <Kakao_Maps/>
-    );
-}
-
+ const signInWithKakao = async () => {
+  console.log('asd');
+  const token = await login();
+  console.log('qwe');
+  setResult(JSON.stringify(token));
+  console.log('zxxc');
+  console.log(result);
+  
+};
 class FirstSlide extends Component {
   render(){
     return (
@@ -76,7 +87,7 @@ class FirstSlide extends Component {
               <View style={[styles.slideText]}>
                 <Text>{"\n"}</Text>
                 <Text style={[styles.slideTextTitle]}>{"\n"}{"\n"}{"\n"}{"\n"}          지금 바로{"\n"}      시작해보세요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-                <TouchableHighlight onPress={() => { this.props.navigation.navigate("Second")}}>
+                <TouchableHighlight onPress={() => {signInWithKakao(), this.props.navigation.navigate("Second")}}>
                         <View>
                             <Image source={require('../image/kakao_login_medium_wide.png')}/>
                         </View>
