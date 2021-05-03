@@ -5,10 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
+import Kakao_Maps from "./Kakao_Maps";
+
 
 function HomeScreen() {
   return (
-        <FlatListDemo/>
+        <Kakao_Maps/>
   );
 }
 

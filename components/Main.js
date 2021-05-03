@@ -1,11 +1,23 @@
-import React from 'react';
-import { Platform, StyleSheet, View, Text, Button } from 'react-native';
+import React, { Component } from 'react';
+import { WebView } from 'react-native-webview'
+import { Alert } from 'react-native';
 
-function Main(){
-    return(
-        <View>
-            <Text>메인페이지 입니다.</Text>
-        </View>
+const html = `
+    <script>
+      function send(){
+        window.postMessage('hello react-native!!');
+      }
+    </script>
+    <button onclick="send()">Send</button>
+`;
+
+export default class App extends Component {
+  render() {
+    return (
+        <WebView style={{top:50}}
+          source={{html}}
+          onMessage={(event)=> Alert.alert(event.nativeEvent.data) }
+        />
     );
+  }
 }
-export default Main;
