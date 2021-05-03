@@ -3,7 +3,6 @@ import { Platform, StyleSheet, View, Text, Button } from 'react-native';
 import Swiper from "react-native-web-swiper";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { withNavigation } from 'react-navigation';
 import 'react-native-gesture-handler';
 import {
   KakaoOAuthToken,
@@ -71,13 +70,10 @@ function Intro(){
     const [result, setResult] = useState('');
   
     const signInWithKakao = async () => {
-      console.log('asd');
-      const token = await login();
-      console.log('qwe');
-      setResult(JSON.stringify(token));
-      console.log('zxxc');
-      console.log(result);
       
+      const token = await login();
+      setResult(JSON.stringify(token));
+      console.log(result);
       
     
     };
@@ -92,6 +88,7 @@ function Intro(){
         const profile = await getKakaoProfile();
     
         setResult(JSON.stringify(profile));
+        console.log(profile);
       };
     
       const unlinkKakao = async () => {

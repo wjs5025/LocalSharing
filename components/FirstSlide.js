@@ -7,6 +7,8 @@ import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
 import Kakao from "./Kakao";
+import Kakao_Maps from "./Kakao_Maps";
+
 
 const Stack = createStackNavigator();
 
@@ -25,7 +27,7 @@ class Screen extends Component {
 
 function SecondScreen() {
     return (
-      <BottomTabs/>
+      <Kakao_Maps/>
     );
 }
 
