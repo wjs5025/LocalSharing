@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native';
 import Swiper from "react-native-web-swiper";
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
-import Kakao from "./Kakao";
 
 import {
   KakaoOAuthToken,
@@ -33,23 +32,32 @@ class Screen extends Component {
    }
  }
 
+
  const signInWithKakao = async () => {
-  console.log('asd');
+  
+  //const [result, setResult] = useState('');
   const token = await login();
-  console.log('qwe');
-  setResult(JSON.stringify(token));
-  console.log('zxxc');
-  console.log(result);
+  const profile = await getKakaoProfile();
+   
+
+ //setResult(JSON.stringify(token));
+ //setResult(JSON.stringify(profile));
+
+  console.log(token);
+  console.log(profile);
+
   
 };
+
+
+
+
 class FirstSlide extends Component {
   render(){
     return (
       <View style={styles.container}>
         <View style={{ flex: 1 }}>
-          <Swiper
-            index={1}
-            >
+          <Swiper index={1}>
             <View style={[styles.slideContainer,styles.slideBackground]}>
               <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}처음 오셨군요?</Text>
               

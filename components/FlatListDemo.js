@@ -14,7 +14,6 @@ const Stack = createStackNavigator();
 class Screen extends Component {
   render() {
      return (
-    
         <Stack.Navigator>
           <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}} />
           <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
@@ -41,13 +40,13 @@ class FlatListDemo extends Component{
     })
     this.state={
         datas3: [
-            {name:"봄이치킨 입니다.", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
+            {name:"원이닭", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
             {name:"우도기식당 입니다.", message:"오늘 남은 반찬드릴게요🎁",img: require('../image/반찬.jpg')},
-            {name:"인혁반점 입니다.", message:"김장했는데 많이 남아서 나눠드리려고해요",img: require('../image/김치.jpg')},
+            {name:"엄지반점 입니다.", message:"김장했는데 많이 남아서 나눠드리려고해요",img: require('../image/김치.jpg')},
             {name:"혁주네 반찬", message:"무말랭이 남아서 드려요",img: require('../image/무말랭이.jpg')},
             {name:"정훈이네 레스토랑", message:"무지성 제육 볶아드립니다",img: require('../image/당근.jpg')},
             {name:"농사왕 조재현", message:"유기농 무 드려요",img: require('../image/무.jpg')},
-            {name:"열라면 나눠요", message:"라면 가져가세요",img: require('../image/라면.jpg')},
+            {name:"KNU 황윤용라면", message:"라면 가져가세요",img: require('../image/라면.jpg')},
             {name:"메론 너무 많다", message:"메론 반쪽 나눠드려요",img: require('../image/메론.jpg')}
         ],
     };
