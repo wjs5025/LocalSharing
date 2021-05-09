@@ -1,6 +1,105 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, View, Text, Button } from 'react-native';
+import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native';
 import Swiper from "react-native-web-swiper";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+
+import BottomTabs from "./BottomTabs";
+import Kakao from "./Kakao";
+
+import {
+  KakaoOAuthToken,
+  KakaoProfile,
+  getProfile as getKakaoProfile,
+  login,
+  logout,
+  unlink,
+} from '@react-native-seoul/kakao-login';
+
+
+const Stack = createStackNavigator();
+
+class Screen extends Component {
+  render() {
+     return (
+       <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Fisrt" component={FirstSlide} options={{headerShown: false}} />
+          <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
+        </Stack.Navigator>
+       </NavigationContainer>
+     );
+   }
+ }
+
+ const signInWithKakao = async () => {
+  console.log('asd');
+  const token = await login();
+  console.log('qwe');
+  setResult(JSON.stringify(token));
+  console.log('zxxc');
+  console.log(result);
+  
+};
+class FirstSlide extends Component {
+  render(){
+    return (
+      <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <Swiper
+            index={1}
+            >
+            <View style={[styles.slideContainer,styles.slideBackground]}>
+              <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}처음 오셨군요?</Text>
+              
+              <Text style={[styles.slideTextSub]}>{"\n"}{"\n"}지금부터 푸드쉐어링에 대해</Text>
+              <Text style ={{fontSize:1.5}}>{"\n"}</Text>
+              <Text style={[styles.slideTextSub]}>   간략히 설명해 드릴게요{"\n"}</Text>
+            </View>
+            <View style={[styles.slideContainer,styles.slideBackground]}>
+            
+              <View style={[styles.slideContents]}>
+              <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text> 
+              <Text style={[styles.slideTextSub]}>              푸드쉐어링이란?</Text>
+                <Text style = {[styles.slideTextTitle]}>{"\n"}" 남은 음식이나 식재료를</Text>
+                <Text style ={{fontSize:2}}>{"\n"}</Text>
+                <Text style = {[styles.slideTextTitle]}>내 주변 이웃과 공유하는 </Text>
+                <Text style ={{fontSize:2}}>{"\n"}</Text>
+                <Text style = {[styles.slideTextTitle]}>       일종의 환경운동 "{"\n"} </Text>
+                <Text style ={{fontSize:28}}>{"\n"}</Text>
+          
+              </View>
+              
+            </View>
+            <View style={[styles.slideContainer,styles.slideBackground]}>
+              <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text>
+              <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}" 당신 손안의 푸드쉐어링 </Text>
+              <Text style = {[styles.slideTextTitle]}>   :: LOCAL SHARING "{"\n"}</Text>
+              <Text style ={{fontSize:2}}>{"\n"}</Text>
+              <Text style={[styles.slideTextSub]}> 여러분도 손쉽게 </Text>
+              <Text style ={{fontSize:2}}>{"\n"}</Text>
+              <Text style={[styles.slideTextSub]}>푸드쉐어링에 참여할 수 있도록</Text>
+              <Text style ={{fontSize:2}}>{"\n"}</Text>
+              <Text style={[styles.slideTextSub]}>  저희가 도와드릴게요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
+            </View>
+            <View style={[styles.slideContainer,styles.slideBackground]}>
+              <View style={[styles.slideText]}>
+                <Text>{"\n"}</Text>
+                <Text style={[styles.slideTextTitle]}>{"\n"}{"\n"}{"\n"}{"\n"}          지금 바로{"\n"}      시작해보세요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
+                <TouchableHighlight onPress={() => {signInWithKakao(), this.props.navigation.navigate("Second")}}>
+                        <View>
+                            <Image source={require('../image/kakao_login_medium_wide.png')}/>
+                        </View>
+                    </TouchableHighlight>
+              </View>
+            </View>
+          </Swiper>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -11,60 +110,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  slide1: {
-    backgroundColor: "rgba(20,20,200,0.3)"
-  },
-  slide2: {
-    backgroundColor: "rgba(20,200,20,0.3)"
-  },
-  slide3: {
-    backgroundColor: "rgba(200,20,20,0.3)"
-  },
-  slide4: {
-    backgroundColor: "#903372",
+  slideBackground: {
+    backgroundColor: "#CF2A27"
   },
   slideTextTitle:{
-    color : "blue",
-    fontSize : 30,
+    fontFamily: 'NanumSquare_acEB',
+    color : "white",
+    fontSize : 35,
   },
   slideTextSub :{
-    color : "red",
+    fontFamily: 'NanumSquareEB',
+    color : "white",
+    fontSize : 24,
+  },
+  slideContents : {
+    marginLeft : 15,
+    marginRight : 15
   }
 });
-
-class FirstSlide extends Component {
-  render(){
-    return (
-      <View style={styles.container}>
-        <View style={{ flex: 1 }}>
-          <Swiper
-            index={1}
-            >
-            <View style={[styles.slideContainer,styles.slide1]}>
-              <Text style = {[styles.slideTextTitle]}>처음오셨군요?</Text>
-            </View>
-            <View style={[styles.slideContainer,styles.slide2]}>
-              <Text>지금부터 푸드쉐어링에 대해 간단히 설명해 드릴게요!</Text>
-              <Text>푸드쉐어링이란?</Text>
-              <Text style = {[styles.slideTextTitle]}>{"\n"}"먹을 수 있지만 먹지 않는 음식을 나누어서{"\n"} 음식물쓰레기를 줄이기위한 취지의 환경운동"{"\n"}</Text>
-              <Text>을 뜻합니다.</Text>
-            </View>
-            <View style={[styles.slideContainer,styles.slide3]}>
-              <Text style={[styles.slideTextSub]}>그렇다면</Text>
-              <Text> "로컬쉐어링"이란?</Text>
-              <Text>{"\n"}"이러한 푸드쉐어링을 내 주변이웃과{"\n"} 손쉽게 진행할 수 있도록 도와주는 앱"{"\n"}</Text>
-              <Text>이에요 !</Text>
-            </View>
-            <View style={[styles.slideContainer,styles.slide4]}>
-              <View style={[styles.slideText]}>
-                <Text style={[styles.slideTextTitle]}>지금 바로{"\n"} 시작해보세요 !</Text>
-                <Button title="Hello"></Button>
-              </View>
-            </View>
-          </Swiper>
-        </View>
-      </View>
-    );
-  }
-}
-  export default FirstSlide;
+export default Screen;

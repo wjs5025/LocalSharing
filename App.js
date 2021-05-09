@@ -1,37 +1,30 @@
 import React, {Component} from 'react';
-import { ScrollView, FlatList, Platform, StyleSheet, View, Text, Button } from 'react-native';
-import Swiper from "react-native-web-swiper";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+
 // 컴포넌트 임포트
+import SplashScreen from 'react-native-splash-screen';
 import FirstSlide from "./components/FirstSlide";
-import Main from "./components/Main";
-import FlatListDemo from "./components/FlatListDemo";
-import BottomNavigator from "./components/BottomNavigator";
+import BottomTabs from "./components/BottomTabs";
 
 
-/* 재현쓰 스크롤뷰
-const arr = [];
-for (let i = 0; i < 100; i++) {
-  arr.push(i);
-}
-
+const Stack = createStackNavigator();
 class App extends Component {
-  render() {
-    return (
-      <FlatList
-        keyExtractor={item => item.toString()}
-        data={arr}
-        renderItem={({item}) => <FlatListDemo num={item} />}
-      />
-    );
+  
+  componentDidMount() { 
+    SplashScreen.hide(); //로딩 화면
   }
-}
-*/
-class App extends Component {
   render() {
     return (
+      // <NavigationContainer>
+      //     <Stack.Navigator>
+      //         <Stack.Screen name="Main" component={BottomTabs} options={{headerShown: false}}/>
+      //     </Stack.Navigator>
+      // </NavigationContainer>
       <FirstSlide/>
-//     <BottomNavigator/>
     );
   }
 }
+
 export default App;

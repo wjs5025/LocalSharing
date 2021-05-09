@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "854040658949",
+    "firebase_url": "https://localsharing-6682b-default-rtdb.firebaseio.com",
+    "project_id": "localsharing-6682b",
+    "storage_bucket": "localsharing-6682b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854040658949:android:fb61821df5877b13a3c86c",
+        "android_client_info": {
+          "package_name": "com.localsharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854040658949-4rrveph4k0j72jqr0ls2454cnaobmgpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd1cJ7txyiRSKDONp_ERme3k7iv6PTx6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854040658949-4rrveph4k0j72jqr0ls2454cnaobmgpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
