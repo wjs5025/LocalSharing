@@ -76,7 +76,7 @@ class FlatListDemo extends Component{
                     keyExtractor={ item=> item.name }>
                 </FlatList>
             </View>
-        );
+        ); 
     }//render method ..
 
     //멤버 메소드 - FlatList의 renderItem용

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, StyleSheet, View, Image, Alert } from 'react-native';
+import { TouchableHighlight, StyleSheet, View, Image, Alert ,Text} from 'react-native';
 import { WebView } from 'react-native-webview';
 import BottomTabs from "./BottomTabs";
 
@@ -9,45 +9,56 @@ import 'react-native-gesture-handler';
 
 const domain = 'https://kakaomapdb.web.app/'
 
+
 const Stack = createStackNavigator();
 
-class Screen extends Component {
+export default class Screen extends Component {
   render() {
      return (
-       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Fisrt" component={App} options={{headerShown: false}} />
           <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
         </Stack.Navigator>
-       </NavigationContainer>
      );
    }
  }
 
 
-
-class App extends Component {
+ class App extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            indexPage: { uri: domain }
+            indexPage: { uri: domain },
+            X:0,
+            Y:0 
         };
+        
     }
 
+    
+     onWebViewMessage = event => {
+       console.log("--------------");
+       console.log(event.nativeEvent.data);
 
-     onWebViewMessage = (e) => {
-       console.log(e.nativeEvent.data);
-       console.log("!@!")
+       console.log("--------------");
+       this.setState(
+           {
+             X: JSON.parse(event.nativeEvent.data).Lat,
+             Y: JSON.parse(event.nativeEvent.data).Lng
+           }
+       )
+       
      };
  
     render() {
+        console.log("Html");
+        console.log(this);
         return (
             <View style={styles.container}>
                 <View style={styles.webview}>
                 <WebView
                     style={styles.webview}
                     source={this.state.indexPage}
-                    onMessage={(event)=> console.log(event.nativeEvent.data)}
+                    onMessage={this.onWebViewMessage}
                     originWhitelist={['*']}
                     ref={webview => this.appWebview = webview}
                     javaScriptEnabled={true}
@@ -55,9 +66,17 @@ class App extends Component {
                     
                 />
                 </View>
+                 <View>
+                     <Text>
+                        {"\n"}
+                        X 좌표 : {this.state.X}  {"\n"}
+                        Y 좌표 : {this.state.Y}         
+                    </Text>
+                    
+                </View>
                 <View style={styles.bottom}>
                      <TouchableHighlight onPress={() => {this.props.navigation.navigate("Second")}}>
-                        <View>
+                                             <View>
                             <Image source={require('../image/kakao_button.png')}/>
                         </View>
                     </TouchableHighlight>
@@ -66,7 +85,9 @@ class App extends Component {
                 </View>
 
             </View>
+            
         );
+        console.log(this);
     }
 };
 
@@ -86,5 +107,3 @@ const styles = StyleSheet.create({
     }
 });
 
-
-export default Screen;

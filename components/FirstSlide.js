@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
+import KakaoMaps from "./KakaoMaps";
 
 import {
   KakaoOAuthToken,
@@ -25,7 +26,7 @@ class Screen extends Component {
        <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Fisrt" component={FirstSlide} options={{headerShown: false}} />
-          <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
+          <Stack.Screen name="Second" component={KakaoMaps} options={{headerShown: false}}/>
         </Stack.Navigator>
        </NavigationContainer>
      );
@@ -95,7 +96,7 @@ class FirstSlide extends Component {
               <View style={[styles.slideText]}>
                 <Text>{"\n"}</Text>
                 <Text style={[styles.slideTextTitle]}>{"\n"}{"\n"}{"\n"}{"\n"}          지금 바로{"\n"}      시작해보세요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-                <TouchableHighlight onPress={() => {signInWithKakao(), this.props.navigation.navigate("Second")}}>
+                <TouchableHighlight onPress={() => {  signInWithKakao(), this.props.navigation.navigate("Second")}}>
                         <View>
                             <Image source={require('../image/kakao_login_medium_wide.png')}/>
                         </View>

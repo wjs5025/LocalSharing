@@ -60,19 +60,19 @@
 </head>
 <body>
 <!--
-    <h1>Hello232 world</h1>
+    <h1>살자 마려운 밤ㅋ</h1>
         <script>
       function send(){
-          alert("22!!");
-        window.postMessage('hello react-native!!');
+          alert("44!!");
+        
           alert("Sendasd!!");
       }
     </script>
     <button onclick="send()">Send</button>
 
     </script>
-*/
 -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <!--   <script src="webViewBridge.js"></script>  -->
 
@@ -148,6 +148,9 @@ function placesSearchCB(data, status, pagination) {
 
     }
 }
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
@@ -189,8 +192,13 @@ function displayPlaces(places) {
             });
 
             kakao.maps.event.addListener(marker, 'click', function() {
-                console.log(marker);
-                console.log(title);
+                var position = marker.getPosition();
+                var posi_list = {
+                    Lat :   position.getLat(),
+                    Lng :   position.getLng() 
+                }
+                console.log(posi_list);
+                window.ReactNativeWebView.postMessage(JSON.stringify(posi_list));
             });
 
             itemEl.onmouseover =  function () {
