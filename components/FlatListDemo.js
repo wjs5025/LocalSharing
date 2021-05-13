@@ -8,7 +8,10 @@ import 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
 import SharingPost from "./SharingPost";
 import TopAlarm from "./TopAlarm";
+import PlusButton from "./PlusButton"
 import { TextInput } from 'react-native';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 class Screen extends Component {
@@ -71,10 +74,12 @@ class FlatListDemo extends Component{
                 </View>
                 
                 <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
+                    style = {style.flatlist}
                     data={this.state.datas3}
                     renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
                     keyExtractor={ item=> item.name }>
                 </FlatList>
+                <PlusButton/>
             </View>
         ); 
     }//render method ..
@@ -87,21 +92,23 @@ class FlatListDemo extends Component{
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.name}</Text>
                     <Text style={style.itemMsg}>{item.message}</Text>
+                    <Text style={style.itemhowfar}>{"\n"}{"\n"} - 현 위치로부터 ...m 이내</Text>
                     {/* <Text>Name: {this.state.post.title}</Text> */}
-                    <Text style={style.itemhowfar}>· 현 위치로부터 200m 이내</Text>
+                   
                 </View>
             </TouchableOpacity>
         );
     }
 }
 const style= StyleSheet.create({
-    root:{flex:1, padding:16,},
+    flatlist:{},
+    root:{
+        flex:1,
+        padding:16},
     location:{
         flexDirection : "row",
     },
-    locationIcon:{
-    
-    },
+    locationIcon:{},
     locationText:{
         fontFamily: 'NanumSquare_acEB',
         fontSize:18,
@@ -111,41 +118,45 @@ const style= StyleSheet.create({
         fontFamily: 'NanumSquare_acB',
         fontSize:17,
         marginTop:1
-
     },
     itemView:{
         flexDirection:'row',
-        borderWidth:1.3,
+        borderWidth:1.5,
         borderColor:'#353535',
         padding:7,
-        borderRadius:10,
-        marginBottom:7,
+        borderRadius:5,
+        marginBottom:10,
     },
-    // 
     itemImg:{
         borderWidth:1,
         borderColor:'#353535',
-        width:120,
+        width:105,
         height:100,
         resizeMode:'cover',
         marginRight:10,
-        borderRadius: 10,
+        borderRadius: 5,
     },
     itemName:{
-        marginTop :13,
+        marginTop :7,
         fontFamily: 'NanumSquare_acEB',
         fontSize:22,
     },
     itemMsg:{
         marginTop:10,
-        fontFamily: 'NanumSquare_acR',
-        fontSize:16,
+        fontFamily: 'NanumSquare_acEB',
+        fontSize:15,
         flexShrink:1,
     },
     itemhowfar:{
-        fontFamily: 'NanumSquare_acL',
-        fontSize:16,
+        fontFamily: 'NanumSquare_acB',
+        fontSize:13,
     },
+    actionButtonIcon: {
+        position: 'absolute',
+        fontSize: 20,
+        height: 22,
+        color: 'white',
+    }
 });
 
 export default Screen;

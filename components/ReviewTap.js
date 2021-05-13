@@ -11,7 +11,6 @@ class Screen extends Component {
   render() {
      return (
         <ReviewTap/>
-
      );
    }
  }

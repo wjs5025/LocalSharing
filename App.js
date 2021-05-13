@@ -10,6 +10,7 @@ import FirstSlide from "./components/FirstSlide";
 import KakaoMaps from "./components/KakaoMaps";
 import Content from "./components/Posts/Content"
 import Promise from "./components/Posts/Promise"
+import BottomTabs from "./components/BottomTabs"
 const Stack = createStackNavigator();
 class App extends Component {
   
@@ -18,10 +19,13 @@ class App extends Component {
   }
   render() {
     return (
+      // <PlusButton/>
       // <Promise/>
       <FirstSlide/>
-      // <KakaoMaps/>
+      
       // <Content/>
+      // <NavigationContainer><KakaoMaps/></NavigationContainer>
+     
 
     );
   }

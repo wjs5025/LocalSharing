@@ -11,7 +11,7 @@ const style = StyleSheet.create({
         paddingLeft : 15,
         textAlignVertical : "center",
         fontFamily: 'NanumSquareEB',
-        fontSize : 33,
+        fontSize : 28,
         paddingTop : 15,
         paddingBottom : 15,
     },
@@ -23,7 +23,7 @@ const style = StyleSheet.create({
         paddingTop : 0,
         paddingBottom : 15,
         fontFamily: 'NanumSquareEB',
-        fontSize : 20
+        fontSize : 18
     },
 });
 

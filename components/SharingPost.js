@@ -18,6 +18,7 @@ class SharingPost extends Component {
             <View style={style.scrollView}>
                 <ScrollView>
                     <Info style={style.InfoArea}/>
+                    
                     <Content style={style.contentArea}/>
                     <Promise/>
                     {/* <Comment/> */}

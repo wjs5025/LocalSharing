@@ -16,6 +16,7 @@ export default class Screen extends Component {
   render() {
      return (
         <Stack.Navigator>
+            <Stack.Screen name="fisrt" component={App} options={{headerShown: false}}/>
           <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
         </Stack.Navigator>
      );

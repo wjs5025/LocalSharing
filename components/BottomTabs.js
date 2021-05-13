@@ -6,11 +6,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FlatListDemo from "./FlatListDemo";
 import ReviewTap from "./ReviewTap";
 
+function HomeScreen() {
+  return (
+    <View style={{flex: 1}}>
+      <FlatListDemo/>
+    </View>
+  );
+}
 
 function ReviewScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>ReviewScreen!</Text>
+    <View style={{flex: 1}}>
+      <ReviewTap/>
     </View>
   );
 }
@@ -18,7 +25,7 @@ function ReviewScreen() {
 function EventScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>EventScreen!</Text>
+        <Text>Event Screen</Text>
       </View>
     );
   }
@@ -37,8 +44,8 @@ class App extends Component {
     render(){
         return(
             <Tab.Navigator>
-              <Tab.Screen name="홈" component={FlatListDemo} options={{tabBarLabel : '홈', tabBarIcon:()=> <Image source={require('../image/home.png')} style = {{width:23, height:23}}/>}}/>
-              <Tab.Screen name="리뷰" component={ReviewTap} options={{tabBarLabel : '리뷰', tabBarIcon:()=> <Image source={require('../image/edit.png')} style = {{width:23, height:23}}/>}}/>
+              <Tab.Screen name="홈" component={HomeScreen} options={{tabBarLabel : '홈', tabBarIcon:()=> <Image source={require('../image/home.png')} style = {{width:23, height:23}}/>}}/>
+              <Tab.Screen name="리뷰" component={ReviewScreen} options={{tabBarLabel : '리뷰', tabBarIcon:()=> <Image source={require('../image/edit.png')} style = {{width:23, height:23}}/>}}/>
               <Tab.Screen name="이벤트" component={EventScreen} options={{tabBarLabel : '이벤트', tabBarIcon:()=> <Image source={require('../image/star.png')} style = {{width:23, height:23}}/>}}/>
               <Tab.Screen name="내 정보" component={MyinfoScreen} options={{tabBarLabel : '내 정보', tabBarIcon:()=> <Image source={require('../image/user.png')} style = {{width:23, height:23}}/>}}/>
             </Tab.Navigator>
