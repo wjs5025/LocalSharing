@@ -9,19 +9,15 @@ import firestore from '@react-native-firebase/firestore';
 import SharingPost from "./SharingPost";
 import TopAlarm from "./TopAlarm";
 import PlusButton from "./PlusButton"
-import { TextInput } from 'react-native';
-import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 class Screen extends Component {
   render() {
      return (
         <Stack.Navigator>
-          <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}} />
+          <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}}/>
           <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
         </Stack.Navigator>
-//       </NavigationContainer>
      );
    }
  }

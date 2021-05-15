@@ -18,8 +18,7 @@ function MyStack() {
   );
 }
 
-class PlusButton extends Component {
-  render() {
+function PlusButton(props) {
     return (
           <ActionButton 
               offsetX={10}
@@ -45,8 +44,6 @@ class PlusButton extends Component {
           </ActionButton.Item>
         </ActionButton>
     );
-  }
-
 }
 
 const styles = StyleSheet.create({

@@ -1,7 +1,16 @@
 import React, {Component, useState} from 'react';
 import { TouchableHighlight, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
+import Promise from './Promise';
 
 const style = StyleSheet.create({
+    disable_container : {
+        flex:1,
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth : 1,
+        borderColor : "#CF2A27",
+        backgroundColor : '#CF2A27'
+    },
     container : {
         flex:1,
         alignItems: "center",
@@ -14,14 +23,17 @@ const style = StyleSheet.create({
         fontFamily : 'NanumSquare_acEB',
         fontSize : 30,
         color:'white'
+    },
+    diasble_sharingButton : {
+        fontFamily : 'NanumSquare_acEB',
+        fontSize : 30,
+        color:'gray'
     }
 });
-function SharingButton() {
+function SharingButton({...props}) {
     return(
-        <TouchableHighlight style={style.container} underlayColor = {'none'} onPress={()=>{alert("리프래쉬");}}>
-            <View style={style.container}>
-                <Text style={style.sharingButton}>쉐어링 신청하기</Text>
-            </View>
+        <TouchableHighlight disabled={!props.allCheck} style={props.allCheck ? style.disable_container : style.container} underlayColor = {'none'} onPress={()=>{alert(props.allCheck);}}>
+                <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>쉐어링 신청하기</Text>
         </TouchableHighlight>
     );
 }

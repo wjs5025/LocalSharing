@@ -1,5 +1,5 @@
-import React, {Component, useState} from 'react';
-import { TouchableHighlight, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
+import React, {Component, useState, useEffect} from 'react';
+import { TouchableHighlight, ScrollView, StyleSheet, View, Text, Image} from 'react-native';
 import Swiper from "react-native-web-swiper";
 import ImageView from "./Posts/ImageView";
 import Content from "./Posts/Content";
@@ -8,8 +8,14 @@ import Info from "./Posts/Info";
 import Promise from "./Posts/Promise";
 import Comment from "./Posts/Comment";
 
-class SharingPost extends Component {
-  render(){
+function SharingPost(){
+    const [allCheck, setCheck] = useState(false);
+
+    useEffect(() => {
+        console.log("sharing" + allCheck);
+    }, [allCheck])
+
+
     return (
         <View style={style.container}>
             <View style={style.imageArea}>
@@ -18,18 +24,16 @@ class SharingPost extends Component {
             <View style={style.scrollView}>
                 <ScrollView>
                     <Info style={style.InfoArea}/>
-                    
                     <Content style={style.contentArea}/>
-                    <Promise/>
+                    <Promise allCheck = {allCheck} setCheck = {setCheck}/>
                     {/* <Comment/> */}
                 </ScrollView>
             </View>
             <View style ={{flex:0.5}}>
-                <SharingButton style={{flex:1}}/>
+                <SharingButton allCheck = {allCheck} style={{flex:1}}/>
             </View>
         </View>
     );
-  }
 }
 
 const style = StyleSheet.create({

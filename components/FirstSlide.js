@@ -20,8 +20,7 @@ import {
 
 const Stack = createStackNavigator();
 
-class Screen extends Component {
-  render() {
+function Screen(){
      return (
        <NavigationContainer>
         <Stack.Navigator>
@@ -30,7 +29,6 @@ class Screen extends Component {
         </Stack.Navigator>
        </NavigationContainer>
      );
-   }
  }
 
 
