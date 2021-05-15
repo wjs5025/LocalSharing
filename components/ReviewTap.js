@@ -20,12 +20,12 @@ class Screen extends Component {
 class ReviewTap extends Component{
     GetWriten() {
         console.log(this.state);
-        this.state={
-            datas3: [
+        this.setState({
+            datas1: [
                 {name:"배고프닭", message:"나눔 치킨 너무 맛있엇습니다!!", date:"21-04-07"},
                 {name:"우도기식당 입니다.", message:"역시 우도기식당 짱 ^^bbbb", date:"21-04-27"},
                 ],
-       };
+       });
        console.log("-----------");
        console.log(this.state);
        
@@ -45,7 +45,7 @@ class ReviewTap extends Component{
             }})
     })
     this.state={
-        datas3: [
+        datas1: [
             {name:"원이닭", message:"나눔 치킨 너무 맛있엇습니다!!", date:"21-04-07"},
             {name:"우도기식당 입니다.", message:"역시 우도기식당 짱 ^^bbbb", date:"21-04-27"},
             {name:"엄지반점 입니다.", message:"김치찌개 맛잇게 해먹었어요 ^__^", date:"21-05-10"},
@@ -81,7 +81,7 @@ class ReviewTap extends Component{
 
 
                     <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
-                    data={this.state.datas3}
+                    data={this.state.datas1}
                     renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
                     keyExtractor={ item=> item.name }>
                    </FlatList>

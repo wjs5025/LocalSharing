@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Image, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 
-class TopAlarm extends Component {
+class TopMenu extends Component {
     render(){
         return(
             <View style={{flexDirection : "row",}}>
