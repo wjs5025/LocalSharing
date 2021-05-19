@@ -75,6 +75,7 @@ export default class Screen extends Component {
                     </Text>
                     
                 </View>
+                {console.log("X좌표 = " + this.state.X + " / Y좌표 = " + this.state.Y)}
                 <View style={styles.bottom}>
                      <TouchableHighlight onPress={() => {this.props.navigation.navigate("Second")}}>
                                              <View>

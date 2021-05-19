@@ -10,7 +10,9 @@ import Comment from "./Posts/Comment";
 
 function SharingPost(){
     const [allCheck, setCheck] = useState(false);
+    const buttonName = useState("");
 
+    console.log(buttonName);
     useEffect(() => {
         console.log("sharing" + allCheck);
     }, [allCheck])
@@ -30,7 +32,7 @@ function SharingPost(){
                 </ScrollView>
             </View>
             <View style ={{flex:0.5}}>
-                <SharingButton allCheck = {allCheck} style={{flex:1}}/>
+                <SharingButton allCheck = {allCheck} buttonName = {"쉐어링 신청하기"} style={{flex:1}}/>
             </View>
         </View>
     );

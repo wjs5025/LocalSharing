@@ -1,6 +1,6 @@
 import React, {Component, useState} from 'react';
 import { TouchableHighlight, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
-import Promise from './Promise';
+
 
 const style = StyleSheet.create({
     disable_container : {
@@ -33,7 +33,7 @@ const style = StyleSheet.create({
 function SharingButton({...props}) {
     return(
         <TouchableHighlight disabled={!props.allCheck} style={props.allCheck ? style.disable_container : style.container} underlayColor = {'none'} onPress={()=>{alert(props.allCheck);}}>
-                <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>쉐어링 신청하기</Text>
+                <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>{props.buttonName}</Text>
         </TouchableHighlight>
     );
 }

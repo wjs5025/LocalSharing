@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   });
 
 
-export default TopAlarm;
+export default TopMenu;
