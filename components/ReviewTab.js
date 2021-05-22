@@ -90,7 +90,6 @@ class ReviewTab extends Component{
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.WritenReview(this);}}>
                         <View style={{flexDirection : "row"}}>
                             <Text style={style.Writen } >| 내가 쓴 리뷰 |</Text>
-                            
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.ReceivedReview(this);}}>
@@ -118,7 +117,6 @@ class ReviewTab extends Component{
         return(
             <View style={style.List}>
                 <View style={{flexDirection:'column'}}>
-                     
                     <Text style={style.itemName}>{item.name}</Text>
                     <Text style={style.itemMsg}>{item.message}</Text>
                     <Text style={style.itemdate}>{item.date}</Text>
@@ -135,7 +133,6 @@ const style= StyleSheet.create({
     root:{
         flex:1,
         padding:16, 
-        marginTop: 30,
         backgroundColor: "#CF2A27"
     },
     Review:{
