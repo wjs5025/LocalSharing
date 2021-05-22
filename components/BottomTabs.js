@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
-import ReviewTab from "./ReviewTab";
-import EventTab from './EventTab';
-import MyinfoTab from './MyinfoTab';
+import ReviewTab from "./ReviewTabs/ReviewTab";
+import EventTab from './EventTabs/EventTab';
+import MyinfoTab from './MyInfoTabs/MyinfoTab';
 
 
 

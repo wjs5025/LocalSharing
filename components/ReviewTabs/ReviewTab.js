@@ -22,7 +22,6 @@ export default class Screen extends Component {
 
 
 class ReviewTab extends Component{
-    
     WritenReview() {
         this.setState({
             datas1: [

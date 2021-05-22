@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   FlatList:{
       flex:1,
       marginLeft : 30,
-      marginRight : 30
+      marginRight : 30,
   }
 });
 
@@ -46,7 +46,7 @@ const MyinfoTab = () => {
     return (
         <View style={styles.container}>
             <View style = {styles.profileArea}>
-                <Image style={styles.image} source={require('../image/저니녁.jpg')}/>
+                <Image style={styles.image} source={require('../../image/저니녁.jpg')}/>
                 <Text style={styles.UserName}>{Name} 님</Text>
             </View>
         <FlatList
