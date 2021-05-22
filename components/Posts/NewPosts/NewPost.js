@@ -5,7 +5,7 @@ import SharingButton from "../SharingButton";
 import Promise from "../Promise";
 
 import ImagePicker from 'react-native-image-picker';
-
+/*
 const options = {
     title: 'Load Photo',
     customButtons: [
@@ -16,7 +16,7 @@ const options = {
       skipBackup: true,
       path: 'images',
     },
-  };
+  };    
 
 ImagePicker.showImagePicker(options, (response) => {
 console.log('Response = ', response);
@@ -34,7 +34,7 @@ if (response.didCancel) {
     setImageSource(response.uri);
 }
 });
-
+*/
 function NewPost({...props}) {
     const [allCheck, setCheck] = useState(false);
     const [TitleValue, onChangeTitle] = useState('');
@@ -45,9 +45,15 @@ function NewPost({...props}) {
     const InnerFocusStyle = Innerfocus ? style.InnerInputFocus : style.InnerInput;
 
     return(
+        <View>
+
+        </View>
+    )
+/*
+    return(
         <View style = {style.container}>
             <TouchableHighlight style = {style.picture}>
-                <Image source={require('../../../image/photo.png')} onPress={}/>
+                <Image source={require('../../../image/photo.png')} onPress={alert("as")}/>
             </TouchableHighlight>
             <View style = {style.section}>
                 <View style = {{flex :1}}>
@@ -80,7 +86,7 @@ function NewPost({...props}) {
                 </View>
             </View>
         </View>
-    )
+    )*/
 }
 
 const style = StyleSheet.create({

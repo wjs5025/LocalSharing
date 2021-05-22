@@ -6,7 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
-import ReviewTap from "./ReviewTap";
+import ReviewTab from "./ReviewTab";
+import EventTab from "./EventTab";
+import MyinfoTab from "./MyinfoTab";
 
 
 function HomeScreen() {
@@ -20,24 +22,24 @@ function HomeScreen() {
 function ReviewScreen() {
   return (
     <View style={{flex: 1}}>
-      <ReviewTap/>
+      <ReviewTab/>
     </View>
   );
 }
 
 function EventScreen() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Event Screen</Text>
-      </View>
+      <View style={{flex: 1}}>
+      <EventTab/>
+    </View>
     );
   }
 
 function MyinfoScreen() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>MyinfoScreen!</Text>
-      </View>
+      <View style={{flex: 1}}>
+      <MyinfoTab/>
+    </View>
     );
   }
   

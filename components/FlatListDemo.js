@@ -11,12 +11,12 @@ import TopMenu from "./TopMenu";
 import PlusButton from "./PlusButton"
 
 const Stack = createStackNavigator();
-class Screen extends Component {
+export default class Screen extends Component {
   render() {
      return (
         <Stack.Navigator>
-          <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}}/>
-          <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
+          <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
+          <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
         </Stack.Navigator>
      );
    }
@@ -81,11 +81,11 @@ class FlatListDemo extends Component{
         ); 
     }//render method ..
 
-    //멤버 메소드 - FlatList의 renderItem용
+    //멤버 메소드 - FlatList의 renderItem용 
     renderItem=({item, state})=>{
 
         return(
-            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("Second")}}>
+            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
                 <Image source={{uri : item.img}} style={style.itemImg}/>
                 <View style={{flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.title}</Text>
@@ -155,4 +155,3 @@ const style= StyleSheet.create({
     }
 });
 
-export default Screen;
