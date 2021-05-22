@@ -7,6 +7,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
 import ReviewTap from "./ReviewTap";
+import EventTab from './EventTab';
+=======
+import ReviewTab from "./ReviewTab";
+import EventTab from "./EventTab";
+import MyinfoTab from "./MyinfoTab";
+>>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
 
 
 function HomeScreen() {
@@ -27,17 +33,23 @@ function ReviewScreen() {
 
 function EventScreen() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Event Screen</Text>
+<<<<<<< HEAD
+      <View style={{ flex: 1}}>
+        <EventTab/>
       </View>
+=======
+      <View style={{flex: 1}}>
+      <EventTab/>
+    </View>
+>>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
     );
   }
 
 function MyinfoScreen() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>MyinfoScreen!</Text>
-      </View>
+      <View style={{flex: 1}}>
+      <MyinfoTab/>
+    </View>
     );
   }
   

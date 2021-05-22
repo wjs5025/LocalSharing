@@ -11,9 +11,12 @@ import FirstSlide from "./components/FirstSlide";
 import FlatListDemo from "./components/FlatListDemo";
 import KakaoMaps from "./components/KakaoMaps";
 import PlusButton from "./components/PlusButton";
-import ReviewTap from "./components/ReviewTap";
+import ReviewTab from "./components/ReviewTab";
 import SharingPost from "./components/SharingPost";
 import TopMenu from "./components/TopMenu";
+import NewReview from "./components/NewReview";
+import EventTab from "./components/EventTab";
+import MyinfoTab from "./components/MyinfoTab";
 
 //  ./Posts/...
 import Comment from "./components/Posts/Comment";
@@ -30,7 +33,7 @@ class App extends Component {
   }
   render() {
     return (
-        <NewPost/>
+        <FirstSlide/>
       );
   }
 }

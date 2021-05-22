@@ -16,8 +16,8 @@ export default class Screen extends Component {
   render() {
      return (
         <Stack.Navigator>
-            <Stack.Screen name="fisrt" component={App} options={{headerShown: false}}/>
-          <Stack.Screen name="Second" component={BottomTabs} options={{headerShown: false}}/>
+           <Stack.Screen name="App" component={App} options={{headerShown: false}}/>
+           <Stack.Screen name="BottomTabs" component={BottomTabs} options={{headerShown: false}}/>
         </Stack.Navigator>
      );
    }
@@ -77,7 +77,7 @@ export default class Screen extends Component {
                 </View>
                 {console.log("X좌표 = " + this.state.X + " / Y좌표 = " + this.state.Y)}
                 <View style={styles.bottom}>
-                     <TouchableHighlight onPress={() => {this.props.navigation.navigate("Second")}}>
+                     <TouchableHighlight onPress={() => {this.props.navigation.navigate("BottomTabs")}}>
                                              <View>
                             <Image source={require('../image/kakao_button.png')}/>
                         </View>

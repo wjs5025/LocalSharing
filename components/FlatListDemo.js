@@ -11,12 +11,12 @@ import TopMenu from "./TopMenu";
 import PlusButton from "./PlusButton"
 
 const Stack = createStackNavigator();
-class Screen extends Component {
+export default class Screen extends Component {
   render() {
      return (
         <Stack.Navigator>
-          <Stack.Screen name="Fisrt" component={FlatListDemo} options={{headerShown: false}}/>
-          <Stack.Screen name="Second" component={SharingPost} options={{headerShown: false}}/>
+          <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
+          <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
         </Stack.Navigator>
      );
    }
@@ -81,16 +81,16 @@ class FlatListDemo extends Component{
         ); 
     }//render method ..
 
-    //멤버 메소드 - FlatList의 renderItem용
+    //멤버 메소드 - FlatList의 renderItem용 
     renderItem=({item, state})=>{
 
         return(
-            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("Second")}}>
+            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
                 <Image source={{uri : item.img}} style={style.itemImg}/>
-                <View style={{flexDirection:'column'}}>
+                <View style={{flex:1, flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.title}</Text>
                     <Text style={style.itemMsg}>{item.내용}</Text>
-                    <Text style={style.itemhowfar}>{"\n"}{"\n"} - 현 위치로부터 ...m 이내</Text> 
+                    <Text style={style.itemhowfar}>{"\n"} - 현 위치로부터 ...m 이내</Text> 
                 </View>
             </TouchableOpacity>
         );
@@ -116,6 +116,7 @@ const style= StyleSheet.create({
         marginTop:1
     },
     itemView:{
+        height : 118,
         flexDirection:'row',
         borderWidth:1.5,
         borderColor:'#353535',
@@ -138,12 +139,15 @@ const style= StyleSheet.create({
         fontSize:22,
     },
     itemMsg:{
-        marginTop:10,
+        flex:1,
+        marginTop:5,
         fontFamily: 'NanumSquare_acEB',
         fontSize:15,
         flexShrink:1,
+        
     },
     itemhowfar:{
+        flex:1,
         fontFamily: 'NanumSquare_acB',
         fontSize:13,
     },
@@ -155,4 +159,3 @@ const style= StyleSheet.create({
     }
 });
 
-export default Screen;
