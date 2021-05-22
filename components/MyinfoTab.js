@@ -1,13 +1,16 @@
 import React, {Component, useState} from 'react';
-import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native';
+import { TouchableHighlight, StyleSheet, View, Text, Image, FlatList } from 'react-native';
 
-export default class MyinfoTab extends Component{
-    render() {
-        console.log(this.state);
-        return (
-          <View>
-              <Text>| 내정보 탭 |</Text>   
-          </View>
-      );
-      }
-  }
+function MyinfoTab() {
+    return (
+        <View>
+            <Text>1</Text>
+            <FlatList>
+                    <Text>List1</Text>
+                    <Text>List2</Text>
+                    <Text>List3</Text>
+            </FlatList>
+        </View>
+    )
+}
+export default MyinfoTab;

@@ -1,17 +1,9 @@
 import React, {Component, useState} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
-
 import SharingButton from "../SharingButton";
 import Promise from "../Promise";
-
-<<<<<<< HEAD
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
 
-
-=======
-import ImagePicker from 'react-native-image-picker';
-/*
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
 const options = {
     title: 'Load Photo',
     customButtons: [
@@ -22,30 +14,10 @@ const options = {
       skipBackup: true,
       path: 'images',
     },
-<<<<<<< HEAD
   };
-  
-=======
-  };    
 
-ImagePicker.showImagePicker(options, (response) => {
-console.log('Response = ', response);
 
-if (response.didCancel) {
-    console.log('User cancelled image picker');
-} else if (response.error) {
-    console.log('ImagePicker Error: ', response.error);
-} else if (response.customButton) {
-    console.log('User tapped custom button: ', response.customButton);
-    Alert.alert(response.customButton);
-} else {
-    // You can also display the image using data:
-    // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-    setImageSource(response.uri);
-}
-});
-*/
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
+
 function NewPost({...props}) {
     const [allCheck, setCheck] = useState(false);
     const [TitleValue, onChangeTitle] = useState('');
@@ -58,14 +30,7 @@ function NewPost({...props}) {
     const [ImageUri, setImageSource] = useState('');
 
     return(
-        <View>
-
-        </View>
-    )
-/*
-    return(
         <View style = {style.container}>
-<<<<<<< HEAD
             <TouchableHighlight underlayColor = {'none'} style = {style.picture} onPress={() => {launchImageLibrary(options, (response) => {
                 console.log('Response = ', response);
 
@@ -82,10 +47,7 @@ function NewPost({...props}) {
                 }
             })}}>
                 <Image source={require('../../../image/photo.png')} />
-=======
-            <TouchableHighlight style = {style.picture}>
-                <Image source={require('../../../image/photo.png')} onPress={alert("as")}/>
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
+
             </TouchableHighlight>
             <View style = {style.section}>
                 <View style = {{flex :1}}>
@@ -117,8 +79,8 @@ function NewPost({...props}) {
                      </View>
                 </View>
             </View>
-        </View>
-    )*/
+            </View>
+    )
 }
 
 const style = StyleSheet.create({

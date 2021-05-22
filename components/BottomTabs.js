@@ -6,13 +6,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
-import ReviewTap from "./ReviewTap";
-import EventTab from './EventTab';
-=======
 import ReviewTab from "./ReviewTab";
-import EventTab from "./EventTab";
-import MyinfoTab from "./MyinfoTab";
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
+import EventTab from './EventTab';
+import MyinfoTab from './MyinfoTab';
+
 
 
 function HomeScreen() {
@@ -26,22 +23,16 @@ function HomeScreen() {
 function ReviewScreen() {
   return (
     <View style={{flex: 1}}>
-      <ReviewTap/>
+      <ReviewTab/>
     </View>
   );
 }
 
 function EventScreen() {
     return (
-<<<<<<< HEAD
       <View style={{ flex: 1}}>
         <EventTab/>
       </View>
-=======
-      <View style={{flex: 1}}>
-      <EventTab/>
-    </View>
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
     );
   }
 

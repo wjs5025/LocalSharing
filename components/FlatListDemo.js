@@ -24,7 +24,7 @@ export default class Screen extends Component {
 
 class FlatListDemo extends Component{
     state = {
-        post :[
+        post1 :[
             [{title : "", User_ID : 0, post_ID : 0, sharing_MAX : 0, sharing_now : 0, title : "", 내용 : "", img : ""}]
         ]
     }
@@ -34,7 +34,7 @@ class FlatListDemo extends Component{
     this.post = firestore().collection("sharing-posts").doc("post1").onSnapshot(doc => {
         this.setState({
             post :[
-                {User_ID : doc.data().UserID, post_ID : doc.data().post_ID, sharing_MAX : doc.data().sharing_MAX, sharing_now : doc.data().sharing_now, title : doc.data().title, 내용 : doc.data().내용, img : doc.data().img,}
+                {User_ID : doc.data().UserID, post_ID : doc.data().post_ID, sharing_MAX : doc.data().sharing_MAX, sharing_now : doc.data().sharing_now, title : doc.data().title, 내용 : doc.data().내용, img : doc.data().img,},
             ]})
     })
     this.state={
