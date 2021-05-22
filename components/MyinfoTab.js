@@ -4,7 +4,7 @@ import { TouchableHighlight, StyleSheet, View, Text, Image, FlatList } from 'rea
 function MyinfoTab() {
     return (
         <View>
-            <Text>1</Text>
+            <Text></Text>
             <FlatList>
                     <Text>List1</Text>
                     <Text>List2</Text>

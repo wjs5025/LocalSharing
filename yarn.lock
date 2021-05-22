@@ -6048,98 +6048,6 @@ react-native-reanimated@2.1.0:
   integrity sha512-tlPvvcdf+X7HGQ7g/7npBFhwMznfdk7MHUc9gUB/kp2abSscXNe/kOVKlrNEOO4DS11rNOXc+llFxVFMuNk0zA==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.10.4"
-<<<<<<< HEAD
-    "fbjs" "^3.0.0"
-    "mockdate" "^3.0.2"
-    "string-hash-64" "^1.0.3"
-
-"react-native-safe-area-context@^3.1.9", "react-native-safe-area-context@>= 0.6.0", "react-native-safe-area-context@3.2.0":
-  "integrity" "sha512-k2Nty4PwSnrg9HwrYeeE+EYqViYJoOFwEy9LxL5RIRfoqxAq/uQXNGwpUg2/u4gnKpBbEPa9eRh15KKMe/VHkA=="
-  "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-3.2.0.tgz"
-  "version" "3.2.0"
-
-"react-native-safe-area-view@^0.14.9":
-  "integrity" "sha512-WII/ulhpVyL/qbYb7vydq7dJAfZRBcEhg4/UWt6F6nAKpLa3gAceMOxBxI914ppwSP/TdUsandFy6lkJQE0z4A=="
-  "resolved" "https://registry.npmjs.org/react-native-safe-area-view/-/react-native-safe-area-view-0.14.9.tgz"
-  "version" "0.14.9"
-  dependencies:
-    "hoist-non-react-statics" "^2.3.1"
-
-"react-native-screens@>= 2.0.0-alpha.0 || >= 2.0.0-beta.0 || >= 2.0.0", "react-native-screens@>=1.0.0 || >= 2.0.0-alpha.0 || >= 2.0.0-beta.0 || >= 2.0.0", "react-native-screens@3.0.0":
-  "integrity" "sha512-35II5oxTaVp3OP8y0eLPOPpQkxG4fRKQ+dL1YSE1we5kCZFOU0l/Rn0T79HbyUu1LPwUZr6lZupPs0ULnRyMuQ=="
-  "resolved" "https://registry.npmjs.org/react-native-screens/-/react-native-screens-3.0.0.tgz"
-  "version" "3.0.0"
-
-"react-native-size-matters@^0.3.1":
-  "integrity" "sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw=="
-  "resolved" "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
-  "version" "0.3.1"
-
-"react-native-splash-screen@3.2.0":
-  "integrity" "sha512-Ls9qiNZzW/OLFoI25wfjjAcrf2DZ975hn2vr6U9gyuxi2nooVbzQeFoQS5vQcbCt9QX5NY8ASEEAtlLdIa6KVg=="
-  "resolved" "https://registry.npmjs.org/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz"
-  "version" "3.2.0"
-
-"react-native-swiper@1.6.0-rc.3":
-  "integrity" "sha512-aZk6M7WsFdxlfHfS6OKb7gsaS3q7Z4Oqm8iTyJO7duE28EUK9kzfA2Cp5S6FdZkGXoWCXoUFGlzaO0lnhW/jtw=="
-  "resolved" "https://registry.npmjs.org/react-native-swiper/-/react-native-swiper-1.6.0-rc.3.tgz"
-  "version" "1.6.0-rc.3"
-  dependencies:
-    "prop-types" "^15.5.10"
-
-"react-native-tab-view@>= 2.0.0", "react-native-tab-view@3.0.1":
-  "integrity" "sha512-L7qXtYz5Z+NdWyu38zaJrlHA/8H6rNFRZXe3ydym12UEEPPoefbVZ71b9YK2O6QP0u4pUlzMpMVM/Lsz2DJ4jg=="
-  "resolved" "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.0.1.tgz"
-  "version" "3.0.1"
-
-"react-native-vector-icons@^7.0.0":
-  "integrity" "sha512-V2a1zJ4i+kS8O4j183gIwX14St9AxxXabxwYpFBgRhvr2NDXyFcjHDEAgrOYYlt2W57e20aN1tBDU/I+wn9WtQ=="
-  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-7.1.0.tgz"
-  "version" "7.1.0"
-  dependencies:
-    "lodash.frompairs" "^4.0.1"
-    "lodash.isequal" "^4.5.0"
-    "lodash.isstring" "^4.0.1"
-    "lodash.omit" "^4.5.0"
-    "lodash.pick" "^4.4.0"
-    "lodash.template" "^4.5.0"
-    "prop-types" "^15.7.2"
-    "yargs" "^15.0.2"
-
-"react-native-vector-icons@>7.0.0", "react-native-vector-icons@8.1.0":
-  "integrity" "sha512-sHIdBB6Y0dHaot2fMXgy5J/hhCn5YuyN7SKDNFgPzL8KA1oF2/v7mgYMavnK7LIIs2dJoGnDANKf61dsU+TZlg=="
-  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-8.1.0.tgz"
-  "version" "8.1.0"
-  dependencies:
-    "lodash.frompairs" "^4.0.1"
-    "lodash.isequal" "^4.5.0"
-    "lodash.isstring" "^4.0.1"
-    "lodash.omit" "^4.5.0"
-    "lodash.pick" "^4.4.0"
-    "lodash.template" "^4.5.0"
-    "prop-types" "^15.7.2"
-    "yargs" "^16.1.1"
-
-"react-native-web-swiper@2.2.1":
-  "integrity" "sha512-7q8BCdoCt91dw0fXhdTJ5S61NxOARAQX/F3x3sr5DJg9eGG4DoOSqLgJKFJl/7Z5GJasHbvKchC+SxgvtZVZvA=="
-  "resolved" "https://registry.npmjs.org/react-native-web-swiper/-/react-native-web-swiper-2.2.1.tgz"
-  "version" "2.2.1"
-  dependencies:
-    "prop-types" "^15.6.2"
-
-"react-native-webview@11.4.3":
-  "integrity" "sha512-bC6r7vbukC1QYbG2vTmif8/gt6jzlGA7WK7zeVLt8ysZJvBNtoHtT2k7EoMgJIW6/6DTy1rrn6uZS4v2Fa4exQ=="
-  "resolved" "https://registry.npmjs.org/react-native-webview/-/react-native-webview-11.4.3.tgz"
-  "version" "11.4.3"
-  dependencies:
-    "escape-string-regexp" "2.0.0"
-    "invariant" "2.2.4"
-
-"react-native@*", "react-native@^0.61.5", "react-native@>= 0.62", "react-native@>=0.11", "react-native@>=0.20.0", "react-native@>=0.38.0", "react-native@>=0.42.0", "react-native@>=0.43.0", "react-native@>=0.56.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.60", "react-native@>=0.60 <0.64", "react-native@>=0.63.0", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@0.64.0":
-  "integrity" "sha512-8dhSHBthgGwAjU+OjqUEA49229ThPMQH7URH0u8L0xoQFCnZO2sZ9Wc6KcbxI0x9KSmjCMFFZqRe3w3QsRv64g=="
-  "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.64.0.tgz"
-  "version" "0.64.0"
-=======
     fbjs "^3.0.0"
     mockdate "^3.0.2"
     string-hash-64 "^1.0.3"
@@ -6223,7 +6131,6 @@ react-native@0.64.0:
   version "0.64.0"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.64.0.tgz"
   integrity sha512-8dhSHBthgGwAjU+OjqUEA49229ThPMQH7URH0u8L0xoQFCnZO2sZ9Wc6KcbxI0x9KSmjCMFFZqRe3w3QsRv64g==
->>>>>>> cc9707fd88a9aa11d43250224c1ecc900253dbae
   dependencies:
     "@jest/create-cache-key-function" "^26.5.0"
     "@react-native-community/cli" "^5.0.1-alpha.0"
