@@ -83,7 +83,6 @@ class FlatListDemo extends Component{
 
     //멤버 메소드 - FlatList의 renderItem용 
     renderItem=({item, state})=>{
-
         return(
             <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
                 <Image source={{uri : item.img}} style={style.itemImg}/>

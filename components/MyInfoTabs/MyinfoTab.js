@@ -1,72 +1,132 @@
 import React ,{useState}from 'react';
-import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image} from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
 
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 22
+   paddingTop: 22,
   },
   item: {
+    flex:1,
     borderBottomWidth : 1,
+    borderColor : "gray",
     padding: 10,
-    fontSize: 18,
-    height: 44,
+    height: 66.3,
+    justifyContent : 'center'
+  
   },
   profileArea:{
     flex:1,
     alignItems : 'center',
-    justifyContent : 'center'
+    justifyContent : 'center',
+
   },
   image: {
-      marginTop : 45,
+      marginTop : 20,
       width : 200,
       height : 200,
-      borderWidth : 1,
+      borderWidth : 2,
       borderColor : "black",
       borderRadius : 30,
   },
   UserName : {
     flex:1,
-    marginTop : 15,
+    margin : 15,
     fontFamily: 'NanumSquare_acEB',
     color : "black",
     fontSize : 30,
   },
   FlatList:{
       flex:1,
-      marginLeft : 30,
-      marginRight : 30,
+      marginLeft : 40,
+      marginRight : 40,
+      marginBottom : 7,
+  },
+  menuText : {
+    fontFamily: 'NanumSquare_acEB',
+    fontSize : 18,
+    marginLeft : 20,
+    marginTop : 11
+  },
+  menuImage : {
+    marginTop : 8,
+    width:28, 
+    height:28, 
+
   }
 });
 
+const DATA = [
+  {
+    id : "Menu1",
+    title : "프로필 설정",
+    icon : require('../../image/icon/settings.png')
+},
+  {
+    id : "Menu2",
+    title : "셀러 인증",
+    icon : require('../../image/icon/medal.png')
+  },
+  {
+    id : "Menu3",
+    title : "포인트 조회",
+    icon : require('../../image/icon/point.png')
+  },
+  {
+    id : "Menu4",
+    title : "마켓",
+    icon : require('../../image/icon/market.png')
+  },
+  {
+    id : "Menu5",
+    title : "앱 정보",
+    icon : require('../../image/icon/information.png')
+  },
+];
+
+const Item = ({item, onPress, backgroundColor}) => (
+  <TouchableHighlight underlayColor = {'none'} onPress = {onPress} style={[styles.item, backgroundColor]}>
+    <View style ={{flex:1, flexDirection : "row"}}>
+      <Image source={item.icon} style={styles.menuImage}/>
+      <Text style={[styles.menuText]}> {item.title}</Text>
+    </View>
+  </TouchableHighlight>
+);
+
 const MyinfoTab = () => {
-    const [Name, onChangeName] = useState('저니녁');
+    const [SelectedId, setSelectedId] = useState(null);
+    const [name, setName] = useState('저니녁');
+
+    const renderItem = ({ item }) => {
+      return (
+        <Item
+          item={item}
+          onPress={() => alert(item.title)}
+
+        />
+      );
+    };
+
     return (
-        <View style={styles.container}>
-            <View style = {styles.profileArea}>
+      <View style={styles.container}>
+        <View style = {styles.profileArea}>
                 <Image style={styles.image} source={require('../../image/저니녁.jpg')}/>
-                <Text style={styles.UserName}>{Name} 님</Text>
+                <Text style={styles.UserName}>{name} 님</Text>
             </View>
+        <View style ={{flex:1.3, marginTop : 15}}>
         <FlatList
-            style={styles.FlatList}
-            data={[
-            {key: 'Devin'},
-            {key: 'Dan'},
-            {key: 'Dominic'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-            ]}
-            renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          style = {styles.FlatList}
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={SelectedId}
         />
         </View>
+      </View>
     );
-    }
+  };
 
 export default MyinfoTab;
