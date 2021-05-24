@@ -9,7 +9,6 @@ const styles = {
     borderWidth : 1,
   },
   wrapper: {
-
   },
   slide: {
     flex: 1,
@@ -29,6 +28,7 @@ const styles = {
 export default function EventTab() {
     return (
       <View style={styles.container}>
+        <View style={{flex:1, borderWidth :1,borderColor :"gray"}}>
         <Swiper
           loop
           showsButtons = {false}
@@ -47,6 +47,7 @@ export default function EventTab() {
             <Image style={styles.imageArea} source={require('../../image/이벤트3.png')}/>
           </View>
         </Swiper>
+        </View>
         <View style ={{flex:0.087}}>
             <SharingButton allcheck={true} buttonName = {"이벤트 참여하기"} style={{flex:1}}/>
         </View>

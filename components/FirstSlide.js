@@ -56,17 +56,15 @@ class FirstSlide extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           <Swiper index={1}>
             <View style={[styles.slideContainer,styles.slideBackground]}>
               <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}처음 오셨군요?</Text>
-              
               <Text style={[styles.slideTextSub]}>{"\n"}{"\n"}지금부터 푸드쉐어링에 대해</Text>
               <Text style ={{fontSize:1.5}}>{"\n"}</Text>
               <Text style={[styles.slideTextSub]}>   간략히 설명해 드릴게요{"\n"}</Text>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-            
               <View style={[styles.slideContents]}>
               <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text> 
               <Text style={[styles.slideTextSub]}>              푸드쉐어링이란?</Text>

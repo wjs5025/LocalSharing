@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component , useEffect, useState} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 import SharingPost from "./SharingPost";
 import TopMenu from "./TopMenu";
 import PlusButton from "./PlusButton"
+import { ActivityIndicator } from 'react-native';
 
 const Stack = createStackNavigator();
 export default class Screen extends Component {
@@ -22,79 +23,104 @@ export default class Screen extends Component {
    }
  }
 
+// function FlatListDemo() {
+// const [loading, setLoading] = useState(true);
+// const [users, setUsers] = useState([]);
+
+// if (loading) {
+//     return <ActivityIndicator/>; 
+// }
+
+// useEffect (() => {
+//     const subscriber = firestore().collection('sharing-posts').onSnapshot(querySnapshot => {
+//         const users = [];
+//         querySnapshot.forEach(documentSnapshot =>{
+//             console.log(documentSnapshot.data())
+//             users.push({
+//                 ...documentSnapshot.data(),
+//                 key : documentSnapshot.id,
+//             });
+//         });
+//         setUsers(users);
+//         setLoading(false);
+// });
+// return () => subscriber();
+// }, []);
+
+// return(
+// <FlatList
+//     data = {users}
+//     renderItem={({ item }) => (
+//         <View style = {{ flex:1}}>
+//             <Text>User Id : { item.id }</Text>
+//             <Text>User Name :  { item.title } </Text>
+//             {console.log(users)}
+//         </View>
+//     )}
+// />
+// );
+// }
+
+
 class FlatListDemo extends Component{
-    state = {
-        post1 :[
-            [{title : "", User_ID : 0, post_ID : 0, sharing_MAX : 0, sharing_now : 0, title : "", 내용 : "", img : ""}]
-        ]
-    }
-   constructor(props){
-    super(props);
-    this.getPost();
-    this.post = firestore().collection("sharing-posts").doc("post1").onSnapshot(doc => {
-        this.setState({
-            post :[
-                {User_ID : doc.data().UserID, post_ID : doc.data().post_ID, sharing_MAX : doc.data().sharing_MAX, sharing_now : doc.data().sharing_now, title : doc.data().title, 내용 : doc.data().내용, img : doc.data().img,},
-            ]})
-    })
-    this.state={
-        datas:[
-            {name:"치킨집", message:"방금 시켰는데 나눠드실 분",img: require('../image/치킨.jpg')},
-            {name:"우도기식당 입니다.", message:"오늘 남은 반찬드릴게요🎁",img: require('../image/반찬.jpg')},
-            {name:"엄지반점 입니다.", message:"김장했는데 많이 남아서 나눠드리려고해요",img: require('../image/김치.jpg')},
-            {name:"혁주네 반찬", message:"무말랭이 남아서 드려요",img: require('../image/무말랭이.jpg')},
-            {name:"정훈이네 레스토랑", message:"무지성 제육 볶아드립니다",img: require('../image/당근.jpg')},
-            {name:"농사왕 조재현", message:"유기농 무 드려요",img: require('../image/무.jpg')},
-            {name:"KNU 황윤용라면", message:"라면 가져가세요",img: require('../image/라면.jpg')},
-            {name:"메론 너무 많다", message:"메론 반쪽 나눠드려요",img: require('../image/메론.jpg')}
-        ],
-    };
-    }
-    getPost = async () => {
-        const userDocument = await firestore().collection('sharing-posts').doc("post1").get() 
-        console.log(userDocument)
-       }
-
-    render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-        return(
-            <View style={style.root}>
-                <TopMenu/>
-                <View style={style.location}>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
-                        <View style={{flexDirection : "row"}}>
-                            <Image style={style.locationIcon} source={require('../image/location.png')}/>
-                            <Text style={style.locationText} > 진주시 가좌동</Text>
-                        </View>
-                    </TouchableHighlight>
-                <Text style={style.titleText}> 의 쉐어링</Text>
-                </View>
-                {console.log(this.state.datas)}
-                {console.log(this.state.post)}
-                <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
-                    style = {style.flatlist}
-                    data={this.state.post}
-                    renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
-                    keyExtractor={ item=> item.name }>
-                </FlatList>
-                <PlusButton/>
-            </View>
-        ); 
-    }//render method ..
-
-    //멤버 메소드 - FlatList의 renderItem용 
-    renderItem=({item, state})=>{
-        return(
-            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
-                <Image source={{uri : item.img}} style={style.itemImg}/>
-                <View style={{flex:1, flexDirection:'column'}}>
-                    <Text style={style.itemName}>{item.title}</Text>
-                    <Text style={style.itemMsg}>{item.내용}</Text>
-                    <Text style={style.itemhowfar}>{"\n"} - 현 위치로부터 ...m 이내</Text> 
-                </View>
-            </TouchableOpacity>
-        );
-    }
+state = {
+    data : []
 }
+constructor(props){
+super(props);
+this.post = firestore().collection("sharing-posts").get().then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+        console.log(documentSnapshot);
+        this.setState({
+         data : this.state.data.concat(documentSnapshot.data())
+        });
+    });
+    })
+}
+
+
+render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
+    return(
+        <View style={style.root}>
+            {console.log(this.state.data)}
+            <TopMenu/>
+            <View style={style.location}>
+                <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
+                    <View style={{flexDirection : "row"}}>
+                        <Image style={style.locationIcon} source={require('../image/location.png')}/>
+                        <Text style={style.locationText} > 진주시 가좌동</Text>
+                    </View>
+                </TouchableHighlight>
+            <Text style={style.titleText}> 의 쉐어링</Text>
+            </View>
+            <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
+                style = {style.flatlist}
+                data={this.state.data}
+                renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
+                keyExtractor={ item=> item.name }
+                >
+            </FlatList>
+            <PlusButton/>
+        </View>
+    ); 
+}//render method ..
+
+//멤버 메소드 - FlatList의 renderItem용 
+renderItem=({item, state})=>{
+    return(
+        <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
+            <Image source={{uri : item.img}} style={style.itemImg}/>
+            <View style={{flex:1, flexDirection:'column'}}>
+                <Text style={style.itemName}>{item.title}</Text>
+                <Text style={style.itemMsg}>{item.내용}</Text>
+                <Text style={style.itemhowfar}>{"\n"} - 현 위치로부터 ...m 이내</Text> 
+            </View>
+        </TouchableOpacity>
+    );
+}
+}
+
+
 const style= StyleSheet.create({
     flatlist:{},
     root:{
@@ -156,5 +182,4 @@ const style= StyleSheet.create({
         height: 22,
         color: 'white',
     }
-});
-
+})
