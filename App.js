@@ -32,7 +32,7 @@ class App extends Component {
   }
   render() {
     return (
-      <NavigationContainer><FlatListDemo/></NavigationContainer>
+      <NavigationContainer><BottomTabs/></NavigationContainer>
         
       );
   }

@@ -18,49 +18,11 @@ export default class Screen extends Component {
         <Stack.Navigator>
           <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
           <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
+          
         </Stack.Navigator>
      );
    }
  }
-
-// function FlatListDemo() {
-// const [loading, setLoading] = useState(true);
-// const [users, setUsers] = useState([]);
-
-// if (loading) {
-//     return <ActivityIndicator/>; 
-// }
-
-// useEffect (() => {
-//     const subscriber = firestore().collection('sharing-posts').onSnapshot(querySnapshot => {
-//         const users = [];
-//         querySnapshot.forEach(documentSnapshot =>{
-//             console.log(documentSnapshot.data())
-//             users.push({
-//                 ...documentSnapshot.data(),
-//                 key : documentSnapshot.id,
-//             });
-//         });
-//         setUsers(users);
-//         setLoading(false);
-// });
-// return () => subscriber();
-// }, []);
-
-// return(
-// <FlatList
-//     data = {users}
-//     renderItem={({ item }) => (
-//         <View style = {{ flex:1}}>
-//             <Text>User Id : { item.id }</Text>
-//             <Text>User Name :  { item.title } </Text>
-//             {console.log(users)}
-//         </View>
-//     )}
-// />
-// );
-// }
-
 
 class FlatListDemo extends Component{
 state = {
@@ -82,7 +44,6 @@ this.post = firestore().collection("sharing-posts").get().then(querySnapshot => 
 render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
     return(
         <View style={style.root}>
-            {console.log(this.state.data)}
             <TopMenu/>
             <View style={style.location}>
                 <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
@@ -100,7 +61,6 @@ render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
                 keyExtractor={ item=> item.name }
                 >
             </FlatList>
-            <PlusButton/>
         </View>
     ); 
 }//render method ..
