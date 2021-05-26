@@ -25,59 +25,60 @@ export default class Screen extends Component {
  }
 
 class FlatListDemo extends Component{
-state = {
-    data : []
-}
-constructor(props){
-super(props);
-this.post = firestore().collection("sharing-posts").get().then(querySnapshot => {
-    querySnapshot.forEach(documentSnapshot => {
-        console.log(documentSnapshot);
-        this.setState({
-         data : this.state.data.concat(documentSnapshot.data())
+    state = {
+        data : []
+    }
+    constructor(props){
+    super(props);
+    this.post = firestore().collection("sharing-posts").get().then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+            //console.log(documentSnapshot);
+            this.setState({
+            data : this.state.data.concat(documentSnapshot.data())
+            });
         });
-    });
-    })
-}
+        })
+    }
 
 
-render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-    return(
-        <View style={style.root}>
-            <TopMenu/>
-            <View style={style.location}>
-                <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
-                    <View style={{flexDirection : "row"}}>
-                        <Image style={style.locationIcon} source={require('../image/location.png')}/>
-                        <Text style={style.locationText} > 진주시 가좌동</Text>
-                    </View>
-                </TouchableHighlight>
-            <Text style={style.titleText}> 의 쉐어링</Text>
+    render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
+        
+        return(
+            <View style={style.root}>
+                <TopMenu/>
+                <View style={style.location}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
+                        <View style={{flexDirection : "row"}}>
+                            <Image style={style.locationIcon} source={require('../image/location.png')}/>
+                            <Text style={style.locationText} > 진주시 가좌동</Text>
+                        </View>
+                    </TouchableHighlight>
+                <Text style={style.titleText}> 의 쉐어링</Text>
+                </View>
+                <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
+                    style = {style.flatlist}
+                    data={this.state.data}
+                    renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
+                    keyExtractor={ item=> item.name }
+                    >
+                </FlatList>
             </View>
-            <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
-                style = {style.flatlist}
-                data={this.state.data}
-                renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
-                keyExtractor={ item=> item.name }
-                >
-            </FlatList>
-        </View>
-    ); 
-}//render method ..
+        ); 
+    }//render method ..
 
-//멤버 메소드 - FlatList의 renderItem용 
-renderItem=({item, state})=>{
-    return(
-        <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
-            <Image source={{uri : item.img}} style={style.itemImg}/>
-            <View style={{flex:1, flexDirection:'column'}}>
-                <Text style={style.itemName}>{item.title}</Text>
-                <Text style={style.itemMsg}>{item.내용}</Text>
-                <Text style={style.itemhowfar}>{"\n"} - 현 위치로부터 ...m 이내</Text> 
-            </View>
-        </TouchableOpacity>
-    );
-}
+    //멤버 메소드 - FlatList의 renderItem용 
+    renderItem=({item, state})=>{
+        return(
+            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
+                <Image source={{uri : item.img}} style={style.itemImg}/>
+                <View style={{flex:1, flexDirection:'column'}}>
+                    <Text style={style.itemName}>{item.title}</Text>
+                    <Text style={style.itemMsg}>{item.내용}</Text>
+                    <Text style={style.itemhowfar}>{"\n"} - 현 위치로부터 ...m 이내</Text> 
+                </View>
+            </TouchableOpacity>
+        );
+    }
 }
 
 

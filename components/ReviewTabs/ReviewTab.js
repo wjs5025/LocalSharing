@@ -22,67 +22,43 @@ export default class Screen extends Component {
 
 
 class ReviewTab extends Component{
+
+    state = {
+        data : []
+    }
+
+    constructor(props){
+    super(props);
+
+    } 
+
     WritenReview() {
-        this.setState({
-            datas1: [
-                {name:"원이닭", message:"나눔 치킨 너무 맛있엇습니다!!", date:"21-04-07"},
-                {name:"우도기식당 입니다.", message:"역시 우도기식당 짱 ^^bbbb", date:"21-04-27"},
-                {name:"엄지반점 입니다.", message:"김치찌개 맛잇게 해먹었어요 ^__^", date:"21-05-10"},
-                {name:"혁주네 반찬", message:"혁주네 하면 무말랭이!!", date:"21-04-12"},
-                {name:"정훈이네 레스토랑", message:"거,, 제육 더 없나..?", date:"21-05-20"},
-                {name:"농사왕 조재현", message:"어라.. 어째서 눈물이..", date:"21-05-01"},
-                {name:"KNU 황윤용라면", message:"경북대생이 만든 라면..? 귀하네요..", date:"21-05-05"},
-                {name:"메론 너무 많다", message:"메론 :p", date:"21-04-30"}
-                ],
-       });
        console.log("WrithenReview()");
+       console.log("-------------");
+       this.post = firestore().collection("review-posts").get().then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+            console.log(documentSnapshot.data());
+            this.setState({
+             data : this.state.data.concat(documentSnapshot.data())
+            });
+        });
+        })
+        
     }
 
     ReceivedReview(){
-        this.setState({
-            datas1: [
-                {name:"전우네", message:"789기 이중길 식사 맛있게 하고 갑니다! 필승!", date:"21-04-07"},
-
-                ],
-       });
        console.log("ReceiveReview()");
+       console.log("-------------");
+
     }
 
     UnWritenReview(){
-        
        console.log("UnWritenReview()");
+       console.log("-------------");
 
     }
-
-
-    
-
-   constructor(props){
-    super(props);
-    this.getPost();
-    this.subscriber = firestore().collection("sharing-posts").doc("post1").onSnapshot(doc => {
-        this.setState({
-            post :{
-                title : doc.data().title,
-                
-            },
-            cnt : 3
-        })
-    })
-    
-    this.state={
-        datas1: [
-           // 첫화면   {name:"원이닭", message:"나눔 치킨 너무 맛있엇습니다!!", date:"21-04-07"},
-        ],
-    };
-    }
-    getPost = async () => {
-        const userDocument = await firestore().collection('sharing-posts').doc("post1").get()
-        console.log(userDocument)
-       }
 
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-        console.log(this.state);
         return(
             <View style={style.root}>
                 <View style={style.Review}>
@@ -100,14 +76,15 @@ class ReviewTab extends Component{
 
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWritenReview(this), console.log(this.props), this.props.navigation.navigate("NewReview");}}>
                     <View style={style.Unwritten}>                        
-                    <Text style={style.Unwritten}>  미작성 리뷰 {this.state.cnt}  </Text>  
+                    <Text style={style.Unwritten}>  미작성 리뷰 {foo}  </Text>  
                     </View>
                     </TouchableHighlight>
-
+                    
                     <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
-                    data={this.state.datas1}
+                    data={this.state.data}
                     renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
-                    keyExtractor={ item=> item.name }>
+                    keyExtractor={ item=> item.review_ID }
+                    >
                    </FlatList>
             </View>
         );
@@ -116,8 +93,8 @@ class ReviewTab extends Component{
         return(
             <View style={style.List}>
                 <View style={{flexDirection:'column'}}>
-                    <Text style={style.itemName}>{item.name}</Text>
-                    <Text style={style.itemMsg}>{item.message}</Text>
+                    <Text style={style.itemName}>{item.title}</Text>
+                    <Text style={style.itemMsg}>{item.comment}</Text>
                     <Text style={style.itemdate}>{item.date}</Text>
                     
                     

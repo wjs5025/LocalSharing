@@ -26,13 +26,16 @@ import Promise from "./components/Posts/Promise";
 import SharingButton from "./components/Posts/SharingButton";
 import NewPost from "./components/Posts/NewPosts/NewPost";
 
+global.foo = "유저 토큰";
+
 class App extends Component {
   componentDidMount() { 
     SplashScreen.hide(); //로딩 화면
   }
   render() {
     return (
-      <NavigationContainer><BottomTabs/></NavigationContainer>
+      //<NavigationContainer><ReviewTab/></NavigationContainer>
+      <FirstSlide/>
         
       );
   }

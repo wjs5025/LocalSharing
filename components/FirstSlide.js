@@ -45,7 +45,7 @@ function Screen(){
 
   console.log(token);
   console.log(profile);
-
+  foo=profile.nickname;
   
 };
 
