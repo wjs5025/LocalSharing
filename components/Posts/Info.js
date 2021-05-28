@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     }
   });
 
-export default function Info({ReviewTab}){
+export default function Info({...props}){
     const navigation = useNavigation();
       return (
             <View style = {styles.container}>

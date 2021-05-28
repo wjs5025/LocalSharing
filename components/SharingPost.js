@@ -8,11 +8,10 @@ import Info from "./Posts/Info";
 import Promise from "./Posts/Promise";
 import Comment from "./Posts/Comment";
 
-function SharingPost(){
+function SharingPost({...props}){
     const [allCheck, setCheck] = useState(false);
-    const buttonName = useState("");
-
-    console.log(buttonName);
+    const post_ID = useState(props.route.params.post_ID) ///FlatListDemo 에서 받아온 post_ID
+    
     useEffect(() => {
         console.log("sharing" + allCheck);
     }, [allCheck])
@@ -21,12 +20,12 @@ function SharingPost(){
     return (
         <View style={style.container}>
             <View style={style.imageArea}>
-                <ImageView style= {style.container}/>
+                <ImageView style= {style.container} post_ID={post_ID}/>
             </View>
             <View style={style.scrollView}>
                 <ScrollView>
                     <Info style={style.InfoArea}/>
-                    <Content style={style.contentArea}/>
+                    <Content style={style.contentArea} post_ID={post_ID}/>
                     <Promise allCheck = {allCheck} setCheck = {setCheck}/>
                     {/* <Comment/> */}
                 </ScrollView>

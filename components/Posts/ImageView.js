@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { Text, View, Image, Dimensions } from 'react-native'
 import Swiper from "react-native-web-swiper";
+import firestore from '@react-native-firebase/firestore';
 
 const { width } = Dimensions.get('window')
 
@@ -9,7 +10,9 @@ const styles = {
     flex: 1,
     borderWidth : 1,
   },
-  wrapper: {},
+  wrapper: {
+    flex :1,
+  },
   slide: {
     flex: 1,
     justifyContent: 'center',
@@ -24,29 +27,23 @@ const styles = {
   }
 }
 
-export default class extends Component {
-  render() {
+export default ImageView;
+
+
+function ImageView({...props}){
+  const [data,setData] = useState([]);
+        useEffect(()=>{
+        const db = firestore().collection("sharing-posts").where('post_ID', 'in', props.post_ID);
+        db.get().then((query) =>{
+            query.forEach((doc)=>{
+                setData(doc.data());
+        }
+        )})
+     },[])
+     
     return (
       <View style={styles.container}>
-        <Swiper
-          style={styles.wrapper}
-          onMomentumScrollEnd={(e, state, context) =>
-            console.log('index:', state.index)
-          }>
-          <View
-            style={styles.slide}>
-            <Image style={styles.imageArea} source={require('../../image/치킨.jpg')}/>
-          </View>
-          <View
-            style={styles.slide}>
-            <Image style={styles.imageArea} source={require('../../image/김치.jpg')}/>
-          </View>
-          <View
-            style={styles.slide}>
-            <Image style={styles.imageArea} source={require('../../image/라면.jpg')}/>
-          </View>
-        </Swiper>
+            <Image style={styles.imageArea} source={{uri : data.img}}/>
       </View>
     )
   }
-}

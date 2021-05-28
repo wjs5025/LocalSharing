@@ -1,5 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 const style = StyleSheet.create({
     container : {
@@ -27,15 +28,25 @@ const style = StyleSheet.create({
     },
 });
 
-export default class Content extends Component {
-    render() {
+
+function Content({...props}){
+        const [data,setData] = useState([]);
+        useEffect(()=>{
+        const db = firestore().collection("sharing-posts").where('post_ID', 'in', props.post_ID);
+        db.get().then((query) =>{
+            query.forEach((doc)=>{
+                setData(doc.data());
+            console.log(doc.data());
+        }
+        )})
+     },[])
        return (
         <View style = {style.container}>
             <View style = {style.container}>
-                <Text style={style.title}>치킨나눠드려요</Text>
-                <Text style={style.inner}>오늘 가게 마감 직전에 치킨이 조금 많이 남아서 판매합니다. 총 20마리 정도 남아있구요, 오늘안에 꼭 다 처리해야해서 급하게 내놓습니다. 가져가실분은 신청 후 진주대로 542번길 19-10 봄이치킨으로 방문해주세요</Text> 
+                <Text style={style.title}>{data.title}</Text>
+                <Text style={style.inner}>{data.내용}</Text> 
             </View>
         </View>
        );
     }
-}
+export default Content

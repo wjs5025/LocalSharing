@@ -32,21 +32,19 @@ export default class Screen extends Component {
 
 class FlatListDemo extends Component{
     state = {
-        data : []
+        data : [],
     }
     constructor(props){
         super(props);
+        // collection().orderBy("post_ID", "desc") // post_ID 기준 내림차순  "asc" = 오름차순
         const db = firestore().collection("sharing-posts").get().then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
-                console.log(documentSnapshot);
                 this.setState({
                 data : this.state.data.concat(documentSnapshot.data())
                 });
             });
             })
-        console.log("dsd: " ,db)
     }
-
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
         return(
             <View style={style.root}>
@@ -73,9 +71,13 @@ class FlatListDemo extends Component{
     }//render method ..
 
     //멤버 메소드 - FlatList의 renderItem용 
-    renderItem=({item, state})=>{
+
+    renderItem=({item})=>{
+        const press = () =>{
+           {this.props.navigation.navigate("SharingPost",{post_ID:item.post_ID})}
+        }
         return(
-            <TouchableOpacity style={style.itemView} onPress={() => { this.props.navigation.navigate("SharingPost")}}>
+            <TouchableOpacity style={style.itemView} onPress={press}>
                 <Image source={{uri : item.img}} style={style.itemImg}/>
                 <View style={{flex:1, flexDirection:'column'}}>
                     <Text style={style.itemName}>{item.title}</Text>

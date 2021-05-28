@@ -33,8 +33,13 @@ function NewPost({...props}) {
         firestore().collection("sharing-posts").add({
             title : TitleValue,
             내용 : InnerValue,
-            img : ImageUri
+            img : ImageUri,
+            post_ID : 0,
+            sharing_MAX : 0,
+            sharing_now : 0,
+            User_ID : 0,
         })
+        props.navigation.pop();
     }
     
     return(
