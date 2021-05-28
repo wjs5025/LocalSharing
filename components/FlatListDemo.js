@@ -35,20 +35,19 @@ class FlatListDemo extends Component{
         data : []
     }
     constructor(props){
-    super(props);
-    this.post = firestore().collection("sharing-posts").get().then(querySnapshot => {
-        querySnapshot.forEach(documentSnapshot => {
-            //console.log(documentSnapshot);
-            this.setState({
-            data : this.state.data.concat(documentSnapshot.data())
+        super(props);
+        const db = firestore().collection("sharing-posts").get().then(querySnapshot => {
+            querySnapshot.forEach(documentSnapshot => {
+                console.log(documentSnapshot);
+                this.setState({
+                data : this.state.data.concat(documentSnapshot.data())
+                });
             });
-        });
-        })
+            })
+        console.log("dsd: " ,db)
     }
 
-
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-        
         return(
             <View style={style.root}>
                 <TopMenu/>

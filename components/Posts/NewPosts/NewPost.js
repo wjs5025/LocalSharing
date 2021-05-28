@@ -1,9 +1,10 @@
-import React, {Component, useState} from 'react';
-import {TouchableHighlight , View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
+import React, {Component, useEffect, useState} from 'react';
+import {TouchableHighlight , View, Button , Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 import SharingButton from "../SharingButton";
 import Promise from "../Promise";
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
 
+import firestore from '@react-native-firebase/firestore';
 const options = {
     title: 'Load Photo',
     customButtons: [
@@ -17,7 +18,6 @@ const options = {
   };
 
 
-
 function NewPost({...props}) {
     const [allCheck, setCheck] = useState(false);
     const [TitleValue, onChangeTitle] = useState('');
@@ -29,11 +29,18 @@ function NewPost({...props}) {
 
     const [ImageUri, setImageSource] = useState('');
 
+    const submit = () =>{
+        firestore().collection("sharing-posts").add({
+            title : TitleValue,
+            내용 : InnerValue,
+            img : ImageUri
+        })
+    }
+    
     return(
         <View style = {style.container}>
             <TouchableHighlight underlayColor = {'none'} style = {style.picture} onPress={() => {launchImageLibrary(options, (response) => {
                 console.log('Response = ', response);
-
                 if (response.didCancel) {
                     console.log('User cancelled image picker');
                 } else if(response.error){
@@ -47,7 +54,6 @@ function NewPost({...props}) {
                 }
             })}}>
                 <Image source={require('../../../image/photo.png')} />
-
             </TouchableHighlight>
             <View style = {style.section}>
                 <View style = {{flex :1}}>
@@ -60,7 +66,8 @@ function NewPost({...props}) {
                     onBlur = {() => setTitleFocus(false)}
                     onChangeText={text => onChangeTitle(text)} 
                     maxLength={20}
-                    value={TitleValue}/>
+                    // value={TitleValue}
+                    />
                 <TextInput 
                     placeholderTextColor = "gray"
                     style = {InnerFocusStyle} 
@@ -75,7 +82,8 @@ function NewPost({...props}) {
                     value={InnerValue}/>
                 <Promise allCheck = {allCheck} setCheck = {setCheck} style={{flex:1}}/>
                     <View style ={{flex:0.5}}>
-                        <SharingButton allCheck = {allCheck} buttonName = {"게시글 등록하기"} style={{flex:1}}/>
+                        <Button title="submit" onPress={()=> {submit()}}/>
+                        {/* <SharingButton allCheck = {allCheck} buttonName = {"게시글 등록하기"} style={{flex:1}}/> */}
                      </View>
                 </View>
             </View>

@@ -30,9 +30,10 @@ const style = StyleSheet.create({
         color:'gray'
     }
 });
+
 function SharingButton({...props}) {
     return(
-        <TouchableHighlight disabled={!props.allCheck} style={props.allCheck ? style.disable_container : style.container} underlayColor = {'none'} onPress={()=>{alert(props.allCheck);}}>
+        <TouchableHighlight disabled={!props.allCheck} style={props.allCheck ? style.disable_container : style.container} underlayColor = {'none'} onPress={()=>{alert("게시글 등록 완료");}}>
                 <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>{props.buttonName}</Text>
         </TouchableHighlight>
     );
