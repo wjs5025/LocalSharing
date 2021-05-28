@@ -8,7 +8,11 @@ import 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
 import SharingPost from "./SharingPost";
 import TopMenu from "./TopMenu";
-import PlusButton from "./PlusButton"
+import NewPost from "./Posts/NewPosts/NewPost";
+import PlusButton from "./PlusButton";
+import AlarmPage from "./AlarmPage";
+import KakaoMaps from "./KakaoMaps"
+
 import { ActivityIndicator } from 'react-native';
 
 const Stack = createStackNavigator();
@@ -18,7 +22,9 @@ export default class Screen extends Component {
         <Stack.Navigator>
           <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
           <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
-          
+          <Stack.Screen name="NewPost" component={NewPost} options={{headerShown: false}}/>
+          <Stack.Screen name="AlarmPage" component={AlarmPage} options={{headerShown: false}}/>
+          <Stack.Screen name="KakaoMaps" component={KakaoMaps} options={{headerShown: false}}/>
         </Stack.Navigator>
      );
    }
@@ -47,7 +53,7 @@ class FlatListDemo extends Component{
             <View style={style.root}>
                 <TopMenu/>
                 <View style={style.location}>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("위치설정");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.props.navigation.navigate("KakaoMaps")}}>
                         <View style={{flexDirection : "row"}}>
                             <Image style={style.locationIcon} source={require('../image/location.png')}/>
                             <Text style={style.locationText} > 진주시 가좌동</Text>
@@ -62,6 +68,7 @@ class FlatListDemo extends Component{
                     keyExtractor={ item=> item.name }
                     >
                 </FlatList>
+                <PlusButton/>
             </View>
         ); 
     }//render method ..

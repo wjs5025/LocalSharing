@@ -5,20 +5,10 @@ import { StyleSheet, View} from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BottomTabs from './BottomTabs'
-import NewPost from './Posts/NewPosts/NewPost'
+import {useNavigation} from '@react-navigation/native'
 
-const Stack = createStackNavigator();
-
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={PlusButton} />
-      <Stack.Screen name="NewPost" component={NewPost} />
-    </Stack.Navigator>
-  );
-}
-
-function PlusButton(props) {
+function PlusButton({NewPost}) {
+  const navigation = useNavigation();
     return (
           <ActionButton 
               offsetX={10}
@@ -39,7 +29,7 @@ function PlusButton(props) {
             fontFamily: 'NanumSquare_acEB',
             fontSize : 15
           }}
-          onPress={() => this.props.navigation.navigate('Details')}>
+          onPress={() => navigation.navigate("NewPost")}>
           <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>

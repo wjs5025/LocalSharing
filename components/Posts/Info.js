@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {Component} from 'react';
 import { View, Text, Image,StyleSheet } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
     }
   });
 
-export default class Info extends Component {
-    render(){
+export default function Info({ReviewTab}){
+    const navigation = useNavigation();
       return (
             <View style = {styles.container}>
               <View style={{flexDirection : 'row'}}>
@@ -53,7 +54,7 @@ export default class Info extends Component {
                     <View style ={{flex : 1}}>
                         <View style ={{ flex:1, flexDirection : 'row'}}>
                             <Text style={styles.userInfo}>저니녁</Text>
-                            <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("리뷰보기");}}><Text style={styles.reviewBtn}> {'>'} 리뷰보기</Text></TouchableHighlight>
+                            <TouchableHighlight underlayColor = {'none'} onPress={()=>alert("리뷰보기")}><Text style={styles.reviewBtn}> {'>'} 리뷰보기</Text></TouchableHighlight>
                         </View>
                         <View style ={{flex : 1}}>
                             <Text style={styles.userAddress}>경남 진주시 진주대로 542번길 19-10</Text>
@@ -63,4 +64,3 @@ export default class Info extends Component {
             </View>
       );
     }
-  }

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Image, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import {useNavigation} from '@react-navigation/native'
 
-class TopMenu extends Component {
-    render(){
+function TopMenu({AlarmPage}) {
+    const navigation = useNavigation();
         return(
             <View style={{flexDirection : "row",}}>
                 <View style={styles.barleft}>
@@ -13,21 +14,19 @@ class TopMenu extends Component {
                     </TouchableHighlight>
                 </View>
                 <View style={styles.barright}>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("알림창");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={() => navigation.navigate("AlarmPage")}>
                         <View style={styles.alalrmBtn}>
                             <Image source={require('../image/bell.png')} style={{width:30, height:30}}/>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("알림창");}}>
+                    {/* <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("알림창");}}>
                         <View style={styles.alalrmBtn}>
                             <Image source={require('../image/plus.png')} style={{width:30, height:30}}/>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableHighlight> */}
                     </View>
                 </View>
-            
         );
-    }
 }
 const styles = StyleSheet.create({
     barleft : {
