@@ -26,7 +26,11 @@ import Promise from "./components/Posts/Promise";
 import SharingButton from "./components/Posts/SharingButton";
 import NewPost from "./components/Posts/NewPosts/NewPost";
 
-global.foo = "유저 토큰";
+global.login_user = "유저 토큰";
+global.Exist=0;
+global.User_Cnt=0;
+global.Review_Cnt=0;
+
 
 class App extends Component {
   componentDidMount() { 

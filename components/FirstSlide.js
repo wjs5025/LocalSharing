@@ -3,6 +3,7 @@ import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native'
 import Swiper from "react-native-web-swiper";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import firestore from '@react-native-firebase/firestore';
 import 'react-native-gesture-handler';
 
 import BottomTabs from "./BottomTabs";
@@ -33,6 +34,8 @@ function Screen(){
  }
 
 
+
+
  const signInWithKakao = async () => {
   
   //const [result, setResult] = useState('');
@@ -45,7 +48,37 @@ function Screen(){
 
   console.log(token);
   console.log(profile);
-  foo=profile.nickname;
+
+  console.log("User_DB_Sign");
+  console.log("------------- "+login_user);
+
+  login_user=profile.id;
+  
+  console.log("User="+login_user);
+                                                                        //   DB에 해당 유저가 존재하면 Exist = 1로 변경
+  Exist=0;
+  firestore().collection('User').where('User_ID', '==', login_user).get().then(Doc => {
+    Doc.forEach(Doc => {
+      Exist=1;
+    }
+    );
+  });
+
+  global.User_Cnt=0;
+
+  firestore().collection("User").doc("PK").get().then((doc) => {
+      console.log("D=",doc.data().Cnt);
+      User_Cnt = doc.data().Cnt;
+  }).catch((error)=>{
+    console.log("Error");
+  });
+
+
+  
+  console.log("Exist="+Exist);
+
+  login_user=profile;
+
   
 };
 
@@ -53,6 +86,8 @@ function Screen(){
 
 
 class FirstSlide extends Component {
+
+
   render(){
     return (
       <View style={styles.container}>
@@ -93,7 +128,7 @@ class FirstSlide extends Component {
               <View style={[styles.slideText]}>
                 <Text>{"\n"}</Text>
                 <Text style={[styles.slideTextTitle]}>{"\n"}{"\n"}{"\n"}{"\n"}          지금 바로{"\n"}      시작해보세요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-                <TouchableHighlight onPress={() => {  signInWithKakao(), this.props.navigation.navigate("KakaoMaps")}}>
+                <TouchableHighlight onPress={() => {  signInWithKakao(), this.props.navigation.navigate("KakaoMaps");}}>
                         <View>
                             <Image source={require('../image/kakao_login_medium_wide.png')}/>
                         </View>

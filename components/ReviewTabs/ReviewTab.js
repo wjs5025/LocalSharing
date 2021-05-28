@@ -49,12 +49,29 @@ class ReviewTab extends Component{
     ReceivedReview(){
        console.log("ReceiveReview()");
        console.log("-------------");
+       firestore().collection('review-posts').add({
+            title: 'Ada Lovelace',
+            comment: login_user,
+            User_ID:'1',
+            date:'1',
+            post_ID:'1',
+            review_ID:'1'
+        })
+        .then(() => {
+            console.log('Review added!');
+        });
 
     }
 
     UnWritenReview(){
        console.log("UnWritenReview()");
        console.log("-------------");
+
+       var date = new Date().getDate();
+       var month = new Date().getMonth() + 1;
+       var year = new Date().getFullYear();
+       var Dt = year + '-' + month + '-' + date;  // 2021-05-28
+       console.log(Dt);
 
     }
 
@@ -76,7 +93,7 @@ class ReviewTab extends Component{
 
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWritenReview(this), console.log(this.props), this.props.navigation.navigate("NewReview");}}>
                     <View style={style.Unwritten}>                        
-                    <Text style={style.Unwritten}>  미작성 리뷰 {foo}  </Text>  
+                    <Text style={style.Unwritten}>  미작성 리뷰 {login_user.User_ID}  </Text>  
                     </View>
                     </TouchableHighlight>
                     

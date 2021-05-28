@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TouchableHighlight, StyleSheet, View, Image, Alert ,Text} from 'react-native';
 import { WebView } from 'react-native-webview';
 import BottomTabs from "./BottomTabs";
-
+import firestore from '@react-native-firebase/firestore';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
@@ -35,7 +35,27 @@ export default class Screen extends Component {
         
     }
 
-    
+    signup_user (){
+        console.log("---------");
+ 
+        console.log("User_Cnt=",User_Cnt);
+
+
+          if (!Exist){                                     // 존재 하지 않으면 DB에 등록
+              var doc_name = 'User'+User_Cnt;
+              firestore().collection('User').doc(doc_name).set({ 
+              Kakao_Account: login_user,
+              User_ID: login_user.id,
+              User_First: false,
+              X : this.state.X,
+              Y : this.state.Y
+          }).then(() => {console.log('User added!');});
+           
+          firestore().collection('User').doc('PK').update({
+            Cnt: User_Cnt+1, }) .then(() => {console.log('User updated!');});
+          }
+  }
+
      onWebViewMessage = event => {
        console.log("--------------");
        console.log(event.nativeEvent.data);
@@ -49,8 +69,13 @@ export default class Screen extends Component {
        )
        
      };
+
+
+
+
  
     render() {
+        
         console.log("Html");
         console.log(this);
         return (
@@ -71,18 +96,23 @@ export default class Screen extends Component {
                      <Text>
                         {"\n"}
                         X 좌표 : {this.state.X}  {"\n"}
-                        Y 좌표 : {this.state.Y}         
+                        Y 좌표 : {this.state.Y}   {"\n"}      
+                        Exist : {Exist}  {"\n"}
+                        User : {login_user.id}  {"\n"}
                     </Text>
                     
                 </View>
-                {console.log("X좌표 = " + this.state.X + " / Y좌표 = " + this.state.Y)}
+                {
+                console.log("X좌표 = " + this.state.X + " / Y좌표 = " + this.state.Y),
+                console.log("User = "+ login_user),
+                console.log("Exist = "+Exist)
+                }
                 <View style={styles.bottom}>
-                     <TouchableHighlight onPress={() => {this.props.navigation.navigate("BottomTabs")}}>
+                     <TouchableHighlight onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
                                              <View>
                             <Image source={require('../image/kakao_button.png')}/>
                         </View>
                     </TouchableHighlight>
-
 
                 </View>
 
