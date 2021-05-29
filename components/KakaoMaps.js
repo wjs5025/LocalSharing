@@ -37,10 +37,7 @@ export default class Screen extends Component {
 
     signup_user (){
         console.log("---------");
- 
         console.log("User_Cnt=",User_Cnt);
-
-
           if (!Exist){                                     // 존재 하지 않으면 DB에 등록
               var doc_name = 'User'+User_Cnt;
               firestore().collection('User').doc(doc_name).set({ 

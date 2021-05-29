@@ -1,5 +1,5 @@
 import React, {Component , useEffect, useState} from 'react';
-import {TouchableHighlight , View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
+import {TouchableHighlight , View, Text, StyleSheet, Button ,FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -36,8 +36,9 @@ class FlatListDemo extends Component{
     }
     constructor(props){
         super(props);
-        // collection().orderBy("post_ID", "desc") // post_ID 기준 내림차순  "asc" = 오름차순
-        const db = firestore().collection("sharing-posts").get().then(querySnapshot => {
+        
+        // collection() // post_ID 기준 내림차순  "asc" = 오름차순
+        const db = firestore().collection("sharing-posts").orderBy("post_ID", "asc").get().then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
                 this.setState({
                 data : this.state.data.concat(documentSnapshot.data())
@@ -49,6 +50,7 @@ class FlatListDemo extends Component{
         return(
             <View style={style.root}>
                 <TopMenu/>
+                <Button title ="render" onPress ={() => alert("test")}/>
                 <View style={style.location}>
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.props.navigation.navigate("KakaoMaps")}}>
                         <View style={{flexDirection : "row"}}>

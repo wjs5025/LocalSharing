@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import { View, Text, Image,StyleSheet } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
 
 const styles = StyleSheet.create({
     container : {
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
         marginLeft : 8,
         fontSize : 18,
         fontFamily: 'NanumSquare_acEB',
-        // backgroundColor:'blue'dd
     },
     userAddress : {
         flex:1,
@@ -40,24 +40,46 @@ const styles = StyleSheet.create({
         marginRight : 15,
         fontSize : 15,
         fontFamily: 'NanumSquare_acEB',
-        // backgroundColor:'yellow'
-
     }
   });
 
-export default function Info({...props}){
+
+
+ export default function Info({...props}){
+    const db = firestore().collection("sharing-posts");
+    const [user_id, setid] = useState('');
+    const [kakao,setkakao] = useState([]);
+
+    // post_ID 기반으로 post_ID
+        useEffect(()=>{
+            db.where('post_ID', 'in', props.post_ID).get().then((query) =>{
+            query.forEach((doc)=>{
+                setid(doc.data().User_ID);
+                console.log("글쓴이 User_ID : ",doc.data().User_ID);
+        }
+        )})}
+        ,[])
+
+        useEffect(()=>{
+        firestore().collection("User").where('User_ID', '==', user_id).get().then((query2) => {
+            query2.forEach((doc2) => {
+                setkakao(doc2.data().Kakao_Account);
+            })
+        });}
+        ,[user_id])
+    
     const navigation = useNavigation();
       return (
             <View style = {styles.container}>
               <View style={{flexDirection : 'row'}}>
-                <Image source={require('../../image/저니녁.jpg')} style={styles.image}/>
+                <Image source={{uri :kakao.profileImageUrl}} style={styles.image}/>
                     <View style ={{flex : 1}}>
-                        <View style ={{ flex:1, flexDirection : 'row'}}>
-                            <Text style={styles.userInfo}>저니녁</Text>
+                        <View style ={{flex:1, flexDirection : 'row'}}>
+                            <Text style={styles.userInfo}>{kakao.nickname}</Text>
                             <TouchableHighlight underlayColor = {'none'} onPress={()=>alert("리뷰보기")}><Text style={styles.reviewBtn}> {'>'} 리뷰보기</Text></TouchableHighlight>
                         </View>
                         <View style ={{flex : 1}}>
-                            <Text style={styles.userAddress}>경남 진주시 진주대로 542번길 19-10</Text>
+                            <Text style={styles.userAddress}>{kakao.email}</Text>
                         </View>
                     </View>
               </View>

@@ -5,30 +5,27 @@ import Promise from "../Promise";
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
 
 import firestore from '@react-native-firebase/firestore';
-const options = {
-    title: 'Load Photo',
-    customButtons: [
-      { name: 'button_id_1', title: 'CustomButton 1' },
-      { name: 'button_id_2', title: 'CustomButton 2' }
-    ],
-    storageOptions: {
-      skipBackup: true,
-      path: 'images',
-    },
-  };
+
 
 
 function NewPost({...props}) {
+
+    // 쉐어링 동의 확인 변수 선언
     const [allCheck, setCheck] = useState(false);
+
+    // 제목, 내용, 이미지 변수 선언
     const [TitleValue, onChangeTitle] = useState('');
     const [InnerValue, onChangeInner] = useState('');
+    const [ImageUri, setImageSource] = useState('../../../image/photo.png');
+
+    // TextInput 포커즈 관련 변수 선언
     const [Titlefocus, setTitleFocus] = useState(false);
     const [Innerfocus, setInnerFocus] = useState(false);
     const TitleFocusStyle = Titlefocus ? style.TitleInputFocus : style.TitleInput;
     const InnerFocusStyle = Innerfocus ? style.InnerInputFocus : style.InnerInput;
 
-    const [ImageUri, setImageSource] = useState('');
 
+    // 게시글 등록 버튼 이벤트 함수 (DB에 값 추가하고 이전화면으로)
     const submit = () =>{
         firestore().collection("sharing-posts").add({
             title : TitleValue,
@@ -37,7 +34,7 @@ function NewPost({...props}) {
             post_ID : 0,
             sharing_MAX : 0,
             sharing_now : 0,
-            User_ID : 0,
+            User_ID : login_user.id,
         })
         props.navigation.pop();
     }
@@ -47,18 +44,14 @@ function NewPost({...props}) {
             <TouchableHighlight underlayColor = {'none'} style = {style.picture} onPress={() => {launchImageLibrary(options, (response) => {
                 console.log('Response = ', response);
                 if (response.didCancel) {
-                    console.log('User cancelled image picker');
+                    console.log('image picker 취소');
                 } else if(response.error){
                     console.log('response.customButton')
-                } else if(response.customButtons){
-                    console.log('User tapped custom button : ', response.customButtons);
-                    alert(response.customButtons);
                 } else {
                     setImageSource(response.uri);
                     console.log(ImageUri);
-                }
-            })}}>
-                <Image source={require('../../../image/photo.png')} />
+                }})}}>
+                <Image source={{uri : ImageUri}} style={{flex:1, resizeMode : "contain"}}/>
             </TouchableHighlight>
             <View style = {style.section}>
                 <View style = {{flex :1}}>
@@ -71,7 +64,7 @@ function NewPost({...props}) {
                     onBlur = {() => setTitleFocus(false)}
                     onChangeText={text => onChangeTitle(text)} 
                     maxLength={20}
-                    // value={TitleValue}
+
                     />
                 <TextInput 
                     placeholderTextColor = "gray"
@@ -83,8 +76,7 @@ function NewPost({...props}) {
                     onBlur = {() => setInnerFocus(false)}
                     onChangeText={text => onChangeInner(text)}
                     maxLength={100} 
-                    textAlignVertical = "top" 
-                    value={InnerValue}/>
+                    textAlignVertical = "top" />
                 <Promise allCheck = {allCheck} setCheck = {setCheck} style={{flex:1}}/>
                     <View style ={{flex:0.5}}>
                         <Button title="submit" onPress={()=> {submit()}}/>
@@ -96,66 +88,76 @@ function NewPost({...props}) {
     )
 }
 
-const style = StyleSheet.create({
-    input : {
- 
-        marginTop : 0,
-    },
-    container: {
-        flex : 1,
-    },
-    picture : {
-        flex : 2,
-        borderRadius : 10,
-        borderWidth :3,
-        borderColor : "#CF2A27",
-        margin : 10,
-        alignItems : 'center',
-        justifyContent : 'center'
-    },
-    section : {
-        flex :3.5,
-    },
-    TitleInput : {
-        borderWidth : 3,
-        fontSize : 20,
-        borderRadius : 10,
-        margin : 10,
-        paddingLeft : 10,
-        height : 50,
-        fontFamily : 'NanumSquareEB',
-        borderColor : "gray"
-    },
-    InnerInput : {
-        borderWidth : 3,
-        fontSize : 20,
-        borderRadius : 10,
-        margin : 10,
-        paddingLeft : 10,
-        height : 185,
-        fontFamily : 'NanumSquareEB',
-        borderColor : "gray"
-    },
-    TitleInputFocus : {
-        borderWidth : 3,
-        fontSize : 20,
-        borderRadius : 10,
-        margin : 10,
-        paddingLeft : 10,
-        height : 50,
-        fontFamily : 'NanumSquareEB',
-        borderColor : "#CF2A27"
-    },
-    InnerInputFocus : {
-        borderWidth : 3,
-        fontSize : 20,
-        borderRadius : 10,
-        margin : 10,
-        paddingLeft : 10,
-        height : 185,
-        fontFamily : 'NanumSquareEB',
-        borderColor : "#CF2A27"
-    },
-});
+    // react-image-picker 옵션
+    const options = {
+        title: 'Load Photo',
+        storageOptions: {
+        skipBackup: true,
+        path: 'images',
+        },
+    };
+
+    // 스타일
+    const style = StyleSheet.create({
+        input : {
+    
+            marginTop : 0,
+        },
+        container: {
+            flex : 1,
+        },
+        picture : {
+            flex : 2,
+            borderRadius : 10,
+            borderWidth :3,
+            borderColor : "#CF2A27",
+            margin : 10,
+            alignItems : 'center',
+            justifyContent : 'center'
+        },
+        section : {
+            flex :3.5,
+        },
+        TitleInput : {
+            borderWidth : 3,
+            fontSize : 20,
+            borderRadius : 10,
+            margin : 10,
+            paddingLeft : 10,
+            height : 50,
+            fontFamily : 'NanumSquareEB',
+            borderColor : "gray"
+        },
+        InnerInput : {
+            borderWidth : 3,
+            fontSize : 20,
+            borderRadius : 10,
+            margin : 10,
+            paddingLeft : 10,
+            height : 185,
+            fontFamily : 'NanumSquareEB',
+            borderColor : "gray"
+        },
+        TitleInputFocus : {
+            borderWidth : 3,
+            fontSize : 20,
+            borderRadius : 10,
+            margin : 10,
+            paddingLeft : 10,
+            height : 50,
+            fontFamily : 'NanumSquareEB',
+            borderColor : "#CF2A27"
+        },
+        InnerInputFocus : {
+            borderWidth : 3,
+            fontSize : 20,
+            borderRadius : 10,
+            margin : 10,
+            paddingLeft : 10,
+            height : 185,
+            fontFamily : 'NanumSquareEB',
+            borderColor : "#CF2A27"
+        },
+    });
 
 export default NewPost;
