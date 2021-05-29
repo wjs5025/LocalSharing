@@ -8,6 +8,7 @@ import BottomTabs from './BottomTabs'
 import {useNavigation} from '@react-navigation/native'
 
 function PlusButton({...props}) {
+
   const navigation = useNavigation();
     return (
           <ActionButton 

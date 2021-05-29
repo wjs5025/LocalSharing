@@ -1,7 +1,7 @@
 import React, {Component , useEffect, useState} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, Button ,FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
@@ -16,11 +16,12 @@ import KakaoMaps from "./KakaoMaps"
 import { ActivityIndicator } from 'react-native';
 
 const Stack = createStackNavigator();
-export default class Screen extends Component {
-  render() {
+export default Screen 
+
+function Screen() {
      return (
         <Stack.Navigator>
-          <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
+          <Stack.Screen name="Test" component={Test} options={{headerShown: false}}/>
           <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
           <Stack.Screen name="NewPost" component={NewPost} options={{headerShown: false}}/>
           <Stack.Screen name="AlarmPage" component={AlarmPage} options={{headerShown: false}}/>
@@ -28,59 +29,33 @@ export default class Screen extends Component {
         </Stack.Navigator>
      );
    }
- }
 
-class FlatListDemo extends Component{
-    state = {
-        data : [],
-        cnt : 0,
-    }
-    
-    constructor(props){
-        super(props);
-        var cnt = 1;
-        // collection() // post_ID 기준 "desc"= 내림차순  "asc" = 오름차순
-        firestore().collection("sharing-posts").orderBy("post_ID", "desc").get().then(querySnapshot => {
+function Test(){
+    const [data, setData] = useState([]);
+    const [cnt, setCnt] = useState(0);
+    const navigation = useNavigation();
+    global.count = 0;
+
+    useEffect(() => {
+        count = 0;
+        const docs = firestore().collection('sharing-posts').orderBy("post_ID", "desc").onSnapshot(querySnapshot => {
+            const data = [];
             querySnapshot.forEach(documentSnapshot => {
-                this.setState({
-                data : this.state.data.concat(documentSnapshot.data()),
-                cnt : cnt++
+                count = count+1;
+                data.push({
+                    ...documentSnapshot.data(),
+                    key : documentSnapshot.id,
                 });
             });
-            })
-    }
+            setCnt(count);
+            setData(data);
+        })
+        },[]);
     
-    render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-        return(
-            <View style={style.root}>
-                <TopMenu/>
-                <Button title ="render" onPress ={() => alert("test")}/>
-                <View style={style.location}>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.props.navigation.navigate("KakaoMaps")}}>
-                        <View style={{flexDirection : "row"}}>
-                            <Image style={style.locationIcon} source={require('../image/location.png')}/>
-                            <Text style={style.locationText} > 진주시 가좌동</Text>
-                        </View>
-                    </TouchableHighlight>
-                <Text style={style.titleText}> 의 쉐어링</Text>
-                </View>
-                <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
-                    style = {style.flatlist}
-                    data={this.state.data}
-                    renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
-                    keyExtractor={ item=> item.name }
-                    >
-                </FlatList>
-                <PlusButton cnt = {this.state.cnt}/>
-            </View>
-        ); 
-    }//render method ..
-
-    //멤버 메소드 - FlatList의 renderItem용 
-
-    renderItem=({item})=>{
-        const press = () =>{
-           {this.props.navigation.navigate("SharingPost",{post_ID:item.post_ID})}
+    const renderItem = ({item}) => {
+        count = 0;
+        const press = () => {
+           navigation.navigate("SharingPost",{post_ID:item.post_ID})
         }
         return(
             <TouchableOpacity style={style.itemView} onPress={press}>
@@ -93,7 +68,31 @@ class FlatListDemo extends Component{
             </TouchableOpacity>
         );
     }
-}
+        return(
+            <View style={style.root}>
+                <TopMenu/>
+                <Button title ="render" onPress ={() => alert("TEST")}/>
+                <View style={style.location}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{navigation.navigate("KakaoMaps")}}>
+                        <View style={{flexDirection : "row"}}>
+                            <Image style={style.locationIcon} source={require('../image/location.png')}/>
+                            <Text style={style.locationText} > 진주시 가좌동</Text>
+                        </View>
+                    </TouchableHighlight>
+                <Text style={style.titleText}> 의 쉐어링</Text>
+                </View>
+                <FlatList 
+                    style = {style.flatlist}
+                    data={data}
+                    renderItem={renderItem}
+                    >
+                </FlatList>
+                <PlusButton cnt = {cnt}/>
+            </View>
+        ); 
+    }
+
+
 
 
 const style= StyleSheet.create({
