@@ -11,7 +11,7 @@ import Comment from "./Posts/Comment";
 function SharingPost({...props}){
     const [allCheck, setCheck] = useState(false);
     const post_ID = useState(props.route.params.post_ID) /// FlatListDemo 에서 받아온 post_ID
-    
+
     useEffect(() => {
         console.log("sharing" + allCheck);
     }, [allCheck])

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import BottomTabs from './BottomTabs'
 import {useNavigation} from '@react-navigation/native'
 
-function PlusButton({NewPost}) {
+function PlusButton({...props}) {
   const navigation = useNavigation();
     return (
           <ActionButton 
@@ -29,7 +29,7 @@ function PlusButton({NewPost}) {
             fontFamily: 'NanumSquare_acEB',
             fontSize : 15
           }}
-          onPress={() => navigation.navigate("NewPost")}>
+          onPress={() => navigation.navigate("NewPost", {cnt : props.cnt})}>
           <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>

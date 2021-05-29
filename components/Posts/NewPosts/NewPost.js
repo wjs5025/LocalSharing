@@ -9,7 +9,8 @@ import firestore from '@react-native-firebase/firestore';
 
 
 function NewPost({...props}) {
-
+    const [cnt,setCount] = useState(props.route.params.cnt);
+    console.log("헬로",props.route.params.cnt);
     // 쉐어링 동의 확인 변수 선언
     const [allCheck, setCheck] = useState(false);
 
@@ -31,14 +32,14 @@ function NewPost({...props}) {
             title : TitleValue,
             내용 : InnerValue,
             img : ImageUri,
-            post_ID : 0,
+            post_ID : cnt+1,
             sharing_MAX : 0,
             sharing_now : 0,
             User_ID : login_user.id,
         })
         props.navigation.pop();
     }
-    
+    console.log("Newpost : ", props.cnt);
     return(
         <View style = {style.container}>
             <TouchableHighlight underlayColor = {'none'} style = {style.picture} onPress={() => {launchImageLibrary(options, (response) => {

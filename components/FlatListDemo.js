@@ -33,19 +33,23 @@ export default class Screen extends Component {
 class FlatListDemo extends Component{
     state = {
         data : [],
+        cnt : 0,
     }
+    
     constructor(props){
         super(props);
-        
-        // collection() // post_ID 기준 내림차순  "asc" = 오름차순
-        const db = firestore().collection("sharing-posts").orderBy("post_ID", "asc").get().then(querySnapshot => {
+        var cnt = 1;
+        // collection() // post_ID 기준 "desc"= 내림차순  "asc" = 오름차순
+        firestore().collection("sharing-posts").orderBy("post_ID", "desc").get().then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
                 this.setState({
-                data : this.state.data.concat(documentSnapshot.data())
+                data : this.state.data.concat(documentSnapshot.data()),
+                cnt : cnt++
                 });
             });
             })
     }
+    
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
         return(
             <View style={style.root}>
@@ -67,7 +71,7 @@ class FlatListDemo extends Component{
                     keyExtractor={ item=> item.name }
                     >
                 </FlatList>
-                <PlusButton/>
+                <PlusButton cnt = {this.state.cnt}/>
             </View>
         ); 
     }//render method ..

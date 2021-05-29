@@ -31,15 +31,14 @@ global.Exist=0;
 global.User_Cnt=0;
 global.Review_Cnt=0;
 
-
 class App extends Component {
   componentDidMount() { 
     SplashScreen.hide(); //로딩 화면
   }
   render() {
     return (
-      // <NavigationContainer><FlatListDemo/></NavigationContainer>
-      <FirstSlide/>
+      <NavigationContainer><FlatListDemo/></NavigationContainer>
+      // <FirstSlide/>
         
       );
   }
