@@ -160,7 +160,7 @@ const style= StyleSheet.create({
     itemName:{
         marginTop :12,
         fontFamily: 'NanumSquare_acEB',
-        fontSize:22,
+        fontSize:20,
     },
     itemMsg:{
         flex:1,
