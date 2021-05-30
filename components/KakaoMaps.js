@@ -76,41 +76,40 @@ export default class Screen extends Component {
         // console.log(this);
         return (
             <View style={styles.container}>
-                <View style={{flex:0.3}}/>
-                <View style={styles.webview}>
-                <WebView
-                    style={styles.webview}
-                    source={this.state.indexPage}
-                    onMessage={this.onWebViewMessage}
-                    originWhitelist={['*']}
-                    ref={webview => this.appWebview = webview}
-                    javaScriptEnabled={true}
-                    useWebKit={true}
-                    
-                />
+                <View style={styles.webviewCon}>
+                    <View style={styles.webviewArea}>
+                    <WebView
+                        style={styles.webview}
+                        source={this.state.indexPage}
+                        onMessage={this.onWebViewMessage}
+                        originWhitelist={['*']}
+                        ref={webview => this.appWebview = webview}
+                        javaScriptEnabled={true}
+                        useWebKit={true}
+                    />
+                    </View>
+                    <View style={{flex:1}}>
+                        <Text style ={{flex:1, alignSelf:'center'}}>
+                            {"\n"}
+                            X 좌표 : {this.state.X}  {"\n"}
+                            Y 좌표 : {this.state.Y}   {"\n"}
+                            Exist : {Exist}  {"\n"}
+                            User : {login_user.id}  {"\n"}
+                        </Text>
+                    </View>
                 </View>
+                <View style={styles.bottom}>
                  <View style={{flex:1.1}}>
-                     <Text style ={{flex:1, alignSelf:'center'}}>
-                        {"\n"}
-                        X 좌표 : {this.state.X}  {"\n"}
-                        Y 좌표 : {this.state.Y}   {"\n"}      
-                        Exist : {Exist}  {"\n"}
-                        User : {login_user.id}  {"\n"}
-                    </Text>
-                    
+                    <TouchableHighlight underlayColor = {'none'} style={{marginTop : 30, backgroundColor:"red"}} onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
+                                <Image source={require('../image/kakao_button.png')}/>
+                    </TouchableHighlight>
                 </View>
                 {
                 console.log("X좌표 = " + this.state.X + " / Y좌표 = " + this.state.Y),
                 console.log("User = "+ login_user),
-                console.log("Exist = "+Exist)
+                console.log("Exist = "+ Exist)
                 }
-                <View style={styles.bottom}>
-                     <TouchableHighlight style={{flex:1}} onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
-                        <View style={{flex:1, marginTop : 29}}>
-                            <Image source={require('../image/kakao_button.png')}/>
-                        </View>
-                    </TouchableHighlight>
-
+                     
                 </View>
             </View>
             
@@ -125,13 +124,17 @@ const styles = StyleSheet.create({
         padding:10,
         backgroundColor: "white"
     },
-    webview: {
-        flex: 5,
-        borderWidth : 2,
+    webviewCon: {
+        marginTop :40,
+        flex: 4,
+    },
+    webviewArea : {
+        flex:4,
+        borderWidth : 3,
         borderColor:"#CF2A27"
     },
     bottom:{
-        flex: 2,
+        flex: 1,
         alignItems: "center",
         justifyContent: "center"
     }
