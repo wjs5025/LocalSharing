@@ -35,7 +35,9 @@ class ReviewTab extends Component{
     WritenReview() {
        console.log("WrithenReview()");
        console.log("-------------");
-       this.post = firestore().collection("review-posts").get().then(querySnapshot => {
+       console.log(login_user)
+       firestore().collection("review-posts").where('User_ID', '==', login_user.id).get().then(querySnapshot => {
+        this.setState({data:[]});
         querySnapshot.forEach(documentSnapshot => {
             console.log(documentSnapshot.data());
             this.setState({
@@ -43,12 +45,26 @@ class ReviewTab extends Component{
             });
         });
         })
-        
     }
+
+
+//  Review_post : Post_ID : 1 을 저장   ->  그걸 Post에서 검색 ->  작성자가 login_user 이면 출력!
+//   귀찮아서 Received_User를 만듬!
 
     ReceivedReview(){
        console.log("ReceiveReview()");
        console.log("-------------");
+
+       firestore().collection("review-posts").where('Received_User', '==', login_user.id).get().then(querySnapshot => {
+        this.setState({data:[]});
+        querySnapshot.forEach(documentSnapshot => {
+            console.log(documentSnapshot.data());
+            this.setState({
+             data : this.state.data.concat(documentSnapshot.data())
+            });
+        });
+        })
+/*
        firestore().collection('review-posts').add({
             title: 'Ada Lovelace',
             comment: login_user,
@@ -60,11 +76,11 @@ class ReviewTab extends Component{
         .then(() => {
             console.log('Review added!');
         });
-
+*/
     }
 
-    UnWritenReview(){
-       console.log("UnWritenReview()");
+    UnWrittenReview(){
+       console.log("UnWrittenReview()");
        console.log("-------------");
 
        var date = new Date().getDate();
@@ -91,9 +107,9 @@ class ReviewTab extends Component{
                     </TouchableHighlight>
                     </View>
 
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWritenReview(this), console.log(this.props), this.props.navigation.navigate("NewReview");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWrittenReview(this), console.log(this.props), this.props.navigation.navigate("NewReview");}}>
                     <View style={style.Unwritten}>                        
-                    <Text style={style.Unwritten}>  미작성 리뷰 {login_user.User_ID}  </Text>  
+                    <Text style={style.Unwritten}>  미작성 리뷰 {login_user.User_ID} 이거 아직 미구현  </Text>  
                     </View>
                     </TouchableHighlight>
                     

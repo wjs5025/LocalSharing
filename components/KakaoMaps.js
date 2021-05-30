@@ -51,6 +51,8 @@ export default class Screen extends Component {
           firestore().collection('User').doc('PK').update({
             Cnt: User_Cnt+1, }) .then(() => {console.log('User updated!');});
           }
+
+          ///////// X,Y 좌표 수정 하는거 만들기!!
   }
 
      onWebViewMessage = event => {

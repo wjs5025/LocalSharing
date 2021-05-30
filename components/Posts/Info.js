@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
             db.where('post_ID', 'in', props.post_ID).get().then((query) =>{
             query.forEach((doc)=>{
                 setid(doc.data().User_ID);
-                console.log("글쓴이 User_ID : ",doc.data().User_ID);
+                //console.log("글쓴이 User_ID : ",doc.data().User_ID);
         }
         )})}
         ,[])

@@ -99,7 +99,7 @@ const Item = ({item, onPress, backgroundColor}) => (
 
 const MyinfoTab = () => {
     const [SelectedId, setSelectedId] = useState(null);
-    const [name, setName] = useState('저니녁');
+    const [name, setName] = useState(login_user.nickname);
 
     const renderItem = ({ item }) => {
       return (
@@ -114,7 +114,7 @@ const MyinfoTab = () => {
     return (
       <View style={styles.container}>
         <View style = {styles.profileArea}>
-                <Image style={styles.image} source={require('../../image/저니녁.jpg')}/>
+                <Image style={styles.image} source={{uri :login_user.profileImageUrl}}/>
                 <Text style={styles.UserName}>{name} 님</Text>
             </View>
         <View style ={{flex:1.3, marginTop : 15}}>

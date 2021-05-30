@@ -36,7 +36,7 @@ function Content({...props}){
         db.get().then((query) =>{
             query.forEach((doc)=>{
                 setData(doc.data());
-            console.log(doc.data());
+            //console.log(doc.data());
         }
         )})
      },[])
