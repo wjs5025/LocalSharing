@@ -122,14 +122,14 @@ function FlatListDemo(){
 
 
 const style= StyleSheet.create({
-    flatlist:{},
     root:{
         flex:1,
-        padding:16},
+        padding:16,
+        backgroundColor: 'white',
+    },
     location:{
         flexDirection : "row",
     },
-    locationIcon:{},
     locationText:{
         fontFamily: 'NanumSquare_acEB',
         fontSize:18,
@@ -141,38 +141,36 @@ const style= StyleSheet.create({
         marginTop:1
     },
     itemView:{
-        height : 118,
+        height : 125,
         flexDirection:'row',
-        borderWidth:1.5,
-        borderColor:'#353535',
+        borderTopWidth:1.5,
+        borderColor:'#BDBDBD',
         padding:7,
-        borderRadius:5,
         marginBottom:10,
     },
     itemImg:{
-        borderWidth:1,
         borderColor:'#353535',
-        width:105,
-        height:100,
+        width:110,
+        height:110,
         resizeMode:'cover',
-        marginRight:10,
-        borderRadius: 5,
+        marginTop : 5,
+        marginRight:15,
+        borderRadius: 10,
     },
     itemName:{
-        marginTop :7,
+        marginTop :12,
         fontFamily: 'NanumSquare_acEB',
         fontSize:22,
     },
     itemMsg:{
         flex:1,
-        marginTop:5,
+        marginTop:6,
         fontFamily: 'NanumSquare_acEB',
         fontSize:15,
-        flexShrink:1,
-        
     },
     itemhowfar:{
         flex:1,
+        alignSelf : "flex-end",
         fontFamily: 'NanumSquare_acB',
         fontSize:13,
     },

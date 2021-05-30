@@ -5,6 +5,7 @@ import SharingButton from '../Posts/SharingButton'
 
 const styles = {
   container: {
+    backgrounColor:"white",
     flex: 1,
     borderWidth : 1,
   },
