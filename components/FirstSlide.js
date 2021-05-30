@@ -92,48 +92,49 @@ class FirstSlide extends Component {
     return (
       <View style={styles.container}>
         <View style={{flex: 1}}>
-          <Swiper index={1}>
-            <View style={[styles.slideContainer,styles.slideBackground]}>
-              <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}처음 오셨군요?</Text>
-              <Text style={[styles.slideTextSub]}>{"\n"}{"\n"}지금부터 푸드쉐어링에 대해</Text>
-              <Text style ={{fontSize:1.5}}>{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}>   간략히 설명해 드릴게요{"\n"}</Text>
+          <Swiper style ={{flex:1}}>
+          <View style={[styles.slideContainer,styles.slideBackground]}>
+                <View style ={styles.imageSection}>
+                  <Image style={styles.img} source={require("../image/hello.gif")}/>
+                </View>
+                <View style ={styles.TextSection}>
+                  <Text style={[styles.slideTextTitle]}>처음오셨군요 ?</Text>
+                  <Text style={[styles.slideTextSub]}>지금부터 푸드쉐어링에 대해</Text>
+                  <Text style={[styles.slideTextSub]}>간략히 소개할게요 !</Text>
+                </View>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-              <View style={[styles.slideContents]}>
-              <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text> 
-              <Text style={[styles.slideTextSub]}>              푸드쉐어링이란?</Text>
-                <Text style = {[styles.slideTextTitle]}>{"\n"}" 남은 음식이나 식재료를</Text>
-                <Text style ={{fontSize:2}}>{"\n"}</Text>
-                <Text style = {[styles.slideTextTitle]}>내 주변 이웃과 공유하는 </Text>
-                <Text style ={{fontSize:2}}>{"\n"}</Text>
-                <Text style = {[styles.slideTextTitle]}>       일종의 환경운동 "{"\n"} </Text>
-                <Text style ={{fontSize:28}}>{"\n"}</Text>
-          
-              </View>
-              
+                <View style ={styles.imageSection}>
+                  <Image style={styles.img} source={require("../image/햄버거.gif")}/>
+                </View>
+                <View style ={styles.TextSection}>
+                  <Text style={[styles.slideTextTitle]}>푸드쉐어링이란 ?</Text>
+                  <Text style={[styles.slideTextSub]}>남은 음식이나 식재료를 내 주변</Text>
+                  <Text style={[styles.slideTextSub]}>이웃과 나누는 일종의 환경운동이에요</Text>
+                </View>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-              <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-              <Text style = {[styles.slideTextTitle]}>{"\n"}{"\n"}" 당신 손안의 푸드쉐어링 </Text>
-              <Text style = {[styles.slideTextTitle]}>   :: LOCAL SHARING "{"\n"}</Text>
-              <Text style ={{fontSize:2}}>{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}> 여러분도 손쉽게 </Text>
-              <Text style ={{fontSize:2}}>{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}>푸드쉐어링에 참여할 수 있도록</Text>
-              <Text style ={{fontSize:2}}>{"\n"}</Text>
-              <Text style={[styles.slideTextSub]}>  저희가 도와드릴게요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
+                <View style ={styles.imageSection}>
+                  <Image style={styles.img} source={require("../image/localsharing.png")}/>
+                </View>
+                <View style ={styles.TextSection}>
+                  <Text style={[styles.slideTextTitle]}>Local Sharing</Text>
+                  <Text style={[styles.slideTextSub]}>여러분도 손쉽게 푸드쉐어링에</Text>
+                  <Text style={[styles.slideTextSub]}>참여할 수 있게 도와드릴게요</Text>
+                </View>
             </View>
             <View style={[styles.slideContainer,styles.slideBackground]}>
-              <View style={[styles.slideText]}>
-                <Text>{"\n"}</Text>
-                <Text style={[styles.slideTextTitle]}>{"\n"}{"\n"}{"\n"}{"\n"}          지금 바로{"\n"}      시작해보세요 !{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-                <TouchableHighlight onPress={() => {  signInWithKakao(), this.props.navigation.navigate("KakaoMaps");}}>
+              <View style={[styles.imageSection]}>
+                <Text style={[styles.slideTextTitle2, styles.four]}>지금 바로</Text>
+                <Text style={[styles.slideTextTitle2]}>시작해보세요 !</Text>
+                </View>
+                <View style ={styles.TextSection}>
+                <TouchableHighlight style = {{marginTop:125}} onPress={() => {  signInWithKakao(), this.props.navigation.navigate("KakaoMaps");}}>
                         <View>
                             <Image source={require('../image/kakao_login_medium_wide.png')}/>
                         </View>
                     </TouchableHighlight>
-              </View>
+                </View>
             </View>
           </Swiper>
         </View>
@@ -143,30 +144,54 @@ class FirstSlide extends Component {
 }
 
 const styles = StyleSheet.create({
+  imageSection : {
+    flex:1.5,
+
+  },
+  TextSection :{
+    flex:1,
+    alignItems : "center"
+  },
+  img : {
+    borderWidth :100,
+    marginTop:150,
+    flex:1,
+    resizeMode : "stretch",
+    width : 280,
+  },
   container: {
     flex: 1,
   }, 
   slideContainer: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+  
   },
   slideBackground: {
-    backgroundColor: "#CF2A27"
+    backgroundColor: "white"
   },
   slideTextTitle:{
     fontFamily: 'NanumSquare_acEB',
-    color : "white",
-    fontSize : 35,
+    color : "#CF2A27",
+    fontSize : 30,
+    marginTop : 30,
+    marginBottom:35,
+  },
+  slideTextTitle2:{
+    fontFamily: 'NanumSquare_acEB',
+    color : "#CF2A27",
+    fontSize : 30,
   },
   slideTextSub :{
     fontFamily: 'NanumSquareEB',
-    color : "white",
-    fontSize : 24,
+    color : "black",
+    fontSize : 21,
   },
   slideContents : {
-    marginLeft : 15,
-    marginRight : 15
+    flex :1,
+  },
+  four:{
+    marginTop : 320
   }
 });
 export default Screen;

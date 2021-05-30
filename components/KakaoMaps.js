@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding:10,
-        backgroundColor: "#CF2A27"
+        backgroundColor: "white"
     },
     webview: {
         flex: 5,
