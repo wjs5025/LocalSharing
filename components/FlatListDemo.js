@@ -21,7 +21,7 @@ export default Screen
 function Screen() {
      return (
         <Stack.Navigator>
-          <Stack.Screen name="Test" component={Test} options={{headerShown: false}}/>
+          <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>
           <Stack.Screen name="SharingPost" component={SharingPost} options={{headerShown: false}}/>
           <Stack.Screen name="NewPost" component={NewPost} options={{headerShown: false}}/>
           <Stack.Screen name="AlarmPage" component={AlarmPage} options={{headerShown: false}}/>
@@ -30,14 +30,13 @@ function Screen() {
      );
    }
 
-function Test(){
+function FlatListDemo(){
     const [data, setData] = useState([]);
     const [cnt, setCnt] = useState(0);
     const navigation = useNavigation();
     global.count = 0;
 
     useEffect(() => {
-        count = 0;
         const docs = firestore().collection('sharing-posts').orderBy("post_ID", "desc").onSnapshot(querySnapshot => {
             const data = [];
             querySnapshot.forEach(documentSnapshot => {
@@ -52,6 +51,7 @@ function Test(){
         })
         },[]);
     
+
     const renderItem = ({item}) => {
         count = 0;
         const press = () => {
@@ -71,7 +71,7 @@ function Test(){
         return(
             <View style={style.root}>
                 <TopMenu/>
-                <Button title ="render" onPress ={() => alert("TEST")}/>
+                <Button title ="render" onPress ={() => buttonPress}/>
                 <View style={style.location}>
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{navigation.navigate("KakaoMaps")}}>
                         <View style={{flexDirection : "row"}}>

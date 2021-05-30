@@ -28,7 +28,7 @@ function NewPost({...props}) {
 
     // 게시글 등록 버튼 이벤트 함수 (DB에 값 추가하고 이전화면으로)
     const submit = () =>{
-        firestore().collection("sharing-posts").add({
+        firestore().collection("sharing-posts").doc('Post'+(cnt+1)).set({
             title : TitleValue,
             내용 : InnerValue,
             img : ImageUri,
@@ -51,9 +51,8 @@ function NewPost({...props}) {
                     console.log('response.customButton')
                 } else {
                     setImageSource(response.uri);
-                    console.log(ImageUri);
                 }})}}>
-                <Image source={{uri : ImageUri}} style={{flex:1, resizeMode : "contain"}}/>
+                <Image source={require('../../../image/photo.png')} style={{flex:1, resizeMode : "contain"}}/>
             </TouchableHighlight>
             <View style = {style.section}>
                 <View style = {{flex :1}}>

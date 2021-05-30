@@ -71,10 +71,9 @@ export default class Screen extends Component {
 
 
  
-    render() {
-        
+    render() {   
         console.log("Html");
-        console.log(this);
+        // console.log(this);
         return (
             <View style={styles.container}>
                 <View style={styles.webview}>

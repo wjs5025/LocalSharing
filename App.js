@@ -37,8 +37,8 @@ class App extends Component {
   }
   render() {
     return (
-      <NavigationContainer><FlatListDemo/></NavigationContainer>
-      // <FirstSlide/>
+      // <NavigationContainer><FlatListDemo/></NavigationContainer>
+      <FirstSlide/>
         
       );
   }
