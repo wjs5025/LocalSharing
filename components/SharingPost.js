@@ -49,6 +49,7 @@ const style = StyleSheet.create({
     },
     container : {
         flex:1,
+        backgroundColor:"white",
     },
     imageArea:{
         flex : 2,

@@ -8,7 +8,8 @@ const { width } = Dimensions.get('window')
 const styles = {
   container: {
     flex: 1,
-    borderWidth : 1,
+    borderBottomWidth:1,
+    borderBottomColor:"#BDBDBD"
   },
   wrapper: {
     flex :1,

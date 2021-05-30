@@ -7,7 +7,6 @@ const style = StyleSheet.create({
         flex:1,
     },
     title : {
-        borderTopWidth :1,
         flex:1,
         paddingLeft : 15,
         textAlignVertical : "center",
@@ -18,6 +17,7 @@ const style = StyleSheet.create({
     },
     inner : {
         borderBottomWidth : 1,
+        borderBottomColor:"#BDBDBD",
         height : 150,
         flex:3,
         paddingLeft : 15,

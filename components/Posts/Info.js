@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
     container : {
         flex:1,
         flexDirection:'column',
-        borderWidth : 1,
+        borderBottomWidth : 1,
+        borderBottomColor : "#BDBDBD"
     },
     image : {
         borderRadius : 10,
         borderWidth : 1,
-        borderColor : "black",
+        borderColor : "gray",
         width:70, 
         height:70,
         margin : 10,

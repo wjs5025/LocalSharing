@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingLeft : 20,
       borderBottomWidth:1,
-      borderBottomColor:"black",
+      borderBottomColor:"#BDBDBD",
       justifyContent: "center",
     },
     checkboxContainer: {
