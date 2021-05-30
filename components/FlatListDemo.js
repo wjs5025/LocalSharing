@@ -1,5 +1,5 @@
-import React, {Component , useEffect, useState} from 'react';
-import {TouchableHighlight , View, Text, StyleSheet, Button ,FlatList, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
+import React, {Component , useEffect, useState, useCallback, useRef} from 'react';
+import {TouchableHighlight , View, Text, StyleSheet, Button ,FlatList, TouchableOpacity, RefreshControl, Image} from 'react-native';
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,6 +14,7 @@ import AlarmPage from "./AlarmPage";
 import KakaoMaps from "./KakaoMaps"
 
 import { ActivityIndicator } from 'react-native';
+import { withRepeat } from 'react-native-reanimated';
 
 const Stack = createStackNavigator();
 export default Screen 
@@ -30,14 +31,33 @@ function Screen() {
      );
    }
 
+
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 function FlatListDemo(){
     const [data, setData] = useState([]);
     const [cnt, setCnt] = useState(0);
     const navigation = useNavigation();
     global.count = 0;
 
+
+    //RefreshControl
+    const [refreshing, setRefreshing] = useState(false);
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    },[]);
+
+    //Totop
+    const flatListRef = useRef()
+    const toTop = () => {
+        flatListRef.current.scrollToOffset({animated : true, offset:0})
+    }
+
     useEffect(() => {
-        const docs = firestore().collection('sharing-posts').orderBy("post_ID", "desc").onSnapshot(querySnapshot => {
+        firestore().collection('sharing-posts').orderBy("post_ID", "desc").onSnapshot(querySnapshot => {
             const data = [];
             querySnapshot.forEach(documentSnapshot => {
                 count = count+1;
@@ -70,8 +90,7 @@ function FlatListDemo(){
     }
         return(
             <View style={style.root}>
-                <TopMenu/>
-                <Button title ="render" onPress ={() => buttonPress}/>
+                <TopMenu toTop = {toTop}/>
                 <View style={style.location}>
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{navigation.navigate("KakaoMaps")}}>
                         <View style={{flexDirection : "row"}}>
@@ -81,11 +100,18 @@ function FlatListDemo(){
                     </TouchableHighlight>
                 <Text style={style.titleText}> 의 쉐어링</Text>
                 </View>
-                <FlatList 
+                <FlatList
+                    ref = {flatListRef}
                     style = {style.flatlist}
                     data={data}
                     renderItem={renderItem}
+                    refreshControl ={
+                        <RefreshControl
+                        refreshing = {refreshing}
+                        onRefresh = {onRefresh}/>
+                    }
                     >
+                        
                 </FlatList>
                 <PlusButton cnt = {cnt}/>
             </View>

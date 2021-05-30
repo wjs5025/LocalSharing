@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import { Image, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
 
-function TopMenu({AlarmPage}) {
+function TopMenu({...props}) {
     const navigation = useNavigation();
         return(
             <View style={{flexDirection : "row",}}>
                 <View style={styles.barleft}>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{alert("리프래쉬");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={props.toTop}>
                         <View>
                             <Image source={require('../image/homelogo.png')}/>
                         </View>
