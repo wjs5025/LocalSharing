@@ -149,7 +149,7 @@ const style= StyleSheet.create({
         marginBottom:10,
     },
     itemImg:{
-        borderColor:'#353535',
+        borderColor:'#BDBDBD',
         width:110,
         height:110,
         resizeMode:'cover',

@@ -8,6 +8,7 @@ const styles = {
     backgrounColor:"white",
     flex: 1,
     borderWidth : 1,
+    borderColor : "#BDBDBD"
   },
   wrapper: {
   },

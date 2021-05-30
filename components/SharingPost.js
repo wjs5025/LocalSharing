@@ -56,7 +56,6 @@ const style = StyleSheet.create({
     },
     contentArea : {
         flex : 2,
-        backgroundColor : 'pink'
     },
 });
 export default SharingPost;

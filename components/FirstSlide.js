@@ -146,7 +146,7 @@ class FirstSlide extends Component {
 const styles = StyleSheet.create({
   imageSection : {
     flex:1.5,
-
+    alignItems: "center",
   },
   TextSection :{
     flex:1,
