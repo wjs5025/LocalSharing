@@ -76,6 +76,7 @@ export default class Screen extends Component {
         // console.log(this);
         return (
             <View style={styles.container}>
+                <View style={{flex:0.3}}/>
                 <View style={styles.webview}>
                 <WebView
                     style={styles.webview}
@@ -88,8 +89,8 @@ export default class Screen extends Component {
                     
                 />
                 </View>
-                 <View>
-                     <Text>
+                 <View style={{flex:1.1}}>
+                     <Text style ={{flex:1, alignSelf:'center'}}>
                         {"\n"}
                         X 좌표 : {this.state.X}  {"\n"}
                         Y 좌표 : {this.state.Y}   {"\n"}      
@@ -104,14 +105,13 @@ export default class Screen extends Component {
                 console.log("Exist = "+Exist)
                 }
                 <View style={styles.bottom}>
-                     <TouchableHighlight onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
-                                             <View>
+                     <TouchableHighlight style={{flex:1}} onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
+                        <View style={{flex:1, marginTop : 29}}>
                             <Image source={require('../image/kakao_button.png')}/>
                         </View>
                     </TouchableHighlight>
 
                 </View>
-
             </View>
             
         );
@@ -127,6 +127,8 @@ const styles = StyleSheet.create({
     },
     webview: {
         flex: 5,
+        borderWidth : 2,
+        borderColor:"#CF2A27"
     },
     bottom:{
         flex: 2,
