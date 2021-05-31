@@ -110,6 +110,7 @@ function FlatListDemo(){
                         refreshing = {refreshing}
                         onRefresh = {onRefresh}/>
                     }
+                    showsVerticalScrollIndicator={false}
                     >
                         
                 </FlatList>

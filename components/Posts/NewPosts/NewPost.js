@@ -4,7 +4,7 @@ import SharingButton from "../SharingButton";
 import Promise from "../Promise";
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
 
-import firestore from '@react-native-firebase/firestore';
+import firestore, { firebase } from '@react-native-firebase/firestore';
 
 
 
@@ -80,8 +80,7 @@ function NewPost({...props}) {
                     textAlignVertical = "top" />
                 <Promise allCheck = {allCheck} setCheck = {setCheck} style={{flex:1}}/>
                     <View style ={{flex:0.5}}>
-                        <Button title="submit" onPress={()=> {submit()}}/>
-                        {/* <SharingButton allCheck = {allCheck} buttonName = {"게시글 등록하기"} style={{flex:1}}/> */}
+                        <SharingButton allCheck = {allCheck} submit = {()=>submit()} buttonName = {"게시글 등록하기"} style={{flex:1}}/>
                      </View>
                 </View>
             </View>
@@ -101,7 +100,6 @@ function NewPost({...props}) {
     // 스타일
     const style = StyleSheet.create({
         input : {
-    
             marginTop : 0,
         },
         container: {
