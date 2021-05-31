@@ -71,7 +71,7 @@ function FlatListDemo(){
         })
         },[]);
     
-
+        
     const renderItem = ({item}) => {
         count = 0;
         const press = () => {
