@@ -8,6 +8,7 @@ function Promise({...props}) {
 
         isSelected1 & isSelected2 ? props.setCheck(true) : props.setCheck(false);
 
+
     return(
         <View style={styles.container}>
             <View style={styles.checkboxContainer}>

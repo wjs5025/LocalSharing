@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
       marginTop : 20,
       width : 200,
       height : 200,
-      borderWidth : 2,
-      borderColor : "black",
+      borderWidth : 3,
+      borderColor : "#CF2A27",
       borderRadius : 30,
   },
   UserName : {

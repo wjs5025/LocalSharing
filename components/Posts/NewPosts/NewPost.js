@@ -1,12 +1,10 @@
 import React, {Component, useEffect, useState} from 'react';
-import {TouchableHighlight , View, Button , Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
+import {TouchableHighlight , View , Button , Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image} from 'react-native';
 import SharingButton from "../SharingButton";
 import Promise from "../Promise";
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
-
 import firestore, { firebase } from '@react-native-firebase/firestore';
-
-
+import NumericInput from 'react-native-numeric-input';
 
 function NewPost({...props}) {
     const cnt = props.route.params.cnt;
@@ -14,10 +12,11 @@ function NewPost({...props}) {
     // 쉐어링 동의 확인 변수 선언
     const [allCheck, setCheck] = useState(false);
 
-    // 제목, 내용, 이미지 변수 선언
+    // 제목, 내용, 이미지, 참가자수 변수 선언
     const [TitleValue, onChangeTitle] = useState('');
     const [InnerValue, onChangeInner] = useState('');
     const [ImageUri, setImageSource] = useState('../../../image/photo.png');
+    const [SharingMax, setSharingMax] = useState(0);
 
     // TextInput 포커즈 관련 변수 선언
     const [Titlefocus, setTitleFocus] = useState(false);
@@ -33,7 +32,7 @@ function NewPost({...props}) {
             내용 : InnerValue,
             img : ImageUri,
             post_ID : cnt+1,
-            sharing_MAX : 0,
+            sharing_MAX : SharingMax,
             sharing_now : 0,
             User_ID : login_user.id,
         })
@@ -52,8 +51,9 @@ function NewPost({...props}) {
                 } else {
                     setImageSource(response.uri);
                 }})}}>
-                <Image source={require('../../../image/photo.png')} style={{flex:1, resizeMode : "contain"}}/>
+                <Image source={require('../../../image/photo.png')} style={{flex:1, resizeMode : "contain",}}/>
             </TouchableHighlight>
+
             <View style = {style.section}>
                 <View style = {{flex :1}}>
                 <TextInput 
@@ -65,7 +65,6 @@ function NewPost({...props}) {
                     onBlur = {() => setTitleFocus(false)}
                     onChangeText={text => onChangeTitle(text)} 
                     maxLength={20}
-
                     />
                 <TextInput 
                     placeholderTextColor = "gray"
@@ -78,13 +77,33 @@ function NewPost({...props}) {
                     onChangeText={text => onChangeInner(text)}
                     maxLength={100} 
                     textAlignVertical = "top" />
+                    
                 <Promise allCheck = {allCheck} setCheck = {setCheck} style={{flex:1}}/>
-                    <View style ={{flex:0.5}}>
-                        <SharingButton allCheck = {allCheck} submit = {()=>submit()} buttonName = {"게시글 등록하기"} style={{flex:1}}/>
+                <View style={{flex:1}}>
+                    <View style ={{flex:1, flexDirection:"row"}}>
+                        <View style={{flex:2, alignItems:"center"}}>
+                            <Text style ={{flex:1, textAlignVertical : "center",fontSize : 20,  fontFamily : 'NanumSquareEB',}}>참여인원 (1~10)</Text>
+                            <NumericInput 
+                            style = {{flex:1}}
+                            maxValue = {10} minValue = {1}
+                            value={SharingMax} onChange={value => setSharingMax(value)} 
+                            onLimitReached={(isMax,msg) => console.log(isMax,msg)}
+                            totalWidth={210} 
+                            totalHeight={35} 
+                            step={1}
+                            valueType='real'
+                            textColor='black' 
+                            iconStyle={{ color: '#CF2A27', fontSize:30 }} 
+                           
+                           />
+                        </View>
+                        <SharingButton allCheck = {allCheck} onPress = {() => submit()} buttonName = {"게시글 등록"}/>
+                     </View>
                      </View>
                 </View>
             </View>
-            </View>
+
+        </View>
     )
 }
 

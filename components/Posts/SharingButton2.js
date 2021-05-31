@@ -34,13 +34,23 @@ const style = StyleSheet.create({
 });
 
 
-export function SharingButton({...props}) {
-
+export function SharingButton2({...props}) {
+    const [data,setData] = useState([]);
+        useEffect(()=>{
+        const db = firestore().collection("sharing-posts").where('post_ID', 'in', props.post_ID);
+        db.get().then((query) =>{
+            query.forEach((doc)=>{
+                setData(doc.data());
+            //console.log(doc.data());
+        }
+        )})
+     },[])
+     
     return(
         <TouchableHighlight disabled={!props.allCheck} style={props.allCheck ? style.disable_container : style.container} underlayColor = {'none'} onPress={props.onPress}>
-                <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>{props.buttonName}</Text>
+                <Text style={!props.allCheck ? style.diasble_sharingButton : style.sharingButton}>{props.buttonName + " ( " + data.sharing_now +  " / " + data.sharing_MAX} )</Text>
         </TouchableHighlight>
     );
 }
 
-export default SharingButton;
+export default SharingButton2;

@@ -40,6 +40,7 @@ function Content({...props}){
         }
         )})
      },[])
+     
        return (
         <View style = {style.container}>
             <View style = {style.container}>

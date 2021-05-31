@@ -13,8 +13,6 @@ import PlusButton from "./PlusButton";
 import AlarmPage from "./AlarmPage";
 import KakaoMaps from "./KakaoMaps"
 
-import { ActivityIndicator } from 'react-native';
-import { withRepeat } from 'react-native-reanimated';
 
 const Stack = createStackNavigator();
 export default Screen 
