@@ -17,7 +17,7 @@ import KakaoMaps from "./KakaoMaps"
 const Stack = createStackNavigator();
 export default Screen 
 
-function Screen() {
+function Screen({...props}) {
      return (
         <Stack.Navigator>
           <Stack.Screen name="FlatListDemo" component={FlatListDemo} options={{headerShown: false}}/>

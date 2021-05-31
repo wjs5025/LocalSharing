@@ -2,6 +2,7 @@ import React, {Component, useEffect, useState} from 'react';
 import { TouchableHighlight, StyleSheet, View, Text, Image } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
+
 const style = StyleSheet.create({
     container : {
         flex:1,

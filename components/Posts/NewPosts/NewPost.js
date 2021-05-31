@@ -6,6 +6,8 @@ import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker'
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import NumericInput from 'react-native-numeric-input';
 
+
+
 function NewPost({...props}) {
     const cnt = props.route.params.cnt;
 
@@ -35,6 +37,7 @@ function NewPost({...props}) {
             sharing_MAX : SharingMax,
             sharing_now : 0,
             User_ID : login_user.id,
+            participate : [""],
         })
         props.navigation.pop();
         count = 0;
