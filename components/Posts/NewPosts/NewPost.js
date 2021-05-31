@@ -37,7 +37,7 @@ function NewPost({...props}) {
             sharing_MAX : SharingMax,
             sharing_now : 0,
             User_ID : login_user.id,
-            participate : [""],
+            participate : [],
         })
         props.navigation.pop();
         count = 0;

@@ -46,6 +46,7 @@ function FlatListDemo(){
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         wait(2000).then(() => setRefreshing(false));
+        cnt = 0;
     },[]);
 
     //Totop

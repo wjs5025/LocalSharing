@@ -16,6 +16,8 @@ function SharingPost({...props}){
     const [allCheck, setCheck] = useState(false);
     const post_ID = useState(props.route.params.post_ID) /// FlatListDemo 에서 받아온 post_ID
     const [data, setData] = useState([]);
+    const [data2, setData2] = useState([]);
+    const [loginFlag, setFlag] = useState(false);
 
 
     // post_ID 이용해서 해당 포스트의 data.json 불러오기
@@ -24,7 +26,8 @@ function SharingPost({...props}){
         db.get().then((query) =>{
             query.forEach((doc)=>{
                 setData(doc.data());
-                console.log(doc.data());
+                setData2(doc.data().participate);
+                
         })})
      },[])
 
@@ -38,18 +41,29 @@ function SharingPost({...props}){
                 
                 props.navigation.pop();
             } else {
-               alert("더 큽니다.")
+               alert("인원 초과")
             }
     }
+
 
     // 약관 동의 두개다 체크시 콘솔
     useEffect(() => {
         console.log("sharing" + allCheck);
+        console.log("array : ", data2);
+        console.log(loginFlag);
+        console.log(typeof(data2));
     }, [allCheck])
 
-    // changeButton = () => {
-    //     if 
-    // }
+
+
+ 
+    firestore().collection("sharing-posts").where(login_user.id, 'array-contains',data2).get().then(Doc => {
+        Doc.forEach(() => {
+            setFlag(true);
+        });
+    })
+
+    
 
     return (
         <View style={style.container}>
