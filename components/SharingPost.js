@@ -52,6 +52,7 @@ function SharingPost({...props}){
         console.log("array : ", data2);
         console.log(loginFlag);
         console.log(typeof(data2));
+        console.log(firestore().collection("sharing-posts").where(login_user.id, 'in',[]));
     }, [allCheck])
 
 

@@ -1092,7 +1092,7 @@
   "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-11.4.1.tgz"
   "version" "11.4.1"
 
-"@react-native-picker/picker@^1.9.7", "@react-native-picker/picker@1.16.1":
+"@react-native-picker/picker@^1.9.7":
   "integrity" "sha512-sk07ARwL0cMXwkXsqcxyprL/KiEVD0xRFXFqznTnZs1YXqwxEqz6GiGtq2vQlK64CzXDpHX8gw1QQz47abBY1Q=="
   "resolved" "https://registry.npmjs.org/@react-native-picker/picker/-/picker-1.16.1.tgz"
   "version" "1.16.1"
