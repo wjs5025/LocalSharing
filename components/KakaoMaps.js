@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TouchableHighlight, StyleSheet, View, Image, Alert ,Text} from 'react-native';
 import { WebView } from 'react-native-webview';
 import BottomTabs from "./BottomTabs";
-import firestore from '@react-native-firebase/firestore';
+import firestore , { firebase } from '@react-native-firebase/firestore';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
@@ -39,7 +39,7 @@ export default class Screen extends Component {
         console.log("---------");
         console.log("User_Cnt=",User_Cnt);
           if (!Exist){                                     // 존재 하지 않으면 DB에 등록
-              var doc_name = 'User'+User_Cnt;
+              var doc_name = login_user.id;
               firestore().collection('User').doc(doc_name).set({ 
               Kakao_Account: login_user,
               User_ID: login_user.id,
@@ -48,6 +48,11 @@ export default class Screen extends Component {
               Y : this.state.Y
           }).then(() => {console.log('User added!');});
            
+          firestore().collection('User').doc(doc_name).update({
+            Unwritten_Reviews : firebase.firestore.FieldValue.arrayUnion()
+        });
+
+
           firestore().collection('User').doc('PK').update({
             Cnt: User_Cnt+1, }) .then(() => {console.log('User updated!');});
           }

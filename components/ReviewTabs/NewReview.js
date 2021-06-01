@@ -7,7 +7,7 @@ import Info from "../Posts/Info";
 import Comment from "../Posts/Comment";
 import Content from "../Posts/Content";
 import  {launchCamera ,  launchImageLibrary }  from  'react-native-image-picker' ;
-import firestore from '@react-native-firebase/firestore';
+import firestore , { firebase } from '@react-native-firebase/firestore';
 
 function NewReview({...props}) {
 
@@ -54,10 +54,12 @@ function NewReview({...props}) {
 
         firestore().collection('review-posts').doc('PK').update({
             Cnt: Review_Cnt+1, }) .then(() => {console.log('Review updated!');
-        });        
+        });
+    
 
-        
-        // 배열에서 빼는거만 하면 끝
+        firestore().collection('User').doc(login_user.id).update({
+            Unwritten_Reviews : firebase.firestore.FieldValue.arrayRemove(Now_Review_Post)
+        });
 
         props.navigation.pop();
     }
