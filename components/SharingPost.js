@@ -27,7 +27,6 @@ function SharingPost({...props}){
             query.forEach((doc)=>{
                 setData(doc.data());
                 setData2(doc.data().participate);
-                
         })})
      },[])
 
