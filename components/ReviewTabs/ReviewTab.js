@@ -5,25 +5,25 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
 import NewReview from "./NewReview";
+import color from 'color';
 
 
 const Stack = createStackNavigator();
 
 
-
 class ReviewTab extends Component{
-
     state = {
-        data : []
+        data : [],
+        writen : false,
+        receive : false,
     }
-
     constructor(props){
     super(props);
     } 
     
 
-
     WritenReview() {
+       this.setState({writen : true, receive:false});
        console.log("WrithenReview()");
        console.log("-------------");
        console.log(login_user)
@@ -41,8 +41,8 @@ class ReviewTab extends Component{
 
 //  Review_post : Post_ID : 1 을 저장   ->  그걸 Post에서 검색 ->  작성자가 login_user 이면 출력!
 //   귀찮아서 Received_User를 만듬!
-
     ReceivedReview(){
+        this.setState({writen : false, receive:true});
        console.log("ReceiveReview()");
        console.log("-------------");
 
@@ -55,21 +55,7 @@ class ReviewTab extends Component{
             });
         });
         })
-/*
-       firestore().collection('review-posts').add({
-            title: 'Ada Lovelace',
-            comment: login_user,
-            User_ID:'1',
-            date:'1',
-            post_ID:'1',
-            review_ID:'1'
-        })
-        .then(() => {
-            console.log('Review added!');
-        });
-*/
     }
-
     UnWrittenReview(){
        console.log("UnWrittenReview()");
        console.log("-------------",login_user.id);
@@ -82,42 +68,41 @@ class ReviewTab extends Component{
     })
     
     }
-    
-    
 
-    
+    componentDidMount(){
+        this.WritenReview();
+
+    }
 
 
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-
         return(
             <View style={style.root}>
                 <View style={style.Review}>
-                    
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.WritenReview(this);}}>
-                        <View style={{flexDirection : "row"}}>
-                            <Text style={style.Writen } >| 내가 쓴 리뷰 |</Text>
-                        </View>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.ReceivedReview(this);}}>
-                        <View style={{flexDirection : "row"}}>
-                            <Text style={style.Given} > | 내가 받은 리뷰 |</Text>
-                        </View>
-                    </TouchableHighlight>
+                    <View style={{flexDirection:'row'}}>
+                        <TouchableHighlight style = {this.state.writen ? style.writenContainer : style.writenContainer2} underlayColor = {'none'} onPress={()=>{this.WritenReview(this);}}>
+                                <Text style={this.state.writen ? style.Writen : style.Writen2}>내가 쓴 리뷰</Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight style = {this.state.receive ? style.receivecontainer : style.receivecontainer2} underlayColor = {'none'} onPress={()=>{this.ReceivedReview(this);}}>
+                                <Text style={this.state.writen ? style.Given : style.Given2} >내가 받은 리뷰</Text>
+                        </TouchableHighlight>
                     </View>
-
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWrittenReview(this), this.props.navigation.navigate("NewReview");}}>
-                    <View style={style.Unwritten}>                        
-                    <Text style={style.Unwritten}>  미작성 리뷰 : {URlen}   </Text>  
+                    <View style ={{flex:1, alignItems:'flex-end'}}>
+                        <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWrittenReview(this), this.props.navigation.navigate("NewReview");}}>
+                            <Text style={style.Unwritten}>
+                                <Image style={style.Edit} source={require('../../image/edit.png')}/> 미작성 리뷰({URlen}) 작성하기</Text>  
+                        </TouchableHighlight>
                     </View>
-                    </TouchableHighlight>
-                    
+                </View>
+                    <View style={{flex:7}}>
                     <FlatList // FlatList 의 기본속성, data는 this.state처럼 가변한 부분에서 가져온다.
+                    style={{flex:1, marginLeft:20, marginRight:10}}
                     data={this.state.data}
                     renderItem={this.renderItem}  // this.state가 renderItem의 매개변수로 들어간다.
                     keyExtractor={ item=> item.review_ID }
                     >
                    </FlatList>
+                   </View>
             </View>
         );
     }//render method ..
@@ -152,38 +137,74 @@ export default class Screen extends Component {
 }
 
 const style= StyleSheet.create({
+    receivecontainer : {
+        flex:1, 
+        alignItems:'center',
+        backgroundColor : '#CF2A27',
+        borderRadius:5,
+    },
+    receivecontainer2 : {
+        flex:1, 
+        alignItems:'center',
+        borderRadius:5,
+    },
+    writenContainer:{
+        flex:1, 
+        alignItems:'center',
+        backgroundColor : '#CF2A27',
+        borderRadius:5,
+        
+    },
+    writenContainer2:{
+        flex:1, 
+        alignItems:'center',
+        borderRadius:5,
+    },
+    Edit: {
+        width:23,
+        height:23,
+    },
     root:{
         flex:1,
-        padding:16, 
-        backgroundColor: "#CF2A27"
+        backgroundColor: "white"
     },
     Review:{
-        flexDirection : "row",
-        marginLeft : 40,
+        flex:1,
     },
-   
     Writen:{
+        marginTop:7,
+        flex:1,
         fontFamily: 'NanumSquare_acEB',
-        fontSize:18,
-        marginBottom:10,
-        marginRight : 20,
-
+        fontSize:25,
+        color:'white'
+    },
+    Writen2:{
+        marginTop:7,
+        flex:1,
+        fontFamily: 'NanumSquare_acEB',
+        fontSize:25,
+        color:'black'
     },
     Given:{
+        marginTop:7,
         fontFamily: 'NanumSquare_acEB',
-        fontSize:18,
+        fontSize:25,
         marginBottom:10,
-        marginLeft : 20,
-
+        color:'black'
+    },
+    Given2:{
+        marginTop:7,
+        fontFamily: 'NanumSquare_acEB',
+        fontSize:25,
+        marginBottom:10,
+        color:'white'
     },
     Unwritten:{
         fontFamily: 'NanumSquare_acEB',
-        flexDirection: 'row',
-        //alignItems: 'flex-end',        
-        justifyContent: 'flex-end',
-        fontSize:15,
-        marginBottom:10,
-        marginLeft : 20,
+        flexDirection: 'row',     
+        fontSize:18,
+        marginRight:5,
+        paddingBottom:5,
     },
     List:{
         borderWidth:4,
@@ -202,7 +223,6 @@ const style= StyleSheet.create({
         borderRadius:10,
         marginBottom:7,
     },
-    // 
     itemdate:{
         marginLeft:7,
         marginRight:10,

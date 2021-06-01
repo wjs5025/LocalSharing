@@ -40,7 +40,7 @@ class App extends Component {
   }
   render() {
     return (
-      // <NavigationContainer><BottomTabs/></NavigationContainer>
+      // <NavigationContainer><ReviewTab/></NavigationContainer>
       <FirstSlide/>
         
       );

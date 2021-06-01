@@ -97,7 +97,6 @@ function NewPost({...props}) {
                             valueType='real'
                             textColor='black' 
                             iconStyle={{ color: '#CF2A27', fontSize:30 }} 
-                           
                            />
                         </View>
                         <SharingButton allCheck = {allCheck} onPress = {() => submit()} buttonName = {"게시글 등록"}/>

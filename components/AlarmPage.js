@@ -4,7 +4,7 @@ import { Image, StyleSheet, View, Text, TouchableHighlight } from 'react-native'
 function AlarmPage() {
     
     return(
-        <Text> 안녕? </Text>
+        <Text> 알림 미구현 </Text>
     );
 }
 

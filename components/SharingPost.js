@@ -43,7 +43,9 @@ function SharingPost({...props}){
                 sharing_now : ++data.sharing_now,
                 participate : firebase.firestore.FieldValue.arrayUnion(login_user.id)
             });
+                alert("쉐어링 신청완료 !")
                 props.navigation.pop();
+                
                 setFlag(false);
             } else {
                alert("신청가능 인원이 초과되었습니다.")
