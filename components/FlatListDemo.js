@@ -55,6 +55,7 @@ function FlatListDemo(){
     }
 
     useEffect(() => {
+        reset_loaction = 1;
         firestore().collection('sharing-posts').orderBy("post_ID", "desc").onSnapshot(querySnapshot => {
             const data = [];
             querySnapshot.forEach(documentSnapshot => {
