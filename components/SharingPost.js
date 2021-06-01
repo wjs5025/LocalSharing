@@ -36,6 +36,9 @@ function SharingPost({...props}){
      // 신청버튼 클릭시 이벤트(Max>now => now++ / MAX<now => 경고)
     const sharingSubmit = () =>{
         if (data.sharing_now < data.sharing_MAX) {
+            firestore().collection("User").doc(data.User_ID).update({
+                Unwritten_Reviews : firebase.firestore.FieldValue.arrayUnion(props.route.params.post_ID)
+            });
             firestore().collection("sharing-posts").doc('Post' + props.route.params.post_ID).update({
                 sharing_now : ++data.sharing_now,
                 participate : firebase.firestore.FieldValue.arrayUnion(login_user.id)
