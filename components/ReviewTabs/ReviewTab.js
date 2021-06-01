@@ -9,18 +9,6 @@ import NewReview from "./NewReview";
 
 const Stack = createStackNavigator();
 
-export default class Screen extends Component {
-    render() {
-       return (
-          <Stack.Navigator>
-             <Stack.Screen name="ReviewTab" component={ReviewTab} options={{headerShown: false}}/>
-             <Stack.Screen name="NewReview" component={NewReview} options={{headerShown: false}}/>
-          </Stack.Navigator>
-       );
-     }
-}
-
-
 class ReviewTab extends Component{
 
     state = {
@@ -29,8 +17,9 @@ class ReviewTab extends Component{
 
     constructor(props){
     super(props);
-
     } 
+    
+
 
     WritenReview() {
        console.log("WrithenReview()");
@@ -81,20 +70,23 @@ class ReviewTab extends Component{
 
     UnWrittenReview(){
        console.log("UnWrittenReview()");
-       console.log("-------------");
-
-       var date = new Date().getDate();
-       var month = new Date().getMonth() + 1;
-       var year = new Date().getFullYear();
-       var Dt = year + '-' + month + '-' + date;  // 2021-05-28
-       console.log(Dt);
-
+       console.log("-------------",login_user.id);
+       console.log("-------------",typeof login_user.id);
+       firestore().collection("review-posts").doc("PK").get().then((doc) => {
+        Review_Cnt = doc.data().Cnt;
+        console.log("Rn="+doc.data().Cnt);
+    }).catch((error)=>{
+      console.log("Error");
+    })
+    
     }
-
+    
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
+        
         return(
             <View style={style.root}>
                 <View style={style.Review}>
+                    
                     <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.WritenReview(this);}}>
                         <View style={{flexDirection : "row"}}>
                             <Text style={style.Writen } >| 내가 쓴 리뷰 |</Text>
@@ -107,9 +99,9 @@ class ReviewTab extends Component{
                     </TouchableHighlight>
                     </View>
 
-                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWrittenReview(this), console.log(this.props), this.props.navigation.navigate("NewReview");}}>
+                    <TouchableHighlight underlayColor = {'none'} onPress={()=>{this.UnWrittenReview(this), this.props.navigation.navigate("NewReview");}}>
                     <View style={style.Unwritten}>                        
-                    <Text style={style.Unwritten}>  미작성 리뷰 {login_user.User_ID} 이거 아직 미구현  </Text>  
+                    <Text style={style.Unwritten}>  미작성 리뷰 : {URlen}   </Text>  
                     </View>
                     </TouchableHighlight>
                     
@@ -138,6 +130,20 @@ class ReviewTab extends Component{
 
 
 }
+
+
+export default class Screen extends Component {
+    
+    render() {
+       return (
+          <Stack.Navigator>
+             <Stack.Screen name="ReviewTab" component={ReviewTab} options={{headerShown: false}}/>
+             <Stack.Screen name="NewReview" component={NewReview} options={{headerShown: false}}/>
+          </Stack.Navigator>
+       );
+     }
+}
+
 const style= StyleSheet.create({
     root:{
         flex:1,

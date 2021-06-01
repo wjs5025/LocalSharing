@@ -30,6 +30,8 @@ global.login_user = "유저 토큰";
 global.Exist=0;
 global.User_Cnt=0;
 global.Review_Cnt=0;
+global.Now_Review_Post=1;
+global.URlen=0;
 
 
 class App extends Component {

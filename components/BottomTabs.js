@@ -3,6 +3,7 @@ import { Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import firestore from '@react-native-firebase/firestore';
 
 // 컴포넌트 임포트
 import FlatListDemo from "./FlatListDemo";
@@ -21,6 +22,20 @@ function HomeScreen() {
 }
 
 function ReviewScreen() {
+
+   firestore().collection('User').where('User_ID', '==', login_user.id).get().then(Doc => {
+        Doc.forEach((DO)=>{
+            Now_Review_Post=DO.data().Unwritten_Reviews;
+            URlen=Object.keys(Now_Review_Post).length;
+            var Temp = Now_Review_Post[0];
+            Now_Review_Post=Number(Temp);
+            console.log("Now_Review_Post="+Now_Review_Post);  // string 
+        });
+    }).catch((error)=>{
+        console.log("Error2");
+      });
+
+
   return (
     <View style={{flex: 1}}>
       <ReviewTab/>

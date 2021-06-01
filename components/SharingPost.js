@@ -52,19 +52,19 @@ function SharingPost({...props}){
         console.log("array : ", data2);
         console.log(loginFlag);
         console.log(typeof(data2));
-        console.log(firestore().collection("sharing-posts").where(login_user.id, 'in',[]));
+    //    console.log(firestore().collection("sharing-posts").where(login_user.id, 'in',[]));
     }, [allCheck])
 
 
 
- 
+ /*
     firestore().collection("sharing-posts").where(login_user.id, 'array-contains',data2).get().then(Doc => {
         Doc.forEach(() => {
             setFlag(true);
         });
     })
 
-    
+    */
 
     return (
         <View style={style.container}>

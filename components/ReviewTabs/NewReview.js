@@ -11,9 +11,6 @@ import firestore from '@react-native-firebase/firestore';
 
 function NewReview({...props}) {
 
-  
-  
-
     // 쉐어링 동의 확인 변수 선언
     const [allCheck, setCheck] = useState(false);
 
@@ -28,9 +25,8 @@ function NewReview({...props}) {
     const TitleFocusStyle = Titlefocus ? style.TitleInputFocus : style.TitleInput;
     const InnerFocusStyle = Innerfocus ? style.InnerInputFocus : style.InnerInput;
 
-    const post_ID = useState(1);
+    const Temp = useState(Number(Now_Review_Post));
     
-
     // 게시글 등록 버튼 이벤트 함수 (DB에 값 추가하고 이전화면으로)
     const submit = () =>{
         var date = new Date().getDate();
@@ -39,55 +35,44 @@ function NewReview({...props}) {
         var Dt = year + '-' + month + '-' + date;  // 2021-05-28
 
         
-        firestore().collection("review-posts").doc("PK").get().then((doc) => {
-            Review_Cnt = doc.data().Cnt;
-            console.log("Rn="+doc.data().Cnt);
-        }).catch((error)=>{
-          console.log("Error");
-        })
-/////////////////////////////// 따 로 옮 겨 야 함 이건 리뷰 작성 누를 때 나오는 화면 임  필요없나?? 모르겟어!!!////////////////////////////////////////////////
-        console.log("          login_user="+login_user.id);
 
-        firestore().collection('User').where('User_ID', '==', login_user.id).get().then(Doc => {
-            Doc.forEach((DO)=>{
-                //console.log("Un="+DO.data().Unwritten_Reviews[0]);
-                post_ID= useState(DO.data().Unwritten_Reviews[0]);
-            });
-        })
-////////////////////////////////////////////////////////////////////////////////
-    /*
+        console.log("          login_user="+login_user.id);
+        console.log("          Now_Review_Post="+Now_Review_Post);
+        console.log("          Review_Cnt="+Review_Cnt);
+
+       
+    
         firestore().collection("review-posts").doc('post'+(Review_Cnt+1)).set({
             Received_User : login_user.id, // 따로수정  게시글에 대한 정보를 가져와야함    info.js 처럼 하면된다 post_ID 가지고 user_id 받아오면댐
             User_ID : login_user.id,
             comment : InnerValue,
             date : Dt,
-            post_ID : Review_Cnt+1, 
+            post_ID : Now_Review_Post, 
             review_ID : Review_Cnt+1,
             title : TitleValue
-        }
-
-        )
+        });
 
         firestore().collection('review-posts').doc('PK').update({
-            Cnt: Review_Cnt+1, }) .then(() => {console.log('Review updated!');});        
-            */
-        
-        // Unwritten_Reviews[0]방 삭제 -> 그러면 한칸씩 앞으로 밀리나..? 확인해야함
+            Cnt: Review_Cnt+1, }) .then(() => {console.log('Review updated!');
+        });        
 
-/////////////////////////////////////////////////////////////////////////////
-            props.navigation.pop();
+        
+        // 배열에서 빼는거만 하면 끝
+
+        props.navigation.pop();
     }
 
     return(
+
         <View style = {style.container}>
             
             <View style={style.imageArea}>
-                <ImageView style= {style.container} post_ID={post_ID}/>
+                <ImageView style= {style.container} post_ID={Temp} />
             </View>
             <View style={style.scrollView}>
                 <ScrollView>
-                    <Info style={style.InfoArea} post_ID={post_ID}/>
-                    <Content style={style.contentArea} post_ID={post_ID}/>
+                    <Info style={style.InfoArea} post_ID={Temp}/>
+                    <Content style={style.contentArea} post_ID={Temp}/>
                     {/* <Comment/> */}
                 </ScrollView>
             </View>
