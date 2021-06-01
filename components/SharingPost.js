@@ -55,13 +55,9 @@ function SharingPost({...props}){
     // 약관 동의 두개다 체크시 콘솔
     useEffect(() => {
         console.log("sharing" + allCheck);
-        console.log("array : ", data2);
-        console.log(loginFlag);
-        console.log(typeof(data2));
-        console.log(data2);
-        console.log("참트루 : ", data2.indexOf(login_user.id) == -1);
     }, [allCheck])
 
+    
     useEffect(() => {
         if (data2.indexOf(login_user.id) != -1){
             setButton("이미 신청한 쉐어링");

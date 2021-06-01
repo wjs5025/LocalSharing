@@ -17,7 +17,7 @@ function NewPost({...props}) {
     // 제목, 내용, 이미지, 참가자수 변수 선언
     const [TitleValue, onChangeTitle] = useState('');
     const [InnerValue, onChangeInner] = useState('');
-    const [ImageUri, setImageSource] = useState('../../../image/photo.png');
+    const [ImageUri, setImageSource] = useState('file:///data/user/0/com.localsharing/cache/rn_image_picker_lib_temp_189c5275-9eef-4a15-95e6-4b3cf11da0e5.jpg'); //임의로 고구마사진
     const [SharingMax, setSharingMax] = useState(0);
 
     // TextInput 포커즈 관련 변수 선언
@@ -52,7 +52,8 @@ function NewPost({...props}) {
                 } else if(response.error){
                     console.log('response.customButton')
                 } else {
-                    setImageSource(response.uri);
+                    setImageSource("file:///data/user/0/com.localsharing/cache/rn_image_picker_lib_temp_189c5275-9eef-4a15-95e6-4b3cf11da0e5.jpg");
+
                 }})}}>
                 <Image source={require('../../../image/photo.png')} style={{flex:1, resizeMode : "contain",}}/>
             </TouchableHighlight>

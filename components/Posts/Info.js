@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
                     <View style ={{flex : 1}}>
                         <View style ={{flex:1, flexDirection : 'row'}}>
                             <Text style={styles.userInfo}>{kakao.nickname}</Text>
-                            <TouchableHighlight underlayColor = {'none'} onPress={()=>alert("리뷰보기")}><Text style={styles.reviewBtn}> {'>'} 리뷰보기</Text></TouchableHighlight>
+                            <TouchableHighlight underlayColor = {'none'} onPress={()=>navigation.navigate("리뷰")}><Text style={styles.reviewBtn}> {'>'} 리뷰보기</Text></TouchableHighlight>
                         </View>
                         <View style ={{flex : 1}}>
                             <Text style={styles.userAddress}>{kakao.email}</Text>
