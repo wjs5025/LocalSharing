@@ -55,9 +55,14 @@ export default class Screen extends Component {
 
           firestore().collection('User').doc('PK').update({
             Cnt: User_Cnt+1, }) .then(() => {console.log('User updated!');});
-          }
+        }
+        console.log("X ",this.state.X,"Y ",this.state.Y,"reset_location",reset_loaction,"docname ",doc_name);
 
-          ///////// X,Y 좌표 수정 하는거 만들기!!
+          firestore().collection('User').doc(login_user.id).update({
+            X: this.state.X,
+            Y:  this.state.Y, }) .then(() => {console.log('(X,Y) updated!');
+        });
+
   }
 
      onWebViewMessage = event => {
@@ -107,7 +112,10 @@ export default class Screen extends Component {
                 </View>
                 <View style={styles.bottom}>
                  <View style={{flex:1.1}}>
-                    <TouchableHighlight underlayColor = {'none'} style={{marginTop : 30, backgroundColor:"red"}} onPress={() => {this.signup_user(this),this.props.navigation.navigate("BottomTabs")}}>
+                    <TouchableHighlight underlayColor = {'none'} style={{marginTop : 30, backgroundColor:"red"}} onPress={() => {
+                        this.signup_user(this);
+                        !reset_loaction ? this.props.navigation.navigate("BottomTabs") : this.props.navigation.pop();
+                    }}>
                                 <Image source={require('../image/kakao_button.png')}/>
                     </TouchableHighlight>
                 </View>

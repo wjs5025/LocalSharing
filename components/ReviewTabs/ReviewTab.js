@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {TouchableHighlight , View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback, Image, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +8,8 @@ import NewReview from "./NewReview";
 
 
 const Stack = createStackNavigator();
+
+
 
 class ReviewTab extends Component{
 
@@ -81,8 +83,13 @@ class ReviewTab extends Component{
     
     }
     
+    
+
+    
+
+
     render(){ // 렌더링 해서 화면에 보여줄 컨텐츠들
-        
+
         return(
             <View style={style.root}>
                 <View style={style.Review}>
