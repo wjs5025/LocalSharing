@@ -47,18 +47,14 @@ export default class Screen extends Component {
               X : this.state.X,
               Y : this.state.Y
           }).then(() => {console.log('User added!');});
-           
-          firestore().collection('User').doc(doc_name).update({
+
+          firestore().collection('User').doc(doc_name).update({   //  배열값 추가
             Unwritten_Reviews : firebase.firestore.FieldValue.arrayUnion()
         });
-
-
-          firestore().collection('User').doc('PK').update({
+          firestore().collection('User').doc('PK').update({  // PK 증가
             Cnt: User_Cnt+1, }) .then(() => {console.log('User updated!');});
         }
-        console.log("X ",this.state.X,"Y ",this.state.Y,"reset_location",reset_loaction,"docname ",doc_name);
-
-          firestore().collection('User').doc(login_user.id).update({
+          firestore().collection('User').doc(login_user.id).update({  // 좌표 갱신
             X: this.state.X,
             Y:  this.state.Y, }) .then(() => {console.log('(X,Y) updated!');
         });
@@ -101,13 +97,6 @@ export default class Screen extends Component {
                     />
                     </View>
                     <View style={{flex:1}}>
-                        <Text style ={{flex:1, alignSelf:'center'}}>
-                            {"\n"}
-                            X 좌표 : {this.state.X}  {"\n"}
-                            Y 좌표 : {this.state.Y}   {"\n"}
-                            Exist : {Exist}  {"\n"}
-                            User : {login_user.id}  {"\n"}
-                        </Text>
                     </View>
                 </View>
                 <View style={styles.bottom}>
